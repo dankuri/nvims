@@ -39,6 +39,7 @@ require("lazy").setup({
             { 'L3MON4D3/LuaSnip' },     -- Required
         }
     },
+    { 'folke/which-key.nvim', opts = {} },
     {
         'lewis6991/gitsigns.nvim',
         event = 'BufRead',
