@@ -1,22 +1,33 @@
 local lsp = require('lsp-zero').preset({})
 
 lsp.ensure_installed({
-  'tsserver',
-  'rust_analyzer',
+    "tsserver",
+    "rust_analyzer",
+    "gopls"
 })
 
 -- Fix Undefined global 'vim'
 lsp.nvim_workspace()
 
 lsp.on_attach(function(client, bufnr)
-  -- see :help lsp-zero-keybindings
-  -- to learn the available actions
-  local opts = {buffer = bufnr}
-  lsp.default_keymaps(opts)
-  vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references<cr>', {buffer = true})
-  -- vim.keymap.set("n", "gd", '<cmd>Telescope lsp_references<cr>', {buffer = true})
-  vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
-  vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
+    -- see :help lsp-zero-keybindings
+    -- to learn the available actions
+    lsp.default_keymaps({ buffer = bufnr })
+    local nmap = function(keys, func, desc)
+        if desc then
+            desc = "LSP: " .. desc
+        end
+
+        vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
+    end
+
+    nmap("gr", "<cmd>Telescope lsp_references<cr>", "references")
+    nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
+    nmap("gI", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
+
+    nmap("<leader>ca", vim.lsp.buf.code_action, "code actions")
+    nmap("<leader>rn", vim.lsp.buf.rename, "rename")
+    nmap("<leader>lf", vim.lsp.buf.format, "format")
 end)
 
 lsp.setup()
