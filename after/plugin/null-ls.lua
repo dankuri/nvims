@@ -7,7 +7,19 @@ end
 local sources = {
 	null_ls.builtins.formatting.rustfmt,
 	null_ls.builtins.formatting.prettierd.with({
-		filetypes = { "html", "json", "markdown", "scss", "css", "typescript", "javascript", "vue", "yaml" },
+		filetypes = {
+			"html",
+			"json",
+			"markdown",
+			"scss",
+			"css",
+			"typescript",
+			"javascript",
+			"typescriptreact",
+			"javascriptreact",
+			"vue",
+			"yaml",
+		},
 	}),
 	-- null_ls.builtins.diagnostics.eslint.with {
 	--   command = "eslint_d",
