@@ -5,6 +5,7 @@ if not ok then
 end
 
 local sources = {
+	-- for a full list check https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
 	null_ls.builtins.formatting.rustfmt,
 	null_ls.builtins.formatting.prettierd.with({
 		filetypes = {
@@ -32,6 +33,7 @@ local sources = {
 	null_ls.builtins.formatting.gofumpt,
 	null_ls.builtins.formatting.goimports_reviser,
 	null_ls.builtins.formatting.golines,
+	null_ls.builtins.diagnostics.staticcheck,
 	-- null_ls.builtins.diagnostics.revive,
 	-- null_ls.builtins.diagnostics.golangci_lint
 }
