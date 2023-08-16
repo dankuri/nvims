@@ -20,6 +20,9 @@ vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
+vim.cmd [[highlight IndentBlanklineIndent1 guifg=#56B6C2 gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent2 guifg=#61AFEF gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent3 guifg=#C678DD gui=nocombine]]
 
 vim.opt.scrolloff = 8
 vim.opt.isfname:append("@-@")
