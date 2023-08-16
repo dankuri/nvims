@@ -4,6 +4,16 @@ lsp.ensure_installed({
 	"tsserver",
 	"rust_analyzer",
 	"gopls",
+	"html",
+	"cssls",
+	"emmet_ls",
+	"volar",
+	"lua_ls",
+	"jsonls",
+	"docker_compose_language_service",
+	"dockerls",
+	"intelephense",
+	"tailwindcss",
 })
 
 -- Fix Undefined global 'vim'
@@ -24,6 +34,8 @@ lsp.on_attach(function(client, bufnr)
 	nmap("gr", "<cmd>Telescope lsp_references<cr>", "goto references")
 	nmap("gd", vim.lsp.buf.definition, "goto definition")
 	nmap("gI", vim.lsp.buf.implementation, "goto implementation")
+	nmap("[d", vim.diagnostic.goto_prev, "goto previous diagnostic message")
+	nmap("]d", vim.diagnostic.goto_next, "goto next diagnostic message")
 
 	nmap("<leader>ca", vim.lsp.buf.code_action, "code actions")
 	nmap("<leader>rn", vim.lsp.buf.rename, "rename")
