@@ -27,7 +27,7 @@ lsp.on_attach(function(client, bufnr)
 
 	nmap("<leader>ca", vim.lsp.buf.code_action, "code actions")
 	nmap("<leader>rn", vim.lsp.buf.rename, "rename")
-	nmap("<leader>lf", vim.lsp.buf.format, "format")
+	nmap("<leader>fm", vim.lsp.buf.format, "format")
 end)
 
 lsp.setup()
