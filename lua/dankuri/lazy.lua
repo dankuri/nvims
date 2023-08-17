@@ -31,7 +31,6 @@ require("lazy").setup({
 		"VonHeikemen/lsp-zero.nvim",
 		branch = "v2.x",
 		dependencies = {
-			-- LSP Support
 			{
 				"neovim/nvim-lspconfig",
 				dependencies = {
@@ -40,11 +39,10 @@ require("lazy").setup({
 					{ "j-hui/fidget.nvim", tag = "legacy", opts = {} },
 					{ "jose-elias-alvarez/null-ls.nvim" }, -- WARN: it is archived, check https://github.com/jose-elias-alvarez/null-ls.nvim/issues/1621 if it breaks
 				},
-			}, -- Required
-			{ "williamboman/mason.nvim" }, -- Optional
-			{ "williamboman/mason-lspconfig.nvim" }, -- Optional
+			},
+			{ "williamboman/mason.nvim" },
+			{ "williamboman/mason-lspconfig.nvim" },
 
-			-- Autocompletion
 			{
 				"hrsh7th/nvim-cmp",
 				dependencies = {
@@ -72,6 +70,33 @@ require("lazy").setup({
 			{ "saadparwaiz1/cmp_luasnip" },
 			{ "rafamadriz/friendly-snippets" },
 		},
+	},
+	{
+		"olexsmir/gopher.nvim",
+		ft = "go",
+		config = function(_, opts)
+			require("gopher").setup(opts)
+		end,
+		build = function()
+			vim.cmd([[silent! GoInstallDeps]])
+		end,
+	},
+	{
+		"simrat39/rust-tools.nvim",
+		ft = "rust",
+	},
+	{
+		"saecki/crates.nvim",
+		event = { "BufRead Cargo.toml" },
+		requires = { { "nvim-lua/plenary.nvim" } },
+		config = function()
+			require("crates").setup({
+				null_ls = {
+					enabled = true,
+					name = "crates.nvim",
+				},
+			})
+		end,
 	},
 	{ "folke/which-key.nvim", opts = {} },
 	{

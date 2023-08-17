@@ -42,7 +42,32 @@ lsp.on_attach(function(client, bufnr)
 	nmap("<leader>fm", vim.lsp.buf.format, "format")
 end)
 
+lsp.skip_server_setup({ 'rust_analyzer' })
+
+lsp.use("gopls", {
+	settings = {
+		gopls = {
+			completeUnimported = true,
+			usePlaceholders = true,
+			analyses = {
+				unusedparams = true,
+			},
+		},
+	},
+})
+
 lsp.setup()
+
+local rust_tools = require('rust-tools')
+
+rust_tools.setup({
+	server = {
+		on_attach = function(_, bufnr)
+			vim.keymap.set('n', '<leader>ca', rust_tools.hover_actions.hover_actions,
+				{ buffer = bufnr, desc = "rust code actions" })
+		end
+	}
+})
 
 local cmp = require("cmp")
 local luasnip = require("luasnip")
@@ -89,5 +114,6 @@ cmp.setup({
 		{ name = "luasnip" },
 		{ name = "nvim_lua" },
 		{ name = "path" },
+		{ name = "crates" },
 	},
 })
