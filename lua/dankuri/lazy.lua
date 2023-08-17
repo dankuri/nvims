@@ -74,8 +74,16 @@ require("lazy").setup({
 	{
 		"olexsmir/gopher.nvim",
 		ft = "go",
-		config = function(_, opts)
-			require("gopher").setup(opts)
+		config = function()
+			require("gopher").setup({
+				commands = {
+					go = "go",
+					gomodifytags = "gomodifytags",
+					gotests = "gotests",
+					impl = "impl",
+					iferr = "iferr",
+				},
+			})
 		end,
 		build = function()
 			vim.cmd([[silent! GoInstallDeps]])
