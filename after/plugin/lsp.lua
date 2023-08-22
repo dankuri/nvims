@@ -42,7 +42,7 @@ lsp.on_attach(function(client, bufnr)
 	nmap("<leader>fm", vim.lsp.buf.format, "format")
 end)
 
-lsp.skip_server_setup({ 'rust_analyzer' })
+lsp.skip_server_setup({ "rust_analyzer" })
 
 lsp.use("gopls", {
 	settings = {
@@ -58,15 +58,19 @@ lsp.use("gopls", {
 
 lsp.setup()
 
-local rust_tools = require('rust-tools')
+local rust_tools = require("rust-tools")
 
 rust_tools.setup({
 	server = {
 		on_attach = function(_, bufnr)
-			vim.keymap.set('n', '<leader>ca', rust_tools.hover_actions.hover_actions,
-				{ buffer = bufnr, desc = "rust code actions" })
-		end
-	}
+			vim.keymap.set(
+				"n",
+				"<leader>ca",
+				rust_tools.hover_actions.hover_actions,
+				{ buffer = bufnr, desc = "rust code actions" }
+			)
+		end,
+	},
 })
 
 local cmp = require("cmp")
@@ -83,8 +87,8 @@ cmp.setup({
 	mapping = cmp.mapping.preset.insert({
 		["<C-n>"] = cmp.mapping.select_next_item(),
 		["<C-p>"] = cmp.mapping.select_prev_item(),
-		["<C-d>"] = cmp.mapping.scroll_docs(-4),
-		["<C-f>"] = cmp.mapping.scroll_docs(4),
+		["<C-d>"] = cmp.mapping.scroll_docs(4),
+		["<C-f>"] = cmp.mapping.scroll_docs(-4),
 		["<C-Space>"] = cmp.mapping.complete({}),
 		["<CR>"] = cmp.mapping.confirm({
 			behavior = cmp.ConfirmBehavior.Replace,
