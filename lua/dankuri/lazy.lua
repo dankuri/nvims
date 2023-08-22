@@ -174,6 +174,10 @@ require("lazy").setup({
 			})
 		end,
 	},
+	{
+		"jbyuki/instant.nvim",
+		lazy = false,
+	},
 	-- Detect tabstop and shiftwidth automatically
 	"tpope/vim-sleuth",
 })
