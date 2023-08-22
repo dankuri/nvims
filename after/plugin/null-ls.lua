@@ -34,8 +34,7 @@ local sources = {
 	null_ls.builtins.formatting.goimports_reviser,
 	null_ls.builtins.formatting.golines,
 	null_ls.builtins.diagnostics.staticcheck,
-	-- null_ls.builtins.diagnostics.revive,
-	-- null_ls.builtins.diagnostics.golangci_lint
+	null_ls.builtins.formatting.ocamlformat,
 }
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
