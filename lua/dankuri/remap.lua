@@ -38,5 +38,5 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set("n", "<leader>tf", ":ToggleFormat<CR>", { desc = "toggle format" })
 vim.keymap.set("n", "<leader>tw", ":set wrap!<CR>", { desc = "toggle wrap" })
 vim.keymap.set("n", "<leader>gl", ":LazyGit<CR>", { desc = "LazyGit" })
-vim.keymap.set("n", "<C-H>", ":TmuxNavigateLeft<CR>", { desc = "tmux window left" })
-vim.keymap.set("n", "<C-L>", ":TmuxNavigateRight<CR>", { desc = "tmux window right" })
+-- vim.keymap.set("n", "<C-H>", ":TmuxNavigateLeft<CR>", { desc = "tmux window left" })
+-- vim.keymap.set("n", "<C-L>", ":TmuxNavigateRight<CR>", { desc = "tmux window right" })
