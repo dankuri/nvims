@@ -192,4 +192,5 @@ require("lazy").setup({
 	"tpope/vim-sleuth",
 	"tpope/vim-vinegar",
 	"ThePrimeagen/vim-be-good",
+	"chrisbra/Colorizer",
 })
