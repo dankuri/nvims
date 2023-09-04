@@ -6,6 +6,9 @@ vim.keymap.set("n", "<leader>e", vim.cmd.Ex, { desc = "explorer" })
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "move highlighted block down" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "move highlighted block up" })
 
+-- best in class
+vim.keymap.set("i", "jj", "<Esc>", { desc = "escape from insert" })
+
 vim.keymap.set("n", "J", "mzJ`z", { desc = "concat down without cursor moving" })
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "halfpage down centered" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "halfpage up centered" })
