@@ -176,9 +176,20 @@ require("lazy").setup({
 		end,
 	},
 	{
+		"prichrd/netrw.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = function()
+			require("netrw").setup({
+				use_devicons = true,
+			})
+		end,
+	},
+	{
 		"jbyuki/instant.nvim",
 		lazy = false,
 	},
 	-- Detect tabstop and shiftwidth automatically
 	"tpope/vim-sleuth",
+	"tpope/vim-vinegar",
+	"ThePrimeagen/vim-be-good",
 })
