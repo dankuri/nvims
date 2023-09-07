@@ -7,6 +7,7 @@ lsp.ensure_installed({
 	"html",
 	"cssls",
 	"emmet_ls",
+	"astro",
 	"volar",
 	"lua_ls",
 	"jsonls",
