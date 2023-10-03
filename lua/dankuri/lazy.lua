@@ -125,17 +125,19 @@ require("lazy").setup({
 	{
 		-- Add indentation guides even on blank lines
 		"lukas-reineke/indent-blankline.nvim",
-		-- Enable `lukas-reineke/indent-blankline.nvim`
-		-- See `:help indent_blankline.txt`
+		main = "ibl",
+		event = { "BufReadPost", "BufNewFile" },
 		opts = {
-			char_highlight_list = {
-				"IndentBlanklineIndent1",
-				"IndentBlanklineIndent2",
-				"IndentBlanklineIndent3",
+			indent = { char = "│" },
+			scope = { enabled = false },
+			exclude = {
+				filetypes = {
+					"help",
+					"Trouble",
+					"lazy",
+					"mason",
+				},
 			},
-			show_trailing_blankline_indent = false,
-			show_current_context = true,
-			show_current_context_start = true,
 		},
 	},
 
