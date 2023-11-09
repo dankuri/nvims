@@ -193,13 +193,13 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"prichrd/netrw.nvim",
+		"stevearc/oil.nvim",
+		opts = {
+			view_options = {
+				show_hidden = true,
+			},
+		},
 		dependencies = { "nvim-tree/nvim-web-devicons" },
-		config = function()
-			require("netrw").setup({
-				use_devicons = true,
-			})
-		end,
 	},
 	{
 		"jbyuki/instant.nvim",
@@ -207,7 +207,6 @@ require("lazy").setup({
 	},
 	-- Detect tabstop and shiftwidth automatically
 	"tpope/vim-sleuth",
-	"tpope/vim-vinegar",
 	"ThePrimeagen/vim-be-good",
 	"chrisbra/Colorizer",
 })
