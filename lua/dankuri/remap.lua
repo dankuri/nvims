@@ -25,7 +25,6 @@ vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "copy in sys clipboard" })
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], { desc = "delete without copying" })
 
 vim.keymap.set("n", "Q", "<nop>")
--- vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 
 -- vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
 -- vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
@@ -37,13 +36,8 @@ vim.keymap.set("n", "<leader>x", ":!chmod +x %<CR>", { desc = "make file executa
 
 vim.keymap.set("n", "<leader>z", ":ZenMode<CR>", { desc = "zen mode" })
 
--- vim.keymap.set("n", "<leader><leader>", function()
---   vim.cmd("so")
--- end)
 vim.keymap.set("n", "<leader>tf", ":ToggleFormat<CR>", { desc = "toggle format" })
 vim.keymap.set("n", "<leader>tw", ":set wrap!<CR>", { desc = "toggle wrap" })
 vim.keymap.set("n", "<leader>tt", ":Twilight<CR>", { desc = "toggle twilight" })
 vim.keymap.set("n", "<leader>gl", ":LazyGit<CR>", { desc = "LazyGit" })
--- vim.keymap.set("n", "<C-H>", ":TmuxNavigateLeft<CR>", { desc = "tmux window left" })
--- vim.keymap.set("n", "<C-L>", ":TmuxNavigateRight<CR>", { desc = "tmux window right" })
 vim.keymap.set("n", "<leader>ie", ":GoIfErr<CR>", { desc = "Go If Error" })
