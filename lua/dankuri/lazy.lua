@@ -225,7 +225,8 @@ require("lazy").setup({
 			}
 
 			dashboard.section.buttons.val = {
-				dashboard.button("e", "  New file", "<cmd>ene<CR>"),
+				dashboard.button("n", "  New file", "<cmd>ene<CR>"),
+				dashboard.button("e", "  Explore files", "<cmd>Oil<CR>"),
 				dashboard.button("f", "  Find file", "<cmd>Telescope find_files<CR>"),
 				dashboard.button("o", "  Old files", "<cmd>Telescope oldfiles<CR>"),
 				dashboard.button("w", "  Grep word", "<cmd>Telescope live_grep<CR>"),
