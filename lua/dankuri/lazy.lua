@@ -202,6 +202,43 @@ require("lazy").setup({
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
 	{
+		"goolord/alpha-nvim",
+		event = "VimEnter",
+		config = function()
+			local alpha = require("alpha")
+			local dashboard = require("alpha.themes.dashboard")
+
+			dashboard.section.header.val = {
+				"⠀⣞⢽⢪⢣⢣⢣⢫⡺⡵⣝⡮⣗⢷⢽⢽⢽⣮⡷⡽⣜⣜⢮⢺⣜⢷⢽⢝⡽⣝",
+				"⠸⡸⠜⠕⠕⠁⢁⢇⢏⢽⢺⣪⡳⡝⣎⣏⢯⢞⡿⣟⣷⣳⢯⡷⣽⢽⢯⣳⣫⠇",
+				"⠀⠀⢀⢀⢄⢬⢪⡪⡎⣆⡈⠚⠜⠕⠇⠗⠝⢕⢯⢫⣞⣯⣿⣻⡽⣏⢗⣗⠏⠀",
+				"⠀⠪⡪⡪⣪⢪⢺⢸⢢⢓⢆⢤⢀⠀⠀⠀⠀⠈⢊⢞⡾⣿⡯⣏⢮⠷⠁⠀⠀ ",
+				"⠀⠀⠀⠈⠊⠆⡃⠕⢕⢇⢇⢇⢇⢇⢏⢎⢎⢆⢄⠀⢑⣽⣿⢝⠲⠉⠀⠀⠀⠀",
+				"⠀⠀⠀⠀⠀⡿⠂⠠⠀⡇⢇⠕⢈⣀⠀⠁⠡⠣⡣⡫⣂⣿⠯⢪⠰⠂⠀⠀⠀⠀",
+				"⠀⠀⠀⠀⡦⡙⡂⢀⢤⢣⠣⡈⣾⡃⠠⠄⠀⡄⢱⣌⣶⢏⢊⠂⠀⠀⠀⠀⠀⠀",
+				"⠀⠀⠀⠀⢝⡲⣜⡮⡏⢎⢌⢂⠙⠢⠐⢀⢘⢵⣽⣿⡿⠁⠁⠀⠀⠀⠀⠀⠀⠀",
+				"⠀⠀⠀⠀⠨⣺⡺⡕⡕⡱⡑⡆⡕⡅⡕⡜⡼⢽⡻⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
+				"⠀⠀⠀⠀⣼⣳⣫⣾⣵⣗⡵⡱⡡⢣⢑⢕⢜⢕⡝⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
+				"⠀⠀⠀⣴⣿⣾⣿⣿⣿⡿⡽⡑⢌⠪⡢⡣⣣⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
+				"⠀⠀⠀⡟⡾⣿⢿⢿⢵⣽⣾⣼⣘⢸⢸⣞⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
+				"⠀⠀⠀⠀⠁⠇⠡⠩⡫⢿⣝⡻⡮⣒⢽⠋⠀⠀⠀⠀⠀         ",
+			}
+
+			dashboard.section.buttons.val = {
+				dashboard.button("e", "  New file", "<cmd>ene<CR>"),
+				dashboard.button("f", "  Find file", "<cmd>Telescope find_files<CR>"),
+				dashboard.button("o", "  Old files", "<cmd>Telescope oldfiles<CR>"),
+				dashboard.button("w", "  Grep word", "<cmd>Telescope live_grep<CR>"),
+				dashboard.button("g", "  Git status", "<cmd>LazyGit<CR>"),
+				dashboard.button("u", "  Update plugins", "<cmd>Lazy sync<CR>"),
+				dashboard.button("m", "  Update Mason", "<cmd>MasonUpdate<CR>"),
+				dashboard.button("q", "󰩈  Quit", "<cmd>qa<CR>"),
+			}
+
+			alpha.setup(dashboard.config)
+		end,
+	},
+	{
 		"folke/zen-mode.nvim",
 		opts = {
 			plugins = {
@@ -213,7 +250,7 @@ require("lazy").setup({
 		"jbyuki/instant.nvim",
 		lazy = false,
 	},
-	{ "folke/twilight.nvim" },
+	"folke/twilight.nvim",
 	-- Detect tabstop and shiftwidth automatically
 	"tpope/vim-sleuth",
 	"ThePrimeagen/vim-be-good",
