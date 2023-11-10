@@ -202,9 +202,18 @@ require("lazy").setup({
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
 	{
+		"folke/zen-mode.nvim",
+		opts = {
+			plugins = {
+				twilight = { enabled = false },
+			},
+		},
+	},
+	{
 		"jbyuki/instant.nvim",
 		lazy = false,
 	},
+	{ "folke/twilight.nvim" },
 	-- Detect tabstop and shiftwidth automatically
 	"tpope/vim-sleuth",
 	"ThePrimeagen/vim-be-good",
