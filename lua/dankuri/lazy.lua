@@ -232,7 +232,7 @@ require("lazy").setup({
 				dashboard.button("w", "  Grep word", "<cmd>Telescope live_grep<CR>"),
 				dashboard.button("g", "  Git status", "<cmd>LazyGit<CR>"),
 				dashboard.button("u", "  Update plugins", "<cmd>Lazy sync<CR>"),
-				dashboard.button("m", "  Update Mason", "<cmd>MasonUpdate<CR>"),
+				dashboard.button("m", "  Mason", "<cmd>Mason<CR>"),
 				dashboard.button("q", "󰩈  Quit", "<cmd>qa<CR>"),
 			}
 
