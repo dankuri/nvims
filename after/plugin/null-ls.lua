@@ -7,6 +7,8 @@ end
 local sources = {
 	-- for a full list check https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
 	null_ls.builtins.formatting.rustfmt,
+	null_ls.builtins.formatting.mix,
+	null_ls.builtins.formatting.ocamlformat,
 	null_ls.builtins.formatting.prettierd.with({
 		filetypes = {
 			"html",
@@ -22,19 +24,21 @@ local sources = {
 			"yaml",
 		},
 	}),
-	-- null_ls.builtins.diagnostics.eslint.with {
-	--   command = "eslint_d",
-	-- },
 	-- null_ls.builtins.formatting.shfmt,
-	null_ls.builtins.diagnostics.shellcheck.with({
-		diagnostics_format = "#{m} [#{c}]",
-	}),
 	null_ls.builtins.formatting.stylua,
 	null_ls.builtins.formatting.gofumpt,
 	null_ls.builtins.formatting.goimports_reviser,
 	null_ls.builtins.formatting.golines,
+
 	null_ls.builtins.diagnostics.staticcheck,
-	null_ls.builtins.formatting.ocamlformat,
+	null_ls.builtins.diagnostics.golangci_lint,
+	-- null_ls.builtins.diagnostics.credo,
+	null_ls.builtins.diagnostics.shellcheck.with({
+		diagnostics_format = "#{m} [#{c}]",
+	}),
+	-- null_ls.builtins.diagnostics.eslint.with {
+	--   command = "eslint_d",
+	-- },
 }
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})

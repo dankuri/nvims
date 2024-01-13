@@ -37,7 +37,7 @@ require("lazy").setup({
 					-- Useful status updates for LSP
 					-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
 					{ "j-hui/fidget.nvim", tag = "legacy", opts = {} },
-					{ "jose-elias-alvarez/null-ls.nvim" }, -- WARN: it is archived, check https://github.com/jose-elias-alvarez/null-ls.nvim/issues/1621 if it breaks
+					{ "nvimtools/none-ls.nvim" },
 				},
 			},
 			{ "williamboman/mason.nvim" },
