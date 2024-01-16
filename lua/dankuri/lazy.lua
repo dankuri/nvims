@@ -239,15 +239,7 @@ require("lazy").setup({
 			alpha.setup(dashboard.config)
 		end,
 	},
-	{
-		"folke/zen-mode.nvim",
-		opts = {
-			plugins = {
-				twilight = { enabled = false },
-			},
-		},
-	},
-	"folke/twilight.nvim",
+	{ "folke/zen-mode.nvim", opts = {} },
 	-- Detect tabstop and shiftwidth automatically
 	"tpope/vim-sleuth",
 	"ThePrimeagen/vim-be-good",
