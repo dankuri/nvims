@@ -38,6 +38,5 @@ vim.keymap.set("n", "<leader>z", ":ZenMode<CR>", { desc = "zen mode" })
 
 vim.keymap.set("n", "<leader>tf", ":ToggleFormat<CR>", { desc = "toggle format" })
 vim.keymap.set("n", "<leader>tw", ":set wrap!<CR>", { desc = "toggle wrap" })
-vim.keymap.set("n", "<leader>tt", ":Twilight<CR>", { desc = "toggle twilight" })
 vim.keymap.set("n", "<leader>gl", ":LazyGit<CR>", { desc = "LazyGit" })
 vim.keymap.set("n", "<leader>ie", ":GoIfErr<CR>", { desc = "Go If Error" })
