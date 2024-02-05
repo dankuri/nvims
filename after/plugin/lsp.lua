@@ -13,8 +13,8 @@ lsp.ensure_installed({
 	"jsonls",
 	"docker_compose_language_service",
 	"dockerls",
-	"intelephense",
 	"tailwindcss",
+	"elixirls",
 })
 
 -- Fix Undefined global 'vim'

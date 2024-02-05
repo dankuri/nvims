@@ -8,7 +8,6 @@ local sources = {
 	-- for a full list check https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
 	null_ls.builtins.formatting.rustfmt,
 	null_ls.builtins.formatting.mix,
-	null_ls.builtins.formatting.ocamlformat,
 	null_ls.builtins.formatting.prettierd.with({
 		filetypes = {
 			"html",
