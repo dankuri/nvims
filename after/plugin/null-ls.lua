@@ -10,6 +10,7 @@ local sources = {
 	null_ls.builtins.formatting.mix,
 	null_ls.builtins.formatting.prettierd.with({
 		filetypes = {
+			"astro",
 			"html",
 			"json",
 			"markdown",
