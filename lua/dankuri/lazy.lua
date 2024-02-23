@@ -206,6 +206,10 @@ require("lazy").setup({
 			view_options = {
 				show_hidden = true,
 			},
+			keymaps = {
+				["<C-d>"] = "actions.preview_scroll_down",
+				["<C-u>"] = "actions.preview_scroll_up",
+			},
 		},
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
