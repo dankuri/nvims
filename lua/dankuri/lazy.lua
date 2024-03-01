@@ -252,6 +252,13 @@ require("lazy").setup({
 		end,
 	},
 	{ "folke/zen-mode.nvim", opts = {} },
+	{
+		"renerocksai/telekasten.nvim",
+		dependencies = { "nvim-telescope/telescope.nvim" },
+		opts = {
+			home = vim.fn.expand("~/nvim-notes"),
+		},
+	},
 	-- Detect tabstop and shiftwidth automatically
 	"tpope/vim-sleuth",
 	"ThePrimeagen/vim-be-good",
