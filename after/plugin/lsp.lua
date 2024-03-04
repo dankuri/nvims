@@ -12,9 +12,11 @@ lsp.ensure_installed({
 	"lua_ls",
 	"jsonls",
 	"dockerls",
+	"bashls",
 	"tailwindcss",
 	"elixirls",
 	"yamlls",
+	"zls",
 })
 
 -- Fix Undefined global 'vim'

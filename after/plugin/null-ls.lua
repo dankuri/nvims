@@ -5,7 +5,7 @@ if not ok then
 end
 
 local sources = {
-	-- for a full list check https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
+	-- for a full list check https://github.com/nvimtools/none-ls.nvim/blob/main/doc/BUILTINS.md
 	null_ls.builtins.formatting.mix,
 	null_ls.builtins.formatting.prettierd.with({
 		filetypes = {
@@ -23,7 +23,6 @@ local sources = {
 			"yaml",
 		},
 	}),
-	-- null_ls.builtins.formatting.shfmt,
 	null_ls.builtins.formatting.stylua,
 	null_ls.builtins.formatting.gofumpt,
 	null_ls.builtins.formatting.goimports_reviser,
@@ -31,10 +30,6 @@ local sources = {
 
 	null_ls.builtins.diagnostics.staticcheck,
 	null_ls.builtins.diagnostics.golangci_lint,
-	-- null_ls.builtins.diagnostics.credo,
-	-- null_ls.builtins.diagnostics.eslint.with {
-	--   command = "eslint_d",
-	-- },
 }
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
