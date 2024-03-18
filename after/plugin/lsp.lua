@@ -60,6 +60,37 @@ lsp.use("gopls", {
 	},
 })
 
+local _, volar = pcall(require("mason-registry").get_package, "vue-language-server")
+
+local vue_ts_plugin_path = volar:get_install_path()
+	.. "/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin"
+
+-- vue setup
+lsp.use("tsserver", {
+	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+	init_options = {
+		plugins = {
+			{
+				name = "@vue/typescript-plugin",
+				location = vue_ts_plugin_path,
+				languages = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+			},
+		},
+	},
+	on_init = function(client)
+		client.server_capabilities.documentFormattingProvider = false
+		client.server_capabilities.documentFormattingRangeProvider = false
+	end,
+})
+
+-- disable formatting
+lsp.use("volar", {
+	on_init = function(client)
+		client.server_capabilities.documentFormattingProvider = false
+		client.server_capabilities.documentFormattingRangeProvider = false
+	end,
+})
+
 lsp.setup()
 
 local rust_tools = require("rust-tools")
