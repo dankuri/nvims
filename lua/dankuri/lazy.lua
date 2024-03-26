@@ -197,6 +197,9 @@ require("lazy").setup({
 	{
 		"stevearc/oil.nvim",
 		opts = {
+			win_options = {
+				signcolumn = "yes:2",
+			},
 			view_options = {
 				show_hidden = true,
 			},
@@ -206,6 +209,15 @@ require("lazy").setup({
 			},
 		},
 		dependencies = { "nvim-tree/nvim-web-devicons" },
+	},
+	{
+		"refractalize/oil-git-status.nvim",
+
+		dependencies = {
+			"stevearc/oil.nvim",
+		},
+
+		config = true,
 	},
 	{
 		"goolord/alpha-nvim",

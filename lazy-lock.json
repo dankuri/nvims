@@ -33,6 +33,7 @@
   "nvim-treesitter-context": { "branch": "master", "commit": "b8b7e52c1517d401d7c519787d5dc4528c41291a" },
   "nvim-treesitter-textobjects": { "branch": "master", "commit": "b7a0bfa3e93697ca5b61b15df633404bf8f45883" },
   "nvim-web-devicons": { "branch": "master", "commit": "4adea17610d140a99c313e3f79a9dc01825d59ae" },
+  "oil-git-status.nvim": { "branch": "main", "commit": "839a1a287f5eb3ce1b07b50323032398e63f7ffa" },
   "oil.nvim": { "branch": "master", "commit": "18dfd2458dc741fea683357a17aaa95870b25a3c" },
   "plenary.nvim": { "branch": "master", "commit": "f7adfc4b3f4f91aab6caebf42b3682945fbc35be" },
   "rust-tools.nvim": { "branch": "master", "commit": "676187908a1ce35ffcd727c654ed68d851299d3e" },
