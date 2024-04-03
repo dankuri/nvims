@@ -40,6 +40,7 @@ vim.g.instant_username = "dankuri"
 vim.g.colorizer_auto_filetypes = "sass,css,html"
 
 vim.g.codeium_disable_bindings = 1
+vim.g.codeium_enabled = false
 
 vim.api.nvim_create_autocmd("TextYankPost", {
 	group = vim.api.nvim_create_augroup("highlight_yank", {}),
