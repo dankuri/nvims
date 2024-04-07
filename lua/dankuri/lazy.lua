@@ -131,6 +131,7 @@ require("lazy").setup({
 			require("telescope").load_extension("yaml_schema")
 		end,
 	},
+	{ "towolf/vim-helm", ft = "helm" },
 	{ "folke/which-key.nvim", opts = {} },
 	{
 		-- Set lualine as statusline

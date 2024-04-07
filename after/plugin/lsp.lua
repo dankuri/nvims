@@ -67,6 +67,16 @@ end)
 
 lsp.skip_server_setup({ "rust_analyzer" })
 
+lsp.use("helm_ls", {
+	settings = {
+		["helm-ls"] = {
+			yamlls = {
+				path = "yaml-language-server",
+			},
+		},
+	},
+})
+
 lsp.use("gopls", {
 	settings = {
 		gopls = {
