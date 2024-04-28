@@ -8,6 +8,7 @@ configs.setup({
 		"javascript",
 		"typescript",
 		"go",
+		"elixir",
 		"rust",
 		"html",
 		"css",
