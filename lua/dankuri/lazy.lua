@@ -190,7 +190,13 @@ require("lazy").setup({
 	},
 	{
 		"christoomey/vim-tmux-navigator",
-		lazy = false,
+		lazy = true,
+		keys = {
+			"<C-h>",
+			"<C-l>",
+			"<C-k>",
+			"<C-j>",
+		},
 	},
 	{
 		"ThePrimeagen/harpoon",
@@ -279,6 +285,7 @@ require("lazy").setup({
 		end,
 	},
 	{ "folke/zen-mode.nvim", opts = {} },
+	{ "folke/neodev.nvim", opts = {} },
 	-- Detect tabstop and shiftwidth automatically
 	"tpope/vim-sleuth",
 	"ThePrimeagen/vim-be-good",
