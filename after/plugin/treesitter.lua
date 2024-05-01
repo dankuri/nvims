@@ -8,6 +8,9 @@ configs.setup({
 		"javascript",
 		"typescript",
 		"go",
+		"gomod",
+		"gosum",
+		"gowork",
 		"elixir",
 		"rust",
 		"html",
@@ -16,4 +19,5 @@ configs.setup({
 	sync_install = false,
 	highlight = { enable = true },
 	indent = { enable = true },
+	auto_install = true,
 })
