@@ -289,5 +289,15 @@ require("lazy").setup({
 	-- Detect tabstop and shiftwidth automatically
 	"tpope/vim-sleuth",
 	"ThePrimeagen/vim-be-good",
-	"chrisbra/Colorizer",
+	{
+		"norcalli/nvim-colorizer.lua",
+		opts = {
+			"css",
+			"javascript",
+			"html",
+			hyprlang = {
+				rgb_fn = true,
+			},
+		},
+	},
 })
