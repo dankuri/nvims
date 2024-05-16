@@ -289,6 +289,9 @@ require("lazy").setup({
 	-- Detect tabstop and shiftwidth automatically
 	"tpope/vim-sleuth",
 	"ThePrimeagen/vim-be-good",
+	"tpope/vim-dadbod",
+	"kristijanhusak/vim-dadbod-completion",
+	"kristijanhusak/vim-dadbod-ui",
 	{
 		"norcalli/nvim-colorizer.lua",
 		opts = {
