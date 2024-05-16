@@ -132,6 +132,7 @@ require("lazy").setup({
 		end,
 	},
 	{ "towolf/vim-helm", ft = "helm" },
+	{ "b0o/schemastore.nvim" },
 	{ "folke/which-key.nvim", opts = {} },
 	{
 		-- Set lualine as statusline

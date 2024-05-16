@@ -77,6 +77,15 @@ lsp.use("helm_ls", {
 	},
 })
 
+lsp.use("jsonls", {
+	settings = {
+		json = {
+			schemas = require("schemastore").json.schemas(),
+			validate = { enable = true },
+		},
+	},
+})
+
 lsp.use("gopls", {
 	settings = {
 		gopls = {
