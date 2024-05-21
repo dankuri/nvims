@@ -86,6 +86,16 @@ lsp.use("jsonls", {
 	},
 })
 
+lsp.use("elixirls", {
+	settings = {
+		elixirLS = {
+			dialyzerEnabled = true,
+			incrementalDialyzer = true,
+			suggestSpecs = true,
+		},
+	},
+})
+
 lsp.use("gopls", {
 	settings = {
 		gopls = {
