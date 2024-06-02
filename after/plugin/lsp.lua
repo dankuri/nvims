@@ -35,6 +35,7 @@ lsp.on_attach(function(client, bufnr)
 		vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
 	end
 
+	vim.keymap.set({ "i", "n" }, "<C-K>", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "LSP: signature help" })
 	nmap("gr", "<cmd>Telescope lsp_references<cr>", "goto references")
 	nmap("gd", vim.lsp.buf.definition, "goto definition")
 	nmap("gI", vim.lsp.buf.implementation, "goto implementation")

@@ -190,14 +190,9 @@ require("lazy").setup({
 		event = "BufEnter",
 	},
 	{
-		"christoomey/vim-tmux-navigator",
-		lazy = true,
-		keys = {
-			"<C-h>",
-			"<C-l>",
-			"<C-k>",
-			"<C-j>",
-		},
+		"numToStr/Navigator.nvim",
+		lazy = false,
+		opts = { disable_on_zoom = false },
 	},
 	{
 		"ThePrimeagen/harpoon",
