@@ -234,11 +234,9 @@ require("lazy").setup({
 	},
 	{
 		"refractalize/oil-git-status.nvim",
-
 		dependencies = {
 			"stevearc/oil.nvim",
 		},
-
 		config = true,
 	},
 	{
@@ -281,7 +279,16 @@ require("lazy").setup({
 		end,
 	},
 	{ "folke/zen-mode.nvim", opts = {} },
-	{ "folke/neodev.nvim", opts = {} },
+	{
+		"folke/lazydev.nvim",
+		ft = "lua",
+		opts = {
+			library = {
+				"luvit-meta/library",
+			},
+		},
+	},
+	{ "Bilal2453/luvit-meta", lazy = true },
 	-- Detect tabstop and shiftwidth automatically
 	"tpope/vim-sleuth",
 	"ThePrimeagen/vim-be-good",

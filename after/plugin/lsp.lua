@@ -19,9 +19,6 @@ lsp.ensure_installed({
 	"zls",
 })
 
--- Fix Undefined global 'vim'
-lsp.nvim_workspace()
-
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 lsp.on_attach(function(client, bufnr)
 	-- see :help lsp-zero-keybindings
@@ -36,6 +33,7 @@ lsp.on_attach(function(client, bufnr)
 	end
 
 	vim.keymap.set({ "i", "n" }, "<C-K>", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "LSP: signature help" })
+
 	nmap("gr", "<cmd>Telescope lsp_references<cr>", "goto references")
 	nmap("gd", vim.lsp.buf.definition, "goto definition")
 	nmap("gI", vim.lsp.buf.implementation, "goto implementation")
