@@ -16,14 +16,14 @@ cmp.setup({
 		["<C-f>"] = cmp.mapping.scroll_docs(-4),
 		["<C-Space>"] = cmp.mapping.complete({}),
 		["<C-y>"] = cmp.mapping.confirm({ select = true }),
-		["<M-j>"] = cmp.mapping(function(fallback)
+		["<M-S-j>"] = cmp.mapping(function(fallback)
 			if luasnip.expand_or_locally_jumpable() then
 				luasnip.expand_or_jump()
 			else
 				fallback()
 			end
 		end, { "n", "i", "s" }),
-		["<M-k>"] = cmp.mapping(function(fallback)
+		["<M-S-k>"] = cmp.mapping(function(fallback)
 			if luasnip.locally_jumpable(-1) then
 				luasnip.jump(-1)
 			else
