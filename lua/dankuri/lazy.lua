@@ -192,7 +192,7 @@ require("lazy").setup({
 	{
 		"numToStr/Navigator.nvim",
 		lazy = false,
-		opts = { disable_on_zoom = false },
+		opts = { disable_on_zoom = true },
 	},
 	{
 		"ThePrimeagen/harpoon",
