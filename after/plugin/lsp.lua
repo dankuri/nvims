@@ -36,6 +36,7 @@ lsp.on_attach(function(client, bufnr)
 
 	nmap("gr", "<cmd>Telescope lsp_references<cr>", "goto references")
 	nmap("gd", vim.lsp.buf.definition, "goto definition")
+	nmap("gD", vim.lsp.buf.declaration, "goto declaration")
 	nmap("gI", vim.lsp.buf.implementation, "goto implementation")
 	nmap("[d", vim.diagnostic.goto_prev, "goto previous diagnostic message")
 	nmap("]d", vim.diagnostic.goto_next, "goto next diagnostic message")
