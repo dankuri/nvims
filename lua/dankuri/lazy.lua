@@ -133,7 +133,14 @@ require("lazy").setup({
 	},
 	{ "towolf/vim-helm", ft = "helm" },
 	{ "b0o/schemastore.nvim" },
-	{ "folke/which-key.nvim", opts = {} },
+	{
+		"folke/which-key.nvim",
+		opts = {
+			icons = {
+				rules = false,
+			},
+		},
+	},
 	{
 		-- Set lualine as statusline
 		"nvim-lualine/lualine.nvim",
@@ -278,7 +285,6 @@ require("lazy").setup({
 			alpha.setup(dashboard.config)
 		end,
 	},
-	{ "folke/zen-mode.nvim", opts = {} },
 	{
 		"folke/lazydev.nvim",
 		ft = "lua",
