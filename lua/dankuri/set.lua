@@ -36,8 +36,7 @@ vim.opt.updatetime = 50
 -- vim.g.tmux_navigator_disable_when_zoomed = 1
 -- vim.g.tmux_navigator_no_wrap = 1
 
-vim.g.codeium_disable_bindings = 1
-vim.g.codeium_enabled = false
+vim.g.db_ui_use_nerd_fonts = 1
 
 vim.api.nvim_create_autocmd("TextYankPost", {
 	group = vim.api.nvim_create_augroup("highlight_yank", {}),

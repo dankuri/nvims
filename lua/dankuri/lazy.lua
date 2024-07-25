@@ -121,25 +121,26 @@ require("lazy").setup({
 			vim.keymap.set("n", "<Leader>dc", ":DapContinue<CR>", { desc = "DAP: start or continue" })
 			vim.keymap.set("n", "<Leader>dx", ":DapTerminate<CR>", { desc = "DAP: terminate" })
 			vim.keymap.set("n", "<Leader>do", ":DapStepOver<CR>", { desc = "DAP: step over" })
+
+			vim.fn.sign_define(
+				"DapBreakpoint",
+				{ text = "B", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
+			)
 		end,
 	},
 	{
-		"olexsmir/gopher.nvim",
-		ft = "go",
+		"ray-x/go.nvim",
+		dependencies = { -- optional packages
+			"ray-x/guihua.lua",
+			"neovim/nvim-lspconfig",
+			"nvim-treesitter/nvim-treesitter",
+		},
 		config = function()
-			require("gopher").setup({
-				commands = {
-					go = "go",
-					gomodifytags = "gomodifytags",
-					gotests = "gotests",
-					impl = "impl",
-					iferr = "iferr",
-				},
-			})
+			require("go").setup()
 		end,
-		build = function()
-			vim.cmd([[silent! GoInstallDeps]])
-		end,
+		event = { "CmdlineEnter" },
+		ft = { "go", "gomod" },
+		build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
 	},
 	{
 		"simrat39/rust-tools.nvim",
@@ -255,10 +256,6 @@ require("lazy").setup({
 	{
 		"ThePrimeagen/harpoon",
 		lazy = false,
-	},
-	{
-		"Exafunction/codeium.vim",
-		event = "BufEnter",
 	},
 	{
 		"mbbill/undotree",
