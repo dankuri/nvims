@@ -303,7 +303,35 @@ require("lazy").setup({
 				["<C-u>"] = "actions.preview_scroll_up",
 			},
 		},
-		dependencies = { "nvim-tree/nvim-web-devicons" },
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+			opts = {
+				override_by_filename = {
+					["go.mod"] = {
+						icon = "󰟓",
+						color = "#00ADD8",
+						name = "GoModule",
+					},
+					["go.sum"] = {
+						icon = "󰟓",
+						color = "#00ADD8",
+						name = "GoModuleChecksum",
+					},
+					["go.work"] = {
+						icon = "󰟓",
+						color = "#00ADD8",
+						name = "GoWorkspace",
+					},
+				},
+				override_by_extension = {
+					["go"] = {
+						icon = "󰟓",
+						color = "#00ADD8",
+						name = "Go",
+					},
+				},
+			},
+		},
 	},
 	{
 		"refractalize/oil-git-status.nvim",
