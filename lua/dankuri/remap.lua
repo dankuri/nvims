@@ -22,7 +22,7 @@ vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "paste without copying" })
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "copy in sys clipboard" })
 vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "copy in sys clipboard" })
 
-vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], { desc = "delete without copying" })
+vim.keymap.set({ "n", "v" }, "<leader>D", [["_d]], { desc = "delete without copying" })
 
 vim.keymap.set("n", "Q", "<nop>")
 
