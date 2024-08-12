@@ -19,6 +19,8 @@ lsp.ensure_installed({
 	"zls",
 })
 
+vim.lsp.inlay_hint.enable(true)
+
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 lsp.on_attach(function(client, bufnr)
 	-- see :help lsp-zero-keybindings
@@ -105,6 +107,15 @@ lsp.use("gopls", {
 				unusedwrite = true,
 			},
 			staticcheck = true,
+			hints = {
+				-- assignVariableTypes = true,
+				compositeLiteralFields = true,
+				-- compositeLiteralTypes = true,
+				constantValues = true,
+				-- functionTypeParameters = true,
+				-- parameterNames = true,
+				-- rangeVariableTypes = true,
+			},
 		},
 	},
 })
