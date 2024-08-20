@@ -161,6 +161,10 @@ require("lazy").setup({
 		build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
 	},
 	{
+		"Jay-Madden/auto-fix-return.nvim",
+		opts = {},
+	},
+	{
 		"simrat39/rust-tools.nvim",
 		ft = "rust",
 	},
