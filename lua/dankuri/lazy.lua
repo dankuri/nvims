@@ -98,53 +98,6 @@ require("lazy").setup({
 				},
 			},
 		},
-		config = function()
-			require("dapui").setup()
-			require("dap-go").setup({
-				dap_configurations = {
-					{
-						type = "go",
-						name = "Remote attach",
-						mode = "remote",
-						request = "attach",
-						connect = {
-							host = "127.0.0.1",
-							port = "38697",
-						},
-					},
-				},
-				delve = {
-					port = "38697",
-				},
-			})
-
-			local dap, dapui = require("dap"), require("dapui")
-
-			dap.listeners.before.attach.dapui_config = function()
-				dapui.open()
-			end
-			dap.listeners.before.launch.dapui_config = function()
-				dapui.open()
-			end
-			dap.listeners.before.event_terminated.dapui_config = function()
-				dapui.close()
-			end
-			dap.listeners.before.event_exited.dapui_config = function()
-				dapui.close()
-			end
-
-			vim.keymap.set("n", "<leader>db", ":DapToggleBreakpoint<CR>", { desc = "DAP: toggle breakpoint" })
-			vim.keymap.set("n", "<leader>dc", ":DapContinue<CR>", { desc = "DAP: start or continue" })
-			vim.keymap.set("n", "<leader>do", ":DapStepOver<CR>", { desc = "DAP: step over" })
-			vim.keymap.set("n", "<leader>di", ":DapStepInto<CR>", { desc = "DAP: step into" })
-			vim.keymap.set("n", "<leader>du", ":DapStepOut<CR>", { desc = "DAP: step out" })
-			vim.keymap.set("n", "<leader>dx", ":DapTerminate<CR>", { desc = "DAP: terminate" })
-
-			vim.fn.sign_define(
-				"DapBreakpoint",
-				{ text = "B", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
-			)
-		end,
 	},
 	{
 		"ray-x/go.nvim",
