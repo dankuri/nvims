@@ -265,7 +265,7 @@ require("lazy").setup({
 
 			-- from LazyVim
 			local show_dotfiles = true
-			local filter_show = function(fs_entry)
+			local filter_show = function(_)
 				return true
 			end
 			local filter_hide = function(fs_entry)
