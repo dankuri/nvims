@@ -18,6 +18,7 @@ require("lazy").setup({
 	{
 		"nvim-telescope/telescope-ui-select.nvim",
 	},
+	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 	{
 		"nvim-telescope/telescope.nvim",
 		branch = "0.1.x",
@@ -32,6 +33,7 @@ require("lazy").setup({
 				},
 			})
 			telescope.load_extension("ui-select")
+			telescope.load_extension("fzf")
 		end,
 	},
 	{
