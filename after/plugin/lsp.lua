@@ -1,7 +1,7 @@
 local lsp = require("lsp-zero").preset({})
 
 lsp.ensure_installed({
-	"tsserver",
+	"ts_ls",
 	"rust_analyzer",
 	"gopls",
 	"html",
@@ -126,7 +126,7 @@ local vue_ts_plugin_path = volar:get_install_path()
 	.. "/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin"
 
 -- vue setup
-lsp.use("tsserver", {
+lsp.use("ts_ls", {
 	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
 	init_options = {
 		plugins = {
