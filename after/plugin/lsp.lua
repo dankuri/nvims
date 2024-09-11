@@ -1,4 +1,5 @@
 local lsp = require("lsp-zero").preset({})
+local lsp_util = require("lspconfig.util")
 
 lsp.ensure_installed({
 	"ts_ls",
@@ -95,6 +96,61 @@ lsp.use("elixirls", {
 			incrementalDialyzer = true,
 			suggestSpecs = true,
 		},
+	},
+})
+
+-- for elixir heex templates
+lsp.use("tailwindcss", {
+	root_dir = lsp_util.root_pattern(
+		"tailwind.config.js",
+		"tailwind.config.ts",
+		"postcss.config.js",
+		"postcss.config.ts",
+		"package.json",
+		"node_modules",
+		".git",
+		"mix.exs"
+	),
+	settings = {
+		tailwindCSS = {
+			includeLanguages = {
+				elixir = "html-eex",
+				eelixir = "html-eex",
+				heex = "html-eex",
+			},
+			experimental = {
+				classRegex = { 'class[:]\\s*"([^"]*)"' },
+			},
+		},
+	},
+})
+
+lsp.use("html", {
+	filetypes = { "html", "templ", "elixir", "eelixir", "heex" },
+	init_options = {
+		provideFormatter = false,
+	},
+})
+
+lsp.use("emmet_ls", {
+	filetypes = {
+		"astro",
+		"css",
+		"eruby",
+		"html",
+		"htmldjango",
+		"javascriptreact",
+		"less",
+		"pug",
+		"sass",
+		"scss",
+		"svelte",
+		"typescriptreact",
+		"vue",
+		"htmlangular",
+		"elixir",
+		"eelixir",
+		"heex",
 	},
 })
 
