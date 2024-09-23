@@ -36,6 +36,7 @@ vim.keymap.set("n", "<leader>x", ":!chmod +x %<CR>", { desc = "make file executa
 
 vim.keymap.set("n", "<leader>tf", ":ToggleFormat<CR>", { desc = "toggle format" })
 vim.keymap.set("n", "<leader>tw", ":set wrap!<CR>", { desc = "toggle wrap" })
+vim.keymap.set("n", "<leader>tS", ":set spell!<CR>", { desc = "toggle spell" })
 vim.keymap.set("n", "<leader>gl", ":LazyGit<CR>", { desc = "LazyGit" })
 vim.keymap.set("n", "<leader>ie", ":GoIfErr<CR>", { desc = "Go If Error" })
 
