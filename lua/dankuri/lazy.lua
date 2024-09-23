@@ -226,7 +226,14 @@ require("lazy").setup({
 		lazy = false,
 		opts = { disable_on_zoom = true },
 	},
-	{ "nvim-focus/focus.nvim", opts = {} },
+	{
+		"nvim-focus/focus.nvim",
+		opts = {
+			ui = {
+				signcolumn = false,
+			},
+		},
+	},
 	{
 		"stevearc/oil.nvim",
 		opts = {
