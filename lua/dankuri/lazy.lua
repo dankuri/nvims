@@ -67,13 +67,6 @@ require("lazy").setup({
 					fast_wrap = {},
 					disable_filetype = { "TelescopePrompt", "vim" },
 				},
-				config = function(_, opts)
-					require("nvim-autopairs").setup(opts)
-
-					-- setup cmp for autopairs
-					local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-					require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
-				end,
 			},
 		},
 	},
@@ -95,6 +88,23 @@ require("lazy").setup({
 					"nvim-neotest/nvim-nio",
 				},
 			},
+		},
+	},
+	{
+		"brenoprata10/nvim-highlight-colors",
+		opts = {
+			enable_tailwind = true,
+			render = "background", -- "background" | "foreground" | "virtual"
+		},
+	},
+	{
+		"laytan/tailwind-sorter.nvim",
+		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-lua/plenary.nvim" },
+		build = "cd formatter && npm ci && npm run build",
+		config = {
+			on_save_enabled = true,
+			trim_spaces = true,
+			on_save_pattern = { "*.html", "*.jsx", "*.tsx", "*.heex", "*.ex", "*.exs" },
 		},
 	},
 	{
