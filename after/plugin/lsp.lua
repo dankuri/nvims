@@ -1,225 +1,217 @@
-local lsp = require("lsp-zero").preset({})
-local lsp_util = require("lspconfig.util")
+local lsp_zero = require("lsp-zero")
+local lspconfig = require("lspconfig")
 
-lsp.ensure_installed({
-	"ts_ls",
-	"rust_analyzer",
-	"gopls",
-	"html",
-	"cssls",
-	"emmet_ls",
-	"astro",
-	"volar",
-	"lua_ls",
-	"jsonls",
-	"dockerls",
-	"bashls",
-	"tailwindcss",
-	"elixirls",
-	"yamlls",
-	"zls",
-})
-
-vim.lsp.inlay_hint.enable(true)
-
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-lsp.on_attach(function(client, bufnr)
-	-- see :help lsp-zero-keybindings
-	-- to learn the available actions
-	lsp.default_keymaps({ buffer = bufnr })
-	local nmap = function(keys, func, desc)
+local lsp_attach = function(client, bufnr)
+	local map = function(m, lhs, rhs, desc)
 		if desc then
 			desc = "LSP: " .. desc
 		end
-
-		vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
+		local key_opts = { buffer = bufnr, desc = desc, nowait = true }
+		vim.keymap.set(m, lhs, rhs, key_opts)
 	end
 
-	vim.keymap.set({ "i", "n" }, "<C-K>", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "LSP: signature help" })
+	map("n", "K", vim.lsp.buf.hover, "hover documentation")
+	map("n", "gr", ":Telescope lsp_references<cr>", "goto references")
+	map("n", "gi", ":Telescope lsp_implementation<cr>", "goto implementation")
+	map("n", "go", ":Telescope lsp_type_definition<cr>", "goto type definition")
+	map("n", "gd", ":Telescope lsp_definitions<cr>", "goto definition")
+	map("n", "gD", vim.lsp.buf.declaration, "goto declaration")
+	map("n", "[d", vim.diagnostic.goto_prev, "goto previous diagnostic message")
+	map("n", "]d", vim.diagnostic.goto_next, "goto next diagnostic message")
+	map("n", "<leader>ca", vim.lsp.buf.code_action, "code actions")
+	map("n", "<leader>rn", vim.lsp.buf.rename, "rename")
+	map("n", "<leader>fm", vim.lsp.buf.format, "format")
+	map("x", "<leader>fm", vim.lsp.buf.format, "format selection")
+	map({ "i", "n" }, "<C-K>", vim.lsp.buf.signature_help, "signature help")
 
-	nmap("gr", "<cmd>Telescope lsp_references<cr>", "goto references")
-	nmap("gd", vim.lsp.buf.definition, "goto definition")
-	nmap("gD", vim.lsp.buf.declaration, "goto declaration")
-	nmap("gI", vim.lsp.buf.implementation, "goto implementation")
-	nmap("[d", vim.diagnostic.goto_prev, "goto previous diagnostic message")
-	nmap("]d", vim.diagnostic.goto_next, "goto next diagnostic message")
-
-	nmap("<leader>ca", vim.lsp.buf.code_action, "code actions")
-	nmap("<leader>rn", vim.lsp.buf.rename, "rename")
-	nmap("<leader>fm", vim.lsp.buf.format, "format")
-
-	local format_is_enabled = true
+	lsp_zero.buffer_autoformat()
 	vim.api.nvim_create_user_command("ToggleFormat", function()
-		format_is_enabled = not format_is_enabled
-		print("Setting autoformatting to: " .. tostring(format_is_enabled))
+		vim.b.lsp_zero_enable_autoformat = not vim.b.lsp_zero_enable_autoformat
+		print("Setting autoformatting to: " .. tostring(vim.b.lsp_zero_enable_autoformat))
 	end, {})
-	if client.supports_method("textDocument/formatting") then
-		vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-		vim.api.nvim_create_autocmd("BufWritePre", {
-			group = augroup,
-			buffer = bufnr,
-			callback = function()
-				if not format_is_enabled then
-					return
-				end
-				vim.lsp.buf.format({ bufnr = bufnr })
-			end,
-		})
-	end
-end)
+end
 
-lsp.skip_server_setup({ "rust_analyzer" })
-
-lsp.use("helm_ls", {
-	settings = {
-		["helm-ls"] = {
-			yamlls = {
-				path = "yaml-language-server",
-			},
-		},
-	},
+lsp_zero.extend_lspconfig({
+	capabilities = require("cmp_nvim_lsp").default_capabilities(),
+	lsp_attach = lsp_attach,
+	sign_text = true,
+	float_border = "rounded",
 })
 
-lsp.use("jsonls", {
-	settings = {
-		json = {
-			schemas = require("schemastore").json.schemas(),
-			validate = { enable = true },
-		},
-	},
-})
+local disabled_formatting_attach = function(client)
+	client.server_capabilities.documentFormattingProvider = false
+	client.server_capabilities.documentFormattingRangeProvider = false
+end
 
-lsp.use("elixirls", {
-	settings = {
-		elixirLS = {
-			dialyzerEnabled = true,
-			incrementalDialyzer = true,
-			suggestSpecs = true,
-		},
-	},
-})
-
--- for elixir heex templates
-lsp.use("tailwindcss", {
-	root_dir = lsp_util.root_pattern(
-		"tailwind.config.js",
-		"tailwind.config.ts",
-		"postcss.config.js",
-		"postcss.config.ts",
-		"package.json",
-		"node_modules",
-		".git",
-		"mix.exs"
-	),
-	settings = {
-		tailwindCSS = {
-			includeLanguages = {
-				elixir = "html-eex",
-				eelixir = "html-eex",
-				heex = "html-eex",
-			},
-			experimental = {
-				classRegex = { 'class[:]\\s*"([^"]*)"' },
-			},
-		},
-	},
-})
-
-lsp.use("html", {
-	filetypes = { "html", "templ", "elixir", "eelixir", "heex" },
-	init_options = {
-		provideFormatter = false,
-	},
-})
-
-lsp.use("emmet_ls", {
-	filetypes = {
-		"astro",
-		"css",
-		"eruby",
+require("mason").setup({})
+require("mason-lspconfig").setup({
+	ensure_installed = {
+		"gopls",
+		"elixirls",
+		"tailwindcss",
+		"lua_ls",
+		"jsonls",
+		"yamlls",
+		"dockerls",
+		"bashls",
+		"ts_ls",
 		"html",
-		"htmldjango",
-		"javascriptreact",
-		"less",
-		"pug",
-		"sass",
-		"scss",
-		"svelte",
-		"typescriptreact",
-		"vue",
-		"htmlangular",
-		"elixir",
-		"eelixir",
-		"heex",
+		"cssls",
+		"emmet_ls",
+		"volar",
+		"zls",
 	},
-})
+	handlers = {
+		function(server_name)
+			lspconfig[server_name].setup({})
+		end,
 
-lsp.use("gopls", {
-	settings = {
-		gopls = {
-			completeUnimported = true,
-			analyses = {
-				unusedparams = true,
-				unusedwrite = true,
-			},
-			staticcheck = true,
-			hints = {
-				-- assignVariableTypes = true,
-				compositeLiteralFields = true,
-				-- compositeLiteralTypes = true,
-				constantValues = true,
-				-- functionTypeParameters = true,
-				-- parameterNames = true,
-				-- rangeVariableTypes = true,
-			},
-		},
-	},
-})
+		["gopls"] = function()
+			lspconfig.gopls.setup({
+				settings = {
+					gopls = {
+						completeUnimported = true,
+						analyses = {
+							unusedparams = true,
+							unusedwrite = true,
+						},
+						staticcheck = true,
+						hints = {
+							-- assignVariableTypes = true,
+							compositeLiteralFields = true,
+							-- compositeLiteralTypes = true,
+							constantValues = true,
+							-- functionTypeParameters = true,
+							-- parameterNames = true,
+							-- rangeVariableTypes = true,
+						},
+					},
+				},
+			})
+		end,
 
-local _, volar = pcall(require("mason-registry").get_package, "vue-language-server")
+		["elixirls"] = function()
+			lspconfig.elixirls.setup({
+				settings = {
+					elixirLS = {
+						dialyzerEnabled = true,
+						incrementalDialyzer = true,
+						suggestSpecs = true,
+					},
+				},
+			})
+		end,
 
-local vue_ts_plugin_path = volar:get_install_path()
-	.. "/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin"
+		-- for elixir heex templates
+		["tailwindcss"] = function()
+			lspconfig.tailwindcss.setup({
+				root_dir = lspconfig.util.root_pattern(
+					"tailwind.config.js",
+					"tailwind.config.ts",
+					"postcss.config.js",
+					"postcss.config.ts",
+					"package.json",
+					"node_modules",
+					".git",
+					"mix.exs"
+				),
+				settings = {
+					tailwindCSS = {
+						includeLanguages = {
+							elixir = "html-eex",
+							eelixir = "html-eex",
+							heex = "html-eex",
+						},
+						experimental = {
+							classRegex = { 'class[:]\\s*"([^"]*)"' },
+						},
+					},
+				},
+			})
+		end,
 
--- vue setup
-lsp.use("ts_ls", {
-	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
-	init_options = {
-		plugins = {
-			{
-				name = "@vue/typescript-plugin",
-				location = vue_ts_plugin_path,
-				languages = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
-			},
-		},
-	},
-	on_init = function(client)
-		client.server_capabilities.documentFormattingProvider = false
-		client.server_capabilities.documentFormattingRangeProvider = false
-	end,
-})
+		["jsonls"] = function()
+			lspconfig.jsonls.setup({
+				settings = {
+					json = {
+						schemas = require("schemastore").json.schemas(),
+						validate = { enable = true },
+					},
+				},
+			})
+		end,
 
--- disable formatting
-lsp.use("volar", {
-	on_init = function(client)
-		client.server_capabilities.documentFormattingProvider = false
-		client.server_capabilities.documentFormattingRangeProvider = false
-	end,
-})
+		["helm_ls"] = function()
+			lspconfig.helm_ls.setup({
+				settings = {
+					["helm-ls"] = {
+						yamlls = {
+							path = "yaml-language-server",
+						},
+					},
+				},
+			})
+		end,
 
-lsp.setup()
+		-- vue setup
+		["ts_ls"] = function()
+			local ok, volar = pcall(require("mason-registry").get_package, "vue-language-server")
 
-local rust_tools = require("rust-tools")
+			if ok then
+				local vue_ts_plugin_path = volar:get_install_path()
+					.. "/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin"
 
-rust_tools.setup({
-	server = {
-		on_attach = function(_, bufnr)
-			vim.keymap.set(
-				"n",
-				"<leader>ca",
-				rust_tools.hover_actions.hover_actions,
-				{ buffer = bufnr, desc = "rust code actions" }
-			)
+				lspconfig.ts_ls.setup({
+					filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+					init_options = {
+						plugins = {
+							{
+								name = "@vue/typescript-plugin",
+								location = vue_ts_plugin_path,
+								languages = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+							},
+						},
+					},
+					on_attach = disabled_formatting_attach,
+				})
+			else
+				lspconfig.ts_ls.setup({
+					on_attach = disabled_formatting_attach,
+				})
+			end
+		end,
+
+		-- disable formatting
+		["volar"] = function()
+			lspconfig.volar.setup({
+				on_attach = disabled_formatting_attach,
+			})
+		end,
+
+		["html"] = function()
+			lspconfig.html.setup({
+				filetypes = { "html", "templ", "elixir", "eelixir", "heex" },
+				init_options = {
+					provideFormatter = false,
+				},
+			})
+		end,
+
+		["emmet_ls"] = function()
+			lspconfig.emmet_ls.setup({
+				filetypes = {
+					"html",
+					"css",
+					"javascriptreact",
+					"typescriptreact",
+					"vue",
+					"elixir",
+					"eelixir",
+					"heex",
+				},
+			})
 		end,
 	},
 })
+
+vim.lsp.inlay_hint.enable(true)

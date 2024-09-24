@@ -45,50 +45,46 @@ require("lazy").setup({
 	},
 	{
 		"VonHeikemen/lsp-zero.nvim",
-		branch = "v2.x",
+		branch = "v4.x",
+	},
+	{
+		"neovim/nvim-lspconfig",
 		dependencies = {
-			{
-				"neovim/nvim-lspconfig",
-				dependencies = {
-					-- Useful status updates for LSP
-					-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-					{ "j-hui/fidget.nvim", tag = "legacy", opts = {} },
-					{ "nvimtools/none-ls.nvim" },
-				},
-			},
-			{ "williamboman/mason.nvim" },
-			{ "williamboman/mason-lspconfig.nvim" },
-
-			{
-				"hrsh7th/nvim-cmp",
-				dependencies = {
-					{
-						"windwp/nvim-autopairs",
-						opts = {
-							fast_wrap = {},
-							disable_filetype = { "TelescopePrompt", "vim" },
-						},
-						config = function(_, opts)
-							require("nvim-autopairs").setup(opts)
-
-							-- setup cmp for autopairs
-							local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-							require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
-						end,
-					},
-				},
-			},
-			{ "hrsh7th/cmp-nvim-lsp" },
-			{ "hrsh7th/cmp-nvim-lua" },
-			{ "hrsh7th/cmp-path" },
-			{ "hrsh7th/cmp-buffer" },
-			{ "hrsh7th/cmp-cmdline" },
-
-			{ "L3MON4D3/LuaSnip" },
-			{ "saadparwaiz1/cmp_luasnip" },
-			{ "rafamadriz/friendly-snippets" },
+			-- Useful status updates for LSP
+			-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
+			{ "j-hui/fidget.nvim", tag = "legacy", opts = {} },
+			{ "nvimtools/none-ls.nvim" },
 		},
 	},
+	{ "williamboman/mason.nvim" },
+	{ "williamboman/mason-lspconfig.nvim" },
+	{
+		"hrsh7th/nvim-cmp",
+		dependencies = {
+			{
+				"windwp/nvim-autopairs",
+				opts = {
+					fast_wrap = {},
+					disable_filetype = { "TelescopePrompt", "vim" },
+				},
+				config = function(_, opts)
+					require("nvim-autopairs").setup(opts)
+
+					-- setup cmp for autopairs
+					local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+					require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+				end,
+			},
+		},
+	},
+	{ "hrsh7th/cmp-nvim-lsp" },
+	{ "hrsh7th/cmp-nvim-lua" },
+	{ "hrsh7th/cmp-path" },
+	{ "hrsh7th/cmp-buffer" },
+	{ "hrsh7th/cmp-cmdline" },
+	{ "L3MON4D3/LuaSnip" },
+	{ "saadparwaiz1/cmp_luasnip" },
+	{ "rafamadriz/friendly-snippets" },
 	{
 		"mfussenegger/nvim-dap",
 		dependencies = {
