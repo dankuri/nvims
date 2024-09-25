@@ -44,6 +44,10 @@ require("lazy").setup({
 		build = ":TSUpdate",
 	},
 	{
+		"windwp/nvim-ts-autotag",
+		opts = {},
+	},
+	{
 		"VonHeikemen/lsp-zero.nvim",
 		branch = "v4.x",
 	},
