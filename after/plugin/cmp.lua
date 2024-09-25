@@ -2,6 +2,7 @@ local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 require("luasnip.loaders.from_vscode").lazy_load()
+luasnip.filetype_extend("elixir", { "heex" })
 luasnip.config.setup({})
 
 -- setup cmp for autopairs

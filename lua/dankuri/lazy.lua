@@ -101,10 +101,11 @@ require("lazy").setup({
 		},
 	},
 	{
-		"laytan/tailwind-sorter.nvim",
+		"dankuri/tailwind-sorter.nvim",
 		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-lua/plenary.nvim" },
 		build = "cd formatter && npm ci && npm run build",
-		config = {
+		branch = "fix-default-queries",
+		opts = {
 			on_save_enabled = true,
 			trim_spaces = true,
 			on_save_pattern = { "*.html", "*.jsx", "*.tsx", "*.heex", "*.ex", "*.exs" },
@@ -298,7 +299,7 @@ require("lazy").setup({
 		dependencies = {
 			"stevearc/oil.nvim",
 		},
-		config = true,
+		opts = {},
 	},
 	{
 		"ThePrimeagen/harpoon",
