@@ -2,19 +2,19 @@ local lsp_zero = require("lsp-zero")
 local lspconfig = require("lspconfig")
 
 local lsp_attach = function(client, bufnr)
-	local map = function(m, lhs, rhs, desc)
+	local map = function(m, lhs, rhs, desc, silent)
 		if desc then
 			desc = "LSP: " .. desc
 		end
-		local key_opts = { buffer = bufnr, desc = desc, nowait = true }
+		local key_opts = { buffer = bufnr, desc = desc, nowait = true, silent = silent }
 		vim.keymap.set(m, lhs, rhs, key_opts)
 	end
 
 	map("n", "K", vim.lsp.buf.hover, "hover documentation")
-	map("n", "gr", ":Telescope lsp_references<cr>", "goto references")
-	map("n", "gi", ":Telescope lsp_implementation<cr>", "goto implementation")
-	map("n", "go", ":Telescope lsp_type_definition<cr>", "goto type definition")
-	map("n", "gd", ":Telescope lsp_definitions<cr>", "goto definition")
+	map("n", "gr", ":Telescope lsp_references<cr>", "goto references", true)
+	map("n", "gi", ":Telescope lsp_implementations<cr>", "goto implementation", true)
+	map("n", "go", ":Telescope lsp_type_definitions<cr>", "goto type definition", true)
+	map("n", "gd", ":Telescope lsp_definitions<cr>", "goto definition", true)
 	map("n", "gD", vim.lsp.buf.declaration, "goto declaration")
 	map("n", "[d", vim.diagnostic.goto_prev, "goto previous diagnostic message")
 	map("n", "]d", vim.diagnostic.goto_next, "goto next diagnostic message")
