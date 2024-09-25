@@ -57,7 +57,7 @@ require("mason-lspconfig").setup({
 		"ts_ls",
 		"html",
 		"cssls",
-		"emmet_ls",
+		"emmet_language_server",
 		"volar",
 		"zls",
 	},
@@ -197,20 +197,20 @@ require("mason-lspconfig").setup({
 			})
 		end,
 
-		["emmet_ls"] = function()
-			lspconfig.emmet_ls.setup({
-				filetypes = {
-					"html",
-					"css",
-					"javascriptreact",
-					"typescriptreact",
-					"vue",
-					"elixir",
-					"eelixir",
-					"heex",
-				},
-			})
-		end,
+		-- ["emmet_language_server"] = function()
+		-- 	lspconfig.emmet_language_server.setup({
+		-- 		filetypes = {
+		-- 			"html",
+		-- 			"css",
+		-- 			"javascriptreact",
+		-- 			"typescriptreact",
+		-- 			"vue",
+		-- 			"elixir",
+		-- 			"eelixir",
+		-- 			"heex",
+		-- 		},
+		-- 	})
+		-- end,
 	},
 })
 
