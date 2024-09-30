@@ -232,15 +232,17 @@ require("lazy").setup({
 		event = "BufEnter",
 	},
 	{
-		"numToStr/Navigator.nvim",
-		lazy = false,
-		opts = { disable_on_zoom = true },
-	},
-	{
-		"nvim-focus/focus.nvim",
+		"mrjones2014/smart-splits.nvim",
+		dependencies = { "kwkarlwang/bufresize.nvim", opts = {} },
 		opts = {
-			ui = {
-				signcolumn = false,
+			at_edge = "stop",
+			resize_mode = {
+				silent = true,
+				hooks = {
+					on_leave = function()
+						require("bufresize").register()
+					end,
+				},
 			},
 		},
 	},

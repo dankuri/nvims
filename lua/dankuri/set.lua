@@ -49,3 +49,20 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.highlight.on_yank({ higroup = "IncSearch", timeout = 100 })
 	end,
 })
+
+local claugroup = vim.api.nvim_create_augroup("cursorline", {})
+
+vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter" }, {
+	group = claugroup,
+	callback = function(_)
+		vim.wo.cursorline = true
+	end,
+	desc = "Enable cursorline",
+})
+vim.api.nvim_create_autocmd({ "BufLeave", "WinLeave" }, {
+	group = claugroup,
+	callback = function(_)
+		vim.wo.cursorline = false
+	end,
+	desc = "Disable cursorline",
+})
