@@ -197,6 +197,12 @@ require("mason-lspconfig").setup({
 			})
 		end,
 
+		["clangd"] = function()
+			lspconfig.clangd.setup({
+				filetypes = { "c", "cpp" },
+			})
+		end,
+
 		-- ["emmet_language_server"] = function()
 		-- 	lspconfig.emmet_language_server.setup({
 		-- 		filetypes = {
