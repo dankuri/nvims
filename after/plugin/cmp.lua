@@ -8,7 +8,7 @@ luasnip.config.setup({})
 -- setup cmp for autopairs
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
-local cmp_formatting = require("lsp-zero").cmp_format({ details = true })
+local cmp_formatting = require("lsp-zero").cmp_format({ details = false })
 
 cmp.setup({
 	snippet = {
