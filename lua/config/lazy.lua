@@ -12,93 +12,10 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	{
-		"Mofiqul/dracula.nvim",
-	},
-	{
-		"nvim-telescope/telescope-ui-select.nvim",
-	},
-	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-	{
-		"nvim-telescope/telescope.nvim",
-		branch = "0.1.x",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		config = function()
-			local telescope = require("telescope")
-			telescope.setup({
-				extensions = {
-					["ui-select"] = {
-						require("telescope.themes").get_dropdown({}),
-					},
-				},
-			})
-			telescope.load_extension("ui-select")
-			telescope.load_extension("fzf")
-		end,
-	},
-	{
-		"nvim-treesitter/nvim-treesitter",
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter-textobjects",
-		},
-		build = ":TSUpdate",
-	},
+	{ import = "config/plugins"},
 	{
 		"windwp/nvim-ts-autotag",
 		opts = {},
-	},
-	{
-		"VonHeikemen/lsp-zero.nvim",
-		branch = "v4.x",
-	},
-	{
-		"neovim/nvim-lspconfig",
-		dependencies = {
-			-- Useful status updates for LSP
-			{ "j-hui/fidget.nvim", tag = "v1.4.5", opts = {} },
-			{ "nvimtools/none-ls.nvim" },
-		},
-	},
-	{ "williamboman/mason.nvim" },
-	{ "williamboman/mason-lspconfig.nvim" },
-	{
-		"hrsh7th/nvim-cmp",
-		dependencies = {
-			{
-				"windwp/nvim-autopairs",
-				opts = {
-					fast_wrap = {},
-					disable_filetype = { "TelescopePrompt", "vim" },
-				},
-			},
-		},
-	},
-	{ "hrsh7th/cmp-nvim-lsp" },
-	{ "hrsh7th/cmp-nvim-lua" },
-	{ "hrsh7th/cmp-path" },
-	{ "hrsh7th/cmp-buffer" },
-	{ "hrsh7th/cmp-cmdline" },
-	{ "L3MON4D3/LuaSnip" },
-	{ "saadparwaiz1/cmp_luasnip" },
-	{ "rafamadriz/friendly-snippets" },
-	{
-		"mfussenegger/nvim-dap",
-		dependencies = {
-			"leoluz/nvim-dap-go",
-			{
-				"rcarriga/nvim-dap-ui",
-				dependencies = {
-					"nvim-neotest/nvim-nio",
-				},
-			},
-		},
-	},
-	{
-		"brenoprata10/nvim-highlight-colors",
-		opts = {
-			enable_tailwind = true,
-			render = "background", -- "background" | "foreground" | "virtual"
-		},
 	},
 	{
 		"dankuri/tailwind-sorter.nvim",
@@ -208,7 +125,6 @@ require("lazy").setup({
 			},
 		},
 	},
-
 	-- "gc" to comment visual regions/lines
 	{ "numToStr/Comment.nvim", opts = {} },
 	{
@@ -218,18 +134,6 @@ require("lazy").setup({
 		build = function()
 			vim.fn["mkdp#util#install"]()
 		end,
-	},
-	{
-		"lewis6991/gitsigns.nvim",
-		event = "BufRead",
-	},
-	{
-		"kdheepak/lazygit.nvim",
-		dependencies = { "nvim-lua/plenary.nvim" },
-	},
-	{
-		"nvim-treesitter/nvim-treesitter-context",
-		event = "BufEnter",
 	},
 	{
 		"mrjones2014/smart-splits.nvim",
@@ -302,15 +206,6 @@ require("lazy").setup({
 			"stevearc/oil.nvim",
 		},
 		opts = {},
-	},
-	{
-		"ThePrimeagen/harpoon",
-		branch = "harpoon2",
-		dependencies = { "nvim-lua/plenary.nvim" },
-	},
-	{
-		"mbbill/undotree",
-		event = "BufRead",
 	},
 	{
 		"kylechui/nvim-surround",
