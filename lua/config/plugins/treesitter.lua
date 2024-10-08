@@ -29,7 +29,7 @@ return {
 				indent = { enable = true },
 				auto_install = true,
 			})
-		end
+		end,
 	},
 	{
 		"nvim-treesitter/nvim-treesitter-context",

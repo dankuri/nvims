@@ -13,11 +13,21 @@ return {
 						require("gitsigns").preview_hunk_inline,
 						{ buffer = bufnr, desc = "preview hunk" }
 					)
-					vim.keymap.set("n", "<leader>gr", require("gitsigns").reset_hunk, { buffer = bufnr, desc = "reset hunk" })
-					vim.keymap.set("n", "<leader>gb", require("gitsigns").blame_line, { buffer = bufnr, desc = "blame line" })
+					vim.keymap.set(
+						"n",
+						"<leader>gr",
+						require("gitsigns").reset_hunk,
+						{ buffer = bufnr, desc = "reset hunk" }
+					)
+					vim.keymap.set(
+						"n",
+						"<leader>gb",
+						require("gitsigns").blame_line,
+						{ buffer = bufnr, desc = "blame line" }
+					)
 				end,
 			})
-		end
+		end,
 	},
 	{
 		"kdheepak/lazygit.nvim",

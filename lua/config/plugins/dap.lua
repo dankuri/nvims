@@ -9,7 +9,7 @@ return {
 					"nvim-neotest/nvim-nio",
 				},
 			},
-			"williamboman/mason.nvim" 
+			"williamboman/mason.nvim",
 		},
 		config = function()
 			require("dapui").setup()
@@ -116,6 +116,6 @@ return {
 				"DapBreakpoint",
 				{ text = "B", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
 			)
-		end
+		end,
 	},
 }

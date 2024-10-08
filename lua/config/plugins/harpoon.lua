@@ -35,6 +35,6 @@ return {
 			vim.keymap.set("n", "<leader>l", function()
 				harpoon:list():select(4)
 			end, { desc = "HARPOON: open 4th file" })
-		end
+		end,
 	},
 }

@@ -125,14 +125,14 @@ return {
 					["tailwindcss"] = function()
 						lspconfig.tailwindcss.setup({
 							root_dir = lspconfig.util.root_pattern(
-							"tailwind.config.js",
-							"tailwind.config.ts",
-							"postcss.config.js",
-							"postcss.config.ts",
-							"package.json",
-							"node_modules",
-							".git",
-							"mix.exs"
+								"tailwind.config.js",
+								"tailwind.config.ts",
+								"postcss.config.js",
+								"postcss.config.ts",
+								"package.json",
+								"node_modules",
+								".git",
+								"mix.exs"
 							),
 							settings = {
 								tailwindCSS = {
@@ -178,7 +178,7 @@ return {
 
 						if ok then
 							local vue_ts_plugin_path = volar:get_install_path()
-							.. "/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin"
+								.. "/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin"
 
 							lspconfig.ts_ls.setup({
 								filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
@@ -187,7 +187,13 @@ return {
 										{
 											name = "@vue/typescript-plugin",
 											location = vue_ts_plugin_path,
-											languages = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+											languages = {
+												"typescript",
+												"javascript",
+												"javascriptreact",
+												"typescriptreact",
+												"vue",
+											},
 										},
 									},
 								},
@@ -203,6 +209,13 @@ return {
 					-- disable formatting
 					["volar"] = function()
 						lspconfig.volar.setup({
+							on_attach = disabled_formatting_attach,
+						})
+					end,
+
+					-- disable formatting
+					["lua_ls"] = function()
+						lspconfig.lua_ls.setup({
 							on_attach = disabled_formatting_attach,
 						})
 					end,
@@ -225,7 +238,6 @@ return {
 			})
 
 			vim.lsp.inlay_hint.enable(true)
-		end
+		end,
 	},
 }
-

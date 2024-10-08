@@ -1,5 +1,5 @@
 return {
-	{ 
+	{
 		"nvimtools/none-ls.nvim",
 		config = function()
 			local ok, null_ls = pcall(require, "null-ls")
@@ -42,6 +42,6 @@ return {
 				sources = sources,
 				debug = false,
 			})
-		end
+		end,
 	},
 }

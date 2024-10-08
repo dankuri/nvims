@@ -7,6 +7,6 @@ return {
 				transparent_bg = true,
 			})
 			vim.cmd.colorscheme("dracula")
-		end
+		end,
 	},
 }
