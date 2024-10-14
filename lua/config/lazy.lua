@@ -87,9 +87,19 @@ require("lazy").setup({
 	{ "b0o/schemastore.nvim" },
 	{
 		"folke/which-key.nvim",
+		event = "VeryLazy",
 		opts = {
 			icons = {
 				rules = false,
+			},
+		},
+		keys = {
+			{
+				"<leader>?",
+				function()
+					require("which-key").show({ global = false })
+				end,
+				desc = "which-key",
 			},
 		},
 	},
