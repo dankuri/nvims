@@ -107,6 +107,7 @@ return {
 
 			vim.keymap.set("n", "<Leader>db", ":DapToggleBreakpoint<CR>", { desc = "DAP: toggle breakpoing" })
 			vim.keymap.set("n", "<Leader>dc", ":DapContinue<CR>", { desc = "DAP: start or continue" })
+			vim.keymap.set("n", "<Leader>dd", ":DapDisconnect<CR>", { desc = "DAP: disconnect" })
 			vim.keymap.set("n", "<leader>do", ":DapStepOver<CR>", { desc = "DAP: step over" })
 			vim.keymap.set("n", "<leader>di", ":DapStepInto<CR>", { desc = "DAP: step into" })
 			vim.keymap.set("n", "<leader>du", ":DapStepOut<CR>", { desc = "DAP: step out" })
