@@ -249,16 +249,17 @@ require("lazy").setup({
 			}
 
 			dashboard.section.buttons.val = {
-				dashboard.button("n", "  New file", "<cmd>ene<CR>"),
-				dashboard.button("e", "  Explore files", "<cmd>e .<CR>"),
-				dashboard.button("f", "  Find file", "<cmd>Telescope find_files<CR>"),
-				dashboard.button("o", "  Old files", "<cmd>Telescope oldfiles<CR>"),
-				dashboard.button("w", "  Grep word", "<cmd>Telescope live_grep<CR>"),
-				dashboard.button("g", "  Git status", "<cmd>LazyGit<CR>"),
-				dashboard.button("u", "  Update plugins", "<cmd>Lazy sync<CR>"),
-				dashboard.button("h", "󱡀  Harpoon", "<cmd>HarpoonMenu<CR>"),
-				dashboard.button("m", "  Mason", "<cmd>Mason<CR>"),
-				dashboard.button("q", "󰩈  Quit", "<cmd>qa<CR>"),
+				dashboard.button("n", "  New file", ":ene<CR>"),
+				dashboard.button("e", "  Explore files", ":e .<CR>"),
+				dashboard.button("f", "  Find file", ":Telescope find_files<CR>"),
+				dashboard.button("o", "  Old files", ":Telescope oldfiles<CR>"),
+				dashboard.button("w", "  Grep word", ":Telescope live_grep<CR>"),
+				dashboard.button("g", "  Git status", ":LazyGit<CR>"),
+				dashboard.button("u", "  Update plugins", ":Lazy sync<CR>"),
+				dashboard.button("h", "󱡀  Harpoon", ":HarpoonMenu<CR>"),
+				dashboard.button("d", "  Database", ":ene<CR>:DBUI<CR>"),
+				dashboard.button("m", "  Mason", ":Mason<CR>"),
+				dashboard.button("q", "󰩈  Quit", ":qa<CR>"),
 			}
 
 			alpha.setup(dashboard.config)
@@ -279,7 +280,12 @@ require("lazy").setup({
 	"ThePrimeagen/vim-be-good",
 	"tpope/vim-dadbod",
 	"kristijanhusak/vim-dadbod-completion",
-	"kristijanhusak/vim-dadbod-ui",
+	{
+		"kristijanhusak/vim-dadbod-ui",
+		init = function()
+			vim.keymap.set("n", "<leader>db", ":DBUIToggle<CR>", { desc = "DBUI", silent = true })
+		end,
+	},
 	{
 		"norcalli/nvim-colorizer.lua",
 		opts = {
