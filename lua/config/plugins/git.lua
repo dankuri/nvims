@@ -5,8 +5,12 @@ return {
 		config = function()
 			require("gitsigns").setup({
 				on_attach = function(bufnr)
-					vim.keymap.set("n", "[g", require("gitsigns").prev_hunk, { buffer = bufnr, desc = "prev git hunk" })
-					vim.keymap.set("n", "]g", require("gitsigns").next_hunk, { buffer = bufnr, desc = "next git hunk" })
+					vim.keymap.set("n", "[g", function()
+						require("gitsigns").nav_hunk("prev")
+					end, { buffer = bufnr, desc = "prev git hunk" })
+					vim.keymap.set("n", "]g", function()
+						require("gitsigns").nav_hunk("next")
+					end, { buffer = bufnr, desc = "next git hunk" })
 					vim.keymap.set(
 						"n",
 						"<leader>gp",
