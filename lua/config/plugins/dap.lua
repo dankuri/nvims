@@ -105,18 +105,13 @@ return {
 				dapui.close()
 			end
 
-			vim.keymap.set(
-				"n",
-				"<leader>b",
-				":DapToggleBreakpoint<CR>",
-				{ desc = "DAP: toggle breakpoing", silent = true }
-			)
-			vim.keymap.set("n", "<Leader>dc", ":DapContinue<CR>", { desc = "DAP: start or continue", silent = true })
-			vim.keymap.set("n", "<Leader>dd", ":DapDisconnect<CR>", { desc = "DAP: disconnect", silent = true })
-			vim.keymap.set("n", "<leader>do", ":DapStepOver<CR>", { desc = "DAP: step over", silent = true })
-			vim.keymap.set("n", "<leader>di", ":DapStepInto<CR>", { desc = "DAP: step into", silent = true })
-			vim.keymap.set("n", "<leader>du", ":DapStepOut<CR>", { desc = "DAP: step out", silent = true })
-			vim.keymap.set("n", "<Leader>dx", ":DapTerminate<CR>", { desc = "DAP: terminate", silent = true })
+			vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint, { desc = "DAP: toggle breakpoing", silent = true })
+			vim.keymap.set("n", "<Leader>dc", dap.continue, { desc = "DAP: start or continue", silent = true })
+			vim.keymap.set("n", "<Leader>dd", dap.disconnect, { desc = "DAP: disconnect", silent = true })
+			vim.keymap.set("n", "<leader>do", dap.step_over, { desc = "DAP: step over", silent = true })
+			vim.keymap.set("n", "<leader>di", dap.step_into, { desc = "DAP: step into", silent = true })
+			vim.keymap.set("n", "<leader>du", dap.step_out, { desc = "DAP: step out", silent = true })
+			vim.keymap.set("n", "<Leader>dx", dap.terminate, { desc = "DAP: terminate", silent = true })
 
 			vim.fn.sign_define(
 				"DapBreakpoint",
