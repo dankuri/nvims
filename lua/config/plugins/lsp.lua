@@ -13,7 +13,7 @@ return {
 			},
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
-			"hrsh7th/nvim-cmp",
+			"saghen/blink.cmp",
 		},
 		config = function()
 			local lsp_zero = require("lsp-zero")
@@ -51,7 +51,7 @@ return {
 			end
 
 			lsp_zero.extend_lspconfig({
-				capabilities = require("cmp_nvim_lsp").default_capabilities(),
+				capabilities = require("blink.cmp").get_lsp_capabilities(),
 				lsp_attach = lsp_attach,
 				sign_text = true,
 				float_border = "rounded",

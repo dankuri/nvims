@@ -18,6 +18,13 @@ require("lazy").setup({
 		opts = {},
 	},
 	{
+		"windwp/nvim-autopairs",
+		opts = {
+			fast_wrap = {},
+			disable_filetype = { "TelescopePrompt", "vim" },
+		},
+	},
+	{
 		"dankuri/tailwind-sorter.nvim",
 		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-lua/plenary.nvim" },
 		build = "cd formatter && npm ci && npm run build",
@@ -44,28 +51,6 @@ require("lazy").setup({
 		build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
 	},
 	{
-		"simrat39/rust-tools.nvim",
-		ft = "rust",
-	},
-	{
-		"saecki/crates.nvim",
-		event = { "BufRead Cargo.toml" },
-		dependencies = { "nvim-lua/plenary.nvim" },
-		config = function()
-			require("crates").setup({
-				null_ls = {
-					enabled = true,
-					name = "crates.nvim",
-				},
-				src = {
-					cmp = {
-						enabled = true,
-					},
-				},
-			})
-		end,
-	},
-	{
 		"someone-stole-my-name/yaml-companion.nvim",
 		ft = { "yaml" },
 		dependencies = {
@@ -84,7 +69,6 @@ require("lazy").setup({
 			require("telescope").load_extension("yaml_schema")
 		end,
 	},
-	{ "towolf/vim-helm", ft = "helm" },
 	{ "b0o/schemastore.nvim" },
 	{
 		"folke/which-key.nvim",
