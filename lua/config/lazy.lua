@@ -244,7 +244,6 @@ require("lazy").setup({
 				dashboard.button("f", "  Find file", ":Telescope find_files<CR>"),
 				dashboard.button("o", "  Old files", ":Telescope oldfiles<CR>"),
 				dashboard.button("w", "  Grep word", ":Telescope live_grep<CR>"),
-				dashboard.button("g", "  Git status", ":LazyGit<CR>"),
 				dashboard.button("u", "  Update plugins", ":Lazy sync<CR>"),
 				dashboard.button("h", "󱡀  Harpoon", ":HarpoonMenu<CR>"),
 				dashboard.button("d", "  Database", ":ene<CR>:DBUI<CR>"),
