@@ -5,13 +5,7 @@ return {
 		dependencies = {
 			{ "rafamadriz/friendly-snippets" },
 		},
-		-- tagged
-		-- version = "v0.*",
-
-		-- head - TODO: until cmdline stuff is in tagged release
-		-- !need rust nightly!
-		build = "cargo build --release",
-
+		version = "*",
 		---@module 'blink.cmp'
 		---@type blink.cmp.Config
 		opts = {
