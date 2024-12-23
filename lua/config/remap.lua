@@ -35,6 +35,9 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set("n", "<leader>x", ":!chmod +x %<CR>", { desc = "make file executable" })
 
 vim.keymap.set("n", "<leader>tf", ":ToggleFormat<CR>", { desc = "toggle format" })
+vim.keymap.set("n", "<leader>tl", function()
+	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end, { desc = "toggle inlay hints" })
 vim.keymap.set("n", "<leader>tw", ":set wrap!<CR>", { desc = "toggle wrap" })
 vim.keymap.set("n", "<leader>tS", ":set spell!<CR>", { desc = "toggle spell" })
 
