@@ -16,7 +16,6 @@ return {
 			},
 			appearance = {
 				use_nvim_cmp_as_default = true,
-				nerd_font_variant = "mono",
 			},
 			sources = {
 				default = { "lsp", "path", "snippets", "buffer", "lazydev" },
@@ -43,6 +42,11 @@ return {
 						-- this is to match nvim-cmp
 						columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind", gap = 1 } },
 					},
+				},
+				list = {
+					selection = function(ctx)
+						return ctx.mode == "cmdline" and "auto_insert" or "preselect"
+					end,
 				},
 			},
 			signature = { enabled = true },
