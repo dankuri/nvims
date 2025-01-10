@@ -111,6 +111,7 @@ return {
 			vim.keymap.set("n", "<leader>do", dap.step_over, { desc = "DAP: step over", silent = true })
 			vim.keymap.set("n", "<leader>di", dap.step_into, { desc = "DAP: step into", silent = true })
 			vim.keymap.set("n", "<leader>du", dap.step_out, { desc = "DAP: step out", silent = true })
+			vim.keymap.set("n", "<leader>dr", dap.restart, { desc = "DAP: restart", silent = true })
 			vim.keymap.set("n", "<Leader>dx", dap.terminate, { desc = "DAP: terminate", silent = true })
 
 			vim.fn.sign_define(
