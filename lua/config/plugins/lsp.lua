@@ -43,11 +43,16 @@ return {
 				map("x", "<leader>fm", vim.lsp.buf.format, "format selection")
 				map({ "i", "n" }, "<C-K>", vim.lsp.buf.signature_help, "signature help")
 
+				map("n", "<leader>th", function()
+					vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+				end, "toggle inlay hints")
+
 				lsp_zero.buffer_autoformat()
 				vim.api.nvim_create_user_command("ToggleFormat", function()
 					vim.b.lsp_zero_enable_autoformat = not vim.b.lsp_zero_enable_autoformat
 					print("Setting autoformatting to: " .. tostring(vim.b.lsp_zero_enable_autoformat))
 				end, {})
+				map("n", "<leader>tf", ":ToggleFormat<CR>", "toggle format")
 			end
 
 			lsp_zero.extend_lspconfig({
