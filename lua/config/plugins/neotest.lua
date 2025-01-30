@@ -8,6 +8,7 @@ return {
 			"antoinemadec/FixCursorHold.nvim",
 			"nvim-treesitter/nvim-treesitter",
 			{ "fredrikaverpil/neotest-golang", version = "*", dependencies = { "leoluz/nvim-dap-go" } },
+			{ "jfpedroza/neotest-elixir" },
 		},
 		config = function()
 			require("neotest").setup({
@@ -20,6 +21,7 @@ return {
 							"-coverprofile=" .. vim.fn.getcwd() .. "/coverage.out",
 						},
 					}),
+					require("neotest-elixir"),
 				},
 			})
 		end,

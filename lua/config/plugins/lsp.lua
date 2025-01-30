@@ -118,9 +118,8 @@ return {
 						lspconfig.elixirls.setup({
 							settings = {
 								elixirLS = {
-									dialyzerEnabled = true,
-									incrementalDialyzer = true,
-									suggestSpecs = true,
+									dialyzerEnabled = false,
+									fetchDeps = false,
 								},
 							},
 						})
