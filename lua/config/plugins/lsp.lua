@@ -238,29 +238,24 @@ return {
 							filetypes = { "c", "cpp" },
 						})
 					end,
+					["emmet_language_server"] = function()
+						lspconfig.emmet_language_server.setup({
+							filetypes = {
+								"htlm",
+								"css",
+								"javascriptreact",
+								"typescriptreact",
+								"vue",
+								"eelixir",
+								"heex",
+							},
+							init_options = {
+								showSuggestionsAsSnippets = true,
+							},
+						})
+					end,
 				},
 			})
-			-- https://github.com/lasorda/protobuf-language-server - for now the only working lsp for protobuf
-			local protobuf_ls_path = vim.fn.exepath("protobuf-language-server")
-			if protobuf_ls_path ~= "" then
-				require("lspconfig.configs")["protobuf-language-server"] = {
-					default_config = {
-						cmd = { protobuf_ls_path },
-						filetypes = { "proto" },
-						root_fir = lspconfig.util.root_pattern(".git"),
-						single_file_support = true,
-						on_attach = disabled_formatting_attach,
-						settings = {
-							["additional-proto-dirs"] = {
-								"vendor",
-								"vendor.protogen",
-							},
-						},
-					},
-				}
-
-				lspconfig["protobuf-language-server"].setup({})
-			end
 
 			vim.lsp.inlay_hint.enable(true)
 		end,
