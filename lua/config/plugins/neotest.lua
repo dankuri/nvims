@@ -136,34 +136,6 @@ return {
 				end,
 				desc = "TEST: coverage summary",
 			},
-			{
-				"]u",
-				function()
-					require("coverage").jump_next("uncovered")
-				end,
-				desc = "TEST: goto next uncovered block",
-			},
-			{
-				"[u",
-				function()
-					require("coverage").jump_prev("uncovered")
-				end,
-				desc = "TEST: goto prev uncovered block",
-			},
-			{
-				"]c",
-				function()
-					require("coverage").jump_next("covered")
-				end,
-				desc = "TEST: goto next uncovered block",
-			},
-			{
-				"[c",
-				function()
-					require("coverage").jump_prev("covered")
-				end,
-				desc = "TEST: goto prev uncovered block",
-			},
 		},
 	},
 }
