@@ -239,6 +239,7 @@ return {
 							filetypes = { "c", "cpp" },
 						})
 					end,
+
 					["emmet_language_server"] = function()
 						lspconfig.emmet_language_server.setup({
 							filetypes = {
@@ -252,6 +253,17 @@ return {
 							},
 							init_options = {
 								showSuggestionsAsSnippets = true,
+							},
+						})
+					end,
+
+					["zls"] = function()
+						lspconfig.zls.setup({
+							settings = {
+								zls = {
+									enable_inlay_hints = false,
+									enable_build_on_save = true,
+								},
 							},
 						})
 					end,
