@@ -146,6 +146,14 @@ require("lazy").setup({
 		},
 	},
 	{
+		"folke/todo-comments.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		opts = {},
+		init = function()
+			vim.keymap.set("n", "<leader>ft", ":TodoTelescope<CR>", { silent = true, desc = "find todos" })
+		end,
+	},
+	{
 		"stevearc/oil.nvim",
 		config = function()
 			require("oil").setup({
