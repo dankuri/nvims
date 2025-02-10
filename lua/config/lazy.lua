@@ -282,6 +282,7 @@ require("lazy").setup({
 		},
 	},
 	{ "Bilal2453/luvit-meta", lazy = true },
+	"wsdjeg/vim-fetch",
 	-- Detect tabstop and shiftwidth automatically
 	"tpope/vim-sleuth",
 	"ThePrimeagen/vim-be-good",
