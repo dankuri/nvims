@@ -122,6 +122,13 @@ require("lazy").setup({
 	-- "gc" to comment visual regions/lines
 	{ "numToStr/Comment.nvim", opts = {} },
 	{
+		"MagicDuck/grug-far.nvim",
+		opts = {},
+		init = function()
+			vim.keymap.set("n", "<leader>fr", ":GrugFar<CR>", { silent = true, desc = "find & replace" })
+		end,
+	},
+	{
 		"OXY2DEV/markview.nvim",
 		lazy = false,
 		init = function()
