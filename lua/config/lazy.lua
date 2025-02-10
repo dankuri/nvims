@@ -42,8 +42,8 @@ require("lazy").setup({
 			"neovim/nvim-lspconfig",
 			"nvim-treesitter/nvim-treesitter",
 		},
-		config = function()
-			require("go").setup()
+		opts = {},
+		init = function()
 			vim.keymap.set("n", "<leader>ie", ":GoIfErr<CR>", { desc = "Go If Error" })
 		end,
 		event = { "CmdlineEnter" },
@@ -124,7 +124,11 @@ require("lazy").setup({
 	{
 		"OXY2DEV/markview.nvim",
 		lazy = false,
-
+		init = function()
+			-- Load the checkboxes module.
+			require("markview.extras.checkboxes").setup()
+			vim.keymap.set("n", "<leader>tc", ":Checkbox toggle<CR>", { silent = true, desc = "toggle checkbox" })
+		end,
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
 			"nvim-tree/nvim-web-devicons",
