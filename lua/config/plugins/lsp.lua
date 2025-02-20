@@ -261,7 +261,10 @@ return {
 						lspconfig.zls.setup({
 							settings = {
 								zls = {
+									-- disable noise
+									enable_argument_placeholders = false,
 									enable_inlay_hints = false,
+									-- enable good stuff
 									enable_build_on_save = true,
 								},
 							},
