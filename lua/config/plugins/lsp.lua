@@ -43,6 +43,9 @@ return {
 				map("x", "<leader>fm", vim.lsp.buf.format, "format selection")
 				map({ "i", "n" }, "<C-K>", vim.lsp.buf.signature_help, "signature help")
 
+				if client.name ~= "zls" then
+					vim.lsp.inlay_hint.enable(true)
+				end
 				map("n", "<leader>th", function()
 					vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 				end, "toggle inlay hints")
@@ -263,7 +266,6 @@ return {
 								zls = {
 									-- disable noise
 									enable_argument_placeholders = false,
-									enable_inlay_hints = false,
 									-- enable good stuff
 									enable_build_on_save = true,
 								},
@@ -272,8 +274,6 @@ return {
 					end,
 				},
 			})
-
-			vim.lsp.inlay_hint.enable(true)
 		end,
 	},
 }
