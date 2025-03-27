@@ -87,7 +87,8 @@ return {
 						request = "launch",
 						projectDir = "${workspaceFolder}",
 						exitAfterTaskReturns = false,
-						debugAutoIneterpretAllModules = false,
+						debugAutoInterpretAllModules = false,
+						startApps = false,
 					},
 				}
 			end
