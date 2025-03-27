@@ -37,6 +37,12 @@ vim.keymap.set("n", "<leader>x", ":!chmod +x %<CR>", { desc = "make file executa
 vim.keymap.set("n", "<leader>tw", ":set wrap!<CR>", { desc = "toggle wrap" })
 vim.keymap.set("n", "<leader>tS", ":set spell!<CR>", { desc = "toggle spell" })
 
+-- tabs
+vim.keymap.set("n", "H", ":tabp<CR>", { desc = "prev tab", silent = true })
+vim.keymap.set("n", "L", ":tabn<CR>", { desc = "next tab", silent = true })
+vim.keymap.set("n", "<leader>tn", ":tabnew<CR>", { desc = "new tab", silent = true })
+vim.keymap.set("n", "<leader>tx", ":tabclose<CR>", { desc = "close tab", silent = true })
+
 -- move between panes & tmux splits with Alt + direction
 vim.keymap.set({ "n", "t" }, "<M-h>", function()
 	require("smart-splits").move_cursor_left()
