@@ -52,7 +52,12 @@ return {
 					},
 				},
 			},
-			signature = { enabled = true },
+			signature = {
+				enabled = true,
+				window = {
+					border = "rounded",
+				},
+			},
 		},
 		opts_extend = { "sources.default" },
 	},
