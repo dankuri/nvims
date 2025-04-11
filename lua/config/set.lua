@@ -12,6 +12,8 @@ vim.opt.smartindent = true
 vim.opt.wrap = false
 -- vim.cmd([[set nrformats+=alpha]])
 
+vim.opt.signcolumn = "yes"
+
 vim.opt.swapfile = false
 vim.opt.backup = false
 

@@ -11,6 +11,12 @@ return {
 	config = function()
 		local lspconfig = require("lspconfig")
 
+		vim.diagnostic.config({
+			float = {
+				border = "rounded",
+			},
+		})
+
 		vim.api.nvim_create_autocmd("LspAttach", {
 			desc = "LSP actions",
 			callback = function(event)
@@ -127,6 +133,12 @@ return {
 
 				{
 					"zls",
+					condition = function()
+						return not os.execute("zig version")
+					end,
+				},
+				{
+					"codelldb",
 					condition = function()
 						return not os.execute("zig version")
 					end,

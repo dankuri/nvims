@@ -10,7 +10,7 @@ return {
 				lua = { "stylua" },
 				go = { "goimports", "gofmt", "injected" },
 				python = { "black" },
-				sql = { "sqlruff" },
+				sql = { "sqruff" },
 				html = { "prettier" },
 				css = { "prettier" },
 				json = { "prettier" },
@@ -34,10 +34,9 @@ return {
 				}
 				return {
 					async = true, -- let's try this
-					timeout = 500,
 					lsp_format = "fallback",
 					filter = function(client)
-						vim.tbl_contains(disabled_formatting_lsp_names, client.name)
+						return not vim.tbl_contains(disabled_formatting_lsp_names, client.name)
 					end,
 				}
 			end,
