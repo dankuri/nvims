@@ -5,6 +5,7 @@ return {
 		{ "j-hui/fidget.nvim", tag = "v1.4.5", opts = {} },
 		{ "williamboman/mason.nvim" },
 		{ "williamboman/mason-lspconfig.nvim" },
+		{ "WhoIsSethDaniel/mason-tool-installer.nvim" },
 		{ "saghen/blink.cmp" },
 	},
 	config = function()
@@ -80,24 +81,74 @@ return {
 		})
 
 		require("mason").setup({})
-		require("mason-lspconfig").setup({
+		require("mason-tool-installer").setup({
 			ensure_installed = {
-				"gopls",
-				"buf_ls",
-				"elixirls",
-				"tailwindcss",
+				{
+					"gopls",
+					condition = function()
+						return not os.execute("go version")
+					end,
+				},
+				{
+					"golangci-lint",
+					condition = function()
+						return not os.execute("go version")
+					end,
+				},
+				{
+					"buf_ls",
+					condition = function()
+						return not os.execute("buf --version")
+					end,
+				},
+				"sqruff",
+
 				"lua_ls",
+				"stylua",
+
+				{
+					"elixirls",
+					condition = function()
+						return not os.execute("elixir --version")
+					end,
+				},
+
+				"html",
+				"cssls",
+				"tailwindcss",
+				"ts_ls",
+				"emmet_language_server",
+				"volar",
+
+				"bashls",
 				"jsonls",
 				"yamlls",
 				"dockerls",
-				"bashls",
-				"ts_ls",
-				"html",
-				"cssls",
-				"emmet_language_server",
-				"volar",
-				"zls",
+
+				{
+					"zls",
+					condition = function()
+						return not os.execute("zig version")
+					end,
+				},
+
+				{
+					"pylsp",
+					condition = function()
+						return not os.execute("python --version")
+					end,
+				},
+				{
+					"black",
+					condition = function()
+						return not os.execute("python --version")
+					end,
+				},
 			},
+		})
+		require("mason-lspconfig").setup({
+			automatic_installation = false,
+			ensure_installed = {},
 			handlers = {
 				function(server_name)
 					lspconfig[server_name].setup({})
