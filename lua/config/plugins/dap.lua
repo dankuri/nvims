@@ -54,6 +54,21 @@ return {
 			},
 		}
 
+		dap.adapters.godot = {
+			type = "server",
+			host = "127.0.0.1",
+			port = 6006,
+		}
+		dap.configurations.gdscript = {
+			{
+				type = "godot",
+				request = "launch", -- either "launch" or "attach"
+				name = "Launch Main Scene",
+				-- specific to gdscript
+				project = "${workspaceFolder}",
+			},
+		}
+
 		dap.adapters.mix_task = {
 			type = "executable",
 			command = "elixir-ls-debugger",

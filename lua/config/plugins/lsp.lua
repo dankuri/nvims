@@ -74,17 +74,20 @@ return {
 			end,
 		})
 
-		lspconfig.util.default_config.capabilities = vim.tbl_deep_extend(
-			"force",
-			lspconfig.util.default_config.capabilities,
-			require("blink-cmp").get_lsp_capabilities()
-		)
+		local capabilities = require("blink-cmp").get_lsp_capabilities()
 
-		vim.diagnostic.config({
-			float = {
-				border = "rounded",
-			},
-		})
+		lspconfig.util.default_config.capabilities =
+			vim.tbl_deep_extend("force", lspconfig.util.default_config.capabilities, capabilities)
+
+		local gdscript_opts = {
+			capabilities = capabilities,
+		}
+		if vim.fn.has("win32") == 1 then
+			-- Windows specific. Requires nmap installed (`winget install nmap`)
+			gdscript_opts["cmd"] = { "ncat", "localhost", os.getenv("GDScript_Port") or "6005" }
+		end
+
+		lspconfig.gdscript.setup(gdscript_opts)
 
 		require("mason").setup({})
 		require("mason-tool-installer").setup({
