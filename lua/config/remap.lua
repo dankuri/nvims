@@ -26,11 +26,6 @@ vim.keymap.set({ "n", "v" }, "<leader>D", [["_d]], { desc = "delete without copy
 
 vim.keymap.set("n", "Q", "<nop>")
 
--- vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
--- vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
--- vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
--- vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
-
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "substitute word" })
 vim.keymap.set("n", "<leader>x", ":!chmod +x %<CR>", { desc = "make file executable" })
 
