@@ -4,6 +4,7 @@ return {
 		event = "BufRead",
 		config = function()
 			require("gitsigns").setup({
+				numhl = true,
 				on_attach = function(bufnr)
 					vim.keymap.set("n", "[g", function()
 						require("gitsigns").nav_hunk("prev")
