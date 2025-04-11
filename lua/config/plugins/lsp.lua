@@ -1,68 +1,105 @@
 return {
 	{
-		"VonHeikemen/lsp-zero.nvim",
-		branch = "v4.x",
+		"neovim/nvim-lspconfig",
 		dependencies = {
-			{
-				"neovim/nvim-lspconfig",
-				dependencies = {
-					-- Useful status updates for LSP
-					{ "j-hui/fidget.nvim", tag = "v1.4.5", opts = {} },
-					{ "nvimtools/none-ls.nvim" },
-				},
-			},
+			-- Useful status updates for LSP
+			{ "j-hui/fidget.nvim", tag = "v1.4.5", opts = {} },
+			{ "nvimtools/none-ls.nvim" },
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 			"saghen/blink.cmp",
 		},
 		config = function()
-			local lsp_zero = require("lsp-zero")
 			local lspconfig = require("lspconfig")
 
-			local lsp_attach = function(client, bufnr)
-				local map = function(m, lhs, rhs, desc, silent)
-					if desc then
-						desc = "LSP: " .. desc
-					end
-					local key_opts = { buffer = bufnr, desc = desc, nowait = true, silent = silent }
-					vim.keymap.set(m, lhs, rhs, key_opts)
-				end
+			local buffer_autoformat = function(bufnr)
+				local group = "lsp_autoformat"
+				vim.api.nvim_create_augroup(group, { clear = false })
+				vim.api.nvim_clear_autocmds({ group = group, buffer = bufnr })
 
-				map("n", "K", vim.lsp.buf.hover, "hover documentation")
-				map("n", "gr", ":Telescope lsp_references<cr>", "goto references", true)
-				map("n", "gi", ":Telescope lsp_implementations<cr>", "goto implementation", true)
-				map("n", "go", ":Telescope lsp_type_definitions<cr>", "goto type definition", true)
-				map("n", "gd", ":Telescope lsp_definitions<cr>", "goto definition", true)
-				map("n", "gD", vim.lsp.buf.declaration, "goto declaration")
-				map("n", "[d", vim.diagnostic.goto_prev, "goto previous diagnostic message")
-				map("n", "]d", vim.diagnostic.goto_next, "goto next diagnostic message")
-				map("n", "<leader>ca", vim.lsp.buf.code_action, "code actions")
-				map("n", "<leader>cl", vim.lsp.codelens.run, "code lens")
-				map("n", "<leader>rn", vim.lsp.buf.rename, "rename")
-				map("n", "<leader>fm", vim.lsp.buf.format, "format")
-				map("x", "<leader>fm", vim.lsp.buf.format, "format selection")
-				map({ "i", "n" }, "<C-K>", vim.lsp.buf.signature_help, "signature help")
-
-				if client.name ~= "zls" then
-					vim.lsp.inlay_hint.enable(true)
-				end
-				map("n", "<leader>th", function()
-					vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-				end, "toggle inlay hints")
-
-				lsp_zero.buffer_autoformat()
-				vim.api.nvim_create_user_command("ToggleFormat", function()
-					vim.b.lsp_zero_enable_autoformat = not vim.b.lsp_zero_enable_autoformat
-					print("Setting autoformatting to: " .. tostring(vim.b.lsp_zero_enable_autoformat))
-				end, {})
-				map("n", "<leader>tf", ":ToggleFormat<CR>", "toggle format")
+				vim.api.nvim_create_autocmd("BufWritePre", {
+					buffer = bufnr,
+					group = group,
+					desc = "LSP format on save",
+					callback = function()
+						if vim.b.enable_autoformat then
+							vim.lsp.buf.format({ async = false, timeout_ms = 10000 })
+						end
+					end,
+				})
 			end
 
-			lsp_zero.extend_lspconfig({
-				capabilities = require("blink.cmp").get_lsp_capabilities(),
-				lsp_attach = lsp_attach,
-				sign_text = true,
-				float_border = "rounded",
+			vim.api.nvim_create_autocmd("LspAttach", {
+				desc = "LSP actions",
+				callback = function(event)
+					local bufnr = event.buf
+
+					local id = vim.tbl_get(event, "data", "client_id")
+					local client = id and vim.lsp.get_client_by_id(id)
+					if client == nil then
+						return
+					end
+
+					local map = function(m, lhs, rhs, desc, silent)
+						if desc then
+							desc = "LSP: " .. desc
+						end
+						local key_opts = { buffer = bufnr, desc = desc, nowait = true, silent = silent }
+						vim.keymap.set(m, lhs, rhs, key_opts)
+					end
+
+					map("n", "K", function()
+						vim.lsp.buf.hover({ border = "rounded" })
+					end, "hover documentation")
+					map({ "i", "n" }, "<C-k>", function()
+						vim.lsp.buf.signature_help({ border = "rounded" })
+					end, "signature help")
+					map("n", "[d", function()
+						vim.diagnostic.jump({ count = -1, float = true })
+					end, "goto previous diagnostic message")
+					map("n", "]d", function()
+						vim.diagnostic.jump({ count = 1, float = true })
+					end, "goto next diagnostic message")
+					map("n", "gr", ":Telescope lsp_references<cr>", "goto references", true)
+					map("n", "gi", ":Telescope lsp_implementations<cr>", "goto implementation", true)
+					map("n", "go", ":Telescope lsp_type_definitions<cr>", "goto type definition", true)
+					map("n", "gd", ":Telescope lsp_definitions<cr>", "goto definition", true)
+					map("n", "gD", vim.lsp.buf.declaration, "goto declaration")
+					map("n", "<leader>rn", vim.lsp.buf.rename, "rename")
+					map("n", "<leader>fm", vim.lsp.buf.format, "format")
+					map("x", "<leader>fm", vim.lsp.buf.format, "format selection")
+					map("n", "<leader>ca", vim.lsp.buf.code_action, "code actions")
+					map("n", "<leader>cl", vim.lsp.codelens.run, "code lens")
+
+					if client.name ~= "zls" then
+						vim.lsp.inlay_hint.enable(true)
+					end
+					map("n", "<leader>th", function()
+						vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+					end, "toggle inlay hints")
+
+					if client.supports_method("textDocument/formatting", bufnr) then
+						buffer_autoformat(bufnr)
+					end
+
+					vim.api.nvim_create_user_command("ToggleFormat", function()
+						vim.b.enable_autoformat = not vim.b.enable_autoformat
+						print("Setting autoformatting to: " .. tostring(vim.b.enable_autoformat))
+					end, {})
+					map("n", "<leader>tf", ":ToggleFormat<CR>", "toggle format")
+				end,
+			})
+
+			lspconfig.util.default_config.capabilities = vim.tbl_deep_extend(
+				"force",
+				lspconfig.util.default_config.capabilities,
+				require("blink-cmp").get_lsp_capabilities()
+			)
+
+			vim.diagnostic.config({
+				float = {
+					border = "rounded",
+				},
 			})
 
 			local disabled_formatting_attach = function(client)
