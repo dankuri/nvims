@@ -140,6 +140,13 @@ require("lazy").setup({
 		end,
 	},
 	{
+		"mbbill/undotree",
+		event = "BufRead",
+		config = function()
+			vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Undotree" })
+		end,
+	},
+	{
 		"OXY2DEV/markview.nvim",
 		lazy = false,
 		init = function()
@@ -174,65 +181,6 @@ require("lazy").setup({
 		init = function()
 			vim.keymap.set("n", "<leader>ft", ":TodoTelescope<CR>", { silent = true, desc = "find todos" })
 		end,
-	},
-	{
-		"stevearc/oil.nvim",
-		config = function()
-			require("oil").setup({
-				delete_to_trash = true,
-				skip_confirm_for_simple_edits = true,
-				win_options = {
-					signcolumn = "yes:2",
-				},
-				view_options = {
-					show_hidden = true,
-					natural_order = true,
-					is_always_hidden = function(name, _)
-						return name == ".."
-					end,
-				},
-			})
-			-- use trash-cli instead of macos builtin trash
-			if vim.loop.os_uname().sysname == "Darwin" and vim.fn.exepath("trash") ~= "" then
-				package.loaded["oil.adapters.trash"] = require("oil.adapters.trash.freedesktop")
-			end
-		end,
-		dependencies = {
-			"nvim-tree/nvim-web-devicons",
-			opts = {
-				override_by_filename = {
-					["go.mod"] = {
-						icon = "󰟓",
-						color = "#00ADD8",
-						name = "GoModule",
-					},
-					["go.sum"] = {
-						icon = "󰟓",
-						color = "#00ADD8",
-						name = "GoModuleChecksum",
-					},
-					["go.work"] = {
-						icon = "󰟓",
-						color = "#00ADD8",
-						name = "GoWorkspace",
-					},
-				},
-				override_by_extension = {
-					["go"] = {
-						icon = "󰟓",
-						color = "#00ADD8",
-						name = "Go",
-					},
-				},
-			},
-		},
-	},
-	{
-		"refractalize/oil-git-status.nvim",
-		dependencies = {
-			"stevearc/oil.nvim",
-		},
-		opts = {},
 	},
 	{
 		"kylechui/nvim-surround",
@@ -288,11 +236,11 @@ require("lazy").setup({
 		ft = "lua",
 		opts = {
 			library = {
-				"luvit-meta/library",
+				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
 			},
 		},
 	},
-	{ "Bilal2453/luvit-meta", lazy = true },
+	-- ability to open file:row:column from cmdline
 	"wsdjeg/vim-fetch",
 	-- Detect tabstop and shiftwidth automatically
 	"tpope/vim-sleuth",
