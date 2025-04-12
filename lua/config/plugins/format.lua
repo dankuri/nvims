@@ -21,6 +21,7 @@ return {
 				javascriptreact = { "prettier" },
 				vue = { "prettier" },
 				yaml = { "prettier" },
+				gdscript = { "gdformat" },
 			},
 			format_after_save = function(bufnr)
 				if vim.b[bufnr].disable_autoformat then

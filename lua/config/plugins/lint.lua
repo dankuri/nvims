@@ -10,6 +10,7 @@ return {
 		lint.linters_by_ft = {
 			elixir = { "credo" },
 			go = { "golangcilint" },
+			gdscript = { "gdlint" },
 		}
 
 		local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })

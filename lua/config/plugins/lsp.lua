@@ -159,6 +159,13 @@ return {
 						return not os.execute("python --version")
 					end,
 				},
+
+				{
+					"gdtoolkit",
+					condition = function()
+						return vim.fn.filereadable(vim.fn.getcwd() .. "/project.godot") == 1
+					end,
+				},
 			},
 		})
 		require("mason-lspconfig").setup({
