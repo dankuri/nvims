@@ -16,6 +16,19 @@ return {
 		appearance = {
 			use_nvim_cmp_as_default = true,
 		},
+		cmdline = {
+			keymap = {
+				["<Tab>"] = { "show", "accept" },
+			},
+			completion = {
+				menu = {
+					auto_show = true,
+					draw = {
+						columns = { { "label" } },
+					},
+				},
+			},
+		},
 		sources = {
 			default = { "lsp", "path", "snippets", "buffer", "lazydev" },
 			per_filetype = {
