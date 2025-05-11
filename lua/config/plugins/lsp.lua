@@ -240,19 +240,19 @@ return {
 				{
 					"gopls",
 					condition = function()
-						return not os.execute("go version")
+						return vim.fn.executable("go") == 1
 					end,
 				},
 				{
 					"golangci-lint",
 					condition = function()
-						return not os.execute("go version")
+						return vim.fn.executable("go") == 1
 					end,
 				},
 				{
 					"buf_ls",
 					condition = function()
-						return not os.execute("buf --version")
+						return vim.fn.executable("buf") == 1
 					end,
 				},
 				"sqruff",
@@ -263,7 +263,7 @@ return {
 				{
 					"elixirls",
 					condition = function()
-						return not os.execute("elixir --version")
+						return vim.fn.executable("elixir") == 1
 					end,
 				},
 
@@ -282,26 +282,26 @@ return {
 				{
 					"zls",
 					condition = function()
-						return not os.execute("zig version")
+						return vim.fn.executable("zig") == 1
 					end,
 				},
 				{
 					"codelldb",
 					condition = function()
-						return not os.execute("zig version")
+						return vim.fn.executable("zig") == 1
 					end,
 				},
 
 				{
 					"pylsp",
 					condition = function()
-						return not os.execute("python --version")
+						return vim.fn.executable("python") == 1
 					end,
 				},
 				{
 					"black",
 					condition = function()
-						return not os.execute("python --version")
+						return vim.fn.executable("python") == 1
 					end,
 				},
 
