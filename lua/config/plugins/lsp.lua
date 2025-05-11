@@ -87,9 +87,154 @@ return {
 			gdscript_opts["cmd"] = { "ncat", "localhost", os.getenv("GDScript_Port") or "6005" }
 		end
 
-		lspconfig.gdscript.setup(gdscript_opts)
+		vim.lsp.config("gdscript", gdscript_opts)
 
-		require("mason").setup({})
+		vim.lsp.config("gopls", {
+			settings = {
+				gopls = {
+					completeUnimported = true,
+					analyses = {
+						unusedparams = true,
+						unusedwrite = true,
+					},
+					staticcheck = true,
+					hints = {
+						-- assignVariableTypes = true,
+						compositeLiteralFields = true,
+						-- compositeLiteralTypes = true,
+						constantValues = true,
+						-- functionTypeParameters = true,
+						-- parameterNames = true,
+						-- rangeVariableTypes = true,
+					},
+				},
+			},
+		})
+
+		vim.lsp.config("elixirls", {
+			settings = {
+				elixirLS = {
+					dialyzerEnabled = false,
+					fetchDeps = false,
+				},
+			},
+		})
+
+		-- for elixir heex templates
+		vim.lsp.config("tailwindcss", {
+			root_dir = lspconfig.util.root_pattern(
+				"tailwind.config.js",
+				"tailwind.config.ts",
+				"postcss.config.js",
+				"postcss.config.ts",
+				"package.json",
+				"node_modules",
+				".git",
+				"mix.exs"
+			),
+			settings = {
+				tailwindCSS = {
+					includeLanguages = {
+						elixir = "html-eex",
+						eelixir = "html-eex",
+						heex = "html-eex",
+					},
+					experimental = {
+						classRegex = { 'class[:]\\s*"([^"]*)"' },
+					},
+				},
+			},
+		})
+
+		vim.lsp.config("jsonls", {
+			settings = {
+				json = {
+					schemas = require("schemastore").json.schemas(),
+					validate = { enable = true },
+				},
+			},
+		})
+
+		vim.lsp.config("helm_ls", {
+			settings = {
+				["helm-ls"] = {
+					yamlls = {
+						path = "yaml-language-server",
+					},
+				},
+			},
+		})
+
+		-- vue setup
+		local ok, volar = pcall(require("mason-registry").get_package, "vue-language-server")
+
+		if ok then
+			local vue_ts_plugin_path = volar:get_install_path()
+				.. "/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin"
+
+			vim.lsp.config("ts_ls", {
+				filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+				init_options = {
+					plugins = {
+						{
+							name = "@vue/typescript-plugin",
+							location = vue_ts_plugin_path,
+							languages = {
+								"typescript",
+								"javascript",
+								"javascriptreact",
+								"typescriptreact",
+								"vue",
+							},
+						},
+					},
+				},
+			})
+		end
+
+		vim.lsp.config("html", {
+			filetypes = { "html", "templ", "elixir", "eelixir", "heex" },
+			init_options = {
+				provideFormatter = false,
+			},
+		})
+
+		vim.lsp.config("clangd", {
+			filetypes = { "c", "cpp" },
+		})
+
+		vim.lsp.config("emmet_language_server", {
+			filetypes = {
+				"htlm",
+				"css",
+				"javascriptreact",
+				"typescriptreact",
+				"vue",
+				"eelixir",
+				"heex",
+			},
+			init_options = {
+				showSuggestionsAsSnippets = true,
+			},
+		})
+
+		vim.lsp.config("zls", {
+			settings = {
+				zls = {
+					-- disable noise
+					enable_argument_placeholders = false,
+					-- enable good stuff
+					enable_build_on_save = true,
+				},
+			},
+		})
+
+		require("mason").setup()
+		require("mason-lspconfig").setup({
+			automatic_enable = true,
+			automatic_installation = false,
+			ensure_installed = {},
+		})
 		require("mason-tool-installer").setup({
 			ensure_installed = {
 				{
@@ -166,175 +311,6 @@ return {
 						return vim.fn.filereadable(vim.fn.getcwd() .. "/project.godot") == 1
 					end,
 				},
-			},
-		})
-		require("mason-lspconfig").setup({
-			automatic_installation = false,
-			ensure_installed = {},
-			handlers = {
-				function(server_name)
-					lspconfig[server_name].setup({})
-				end,
-
-				["gopls"] = function()
-					lspconfig.gopls.setup({
-						settings = {
-							gopls = {
-								completeUnimported = true,
-								analyses = {
-									unusedparams = true,
-									unusedwrite = true,
-								},
-								staticcheck = true,
-								hints = {
-									-- assignVariableTypes = true,
-									compositeLiteralFields = true,
-									-- compositeLiteralTypes = true,
-									constantValues = true,
-									-- functionTypeParameters = true,
-									-- parameterNames = true,
-									-- rangeVariableTypes = true,
-								},
-							},
-						},
-					})
-				end,
-
-				["elixirls"] = function()
-					lspconfig.elixirls.setup({
-						settings = {
-							elixirLS = {
-								dialyzerEnabled = false,
-								fetchDeps = false,
-							},
-						},
-					})
-				end,
-
-				-- for elixir heex templates
-				["tailwindcss"] = function()
-					lspconfig.tailwindcss.setup({
-						root_dir = lspconfig.util.root_pattern(
-							"tailwind.config.js",
-							"tailwind.config.ts",
-							"postcss.config.js",
-							"postcss.config.ts",
-							"package.json",
-							"node_modules",
-							".git",
-							"mix.exs"
-						),
-						settings = {
-							tailwindCSS = {
-								includeLanguages = {
-									elixir = "html-eex",
-									eelixir = "html-eex",
-									heex = "html-eex",
-								},
-								experimental = {
-									classRegex = { 'class[:]\\s*"([^"]*)"' },
-								},
-							},
-						},
-					})
-				end,
-
-				["jsonls"] = function()
-					lspconfig.jsonls.setup({
-						settings = {
-							json = {
-								schemas = require("schemastore").json.schemas(),
-								validate = { enable = true },
-							},
-						},
-					})
-				end,
-
-				["helm_ls"] = function()
-					lspconfig.helm_ls.setup({
-						settings = {
-							["helm-ls"] = {
-								yamlls = {
-									path = "yaml-language-server",
-								},
-							},
-						},
-					})
-				end,
-
-				-- vue setup
-				["ts_ls"] = function()
-					local ok, volar = pcall(require("mason-registry").get_package, "vue-language-server")
-
-					if ok then
-						local vue_ts_plugin_path = volar:get_install_path()
-							.. "/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin"
-
-						lspconfig.ts_ls.setup({
-							filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
-							init_options = {
-								plugins = {
-									{
-										name = "@vue/typescript-plugin",
-										location = vue_ts_plugin_path,
-										languages = {
-											"typescript",
-											"javascript",
-											"javascriptreact",
-											"typescriptreact",
-											"vue",
-										},
-									},
-								},
-							},
-						})
-					end
-				end,
-
-				["html"] = function()
-					lspconfig.html.setup({
-						filetypes = { "html", "templ", "elixir", "eelixir", "heex" },
-						init_options = {
-							provideFormatter = false,
-						},
-					})
-				end,
-
-				["clangd"] = function()
-					lspconfig.clangd.setup({
-						filetypes = { "c", "cpp" },
-					})
-				end,
-
-				["emmet_language_server"] = function()
-					lspconfig.emmet_language_server.setup({
-						filetypes = {
-							"htlm",
-							"css",
-							"javascriptreact",
-							"typescriptreact",
-							"vue",
-							"eelixir",
-							"heex",
-						},
-						init_options = {
-							showSuggestionsAsSnippets = true,
-						},
-					})
-				end,
-
-				["zls"] = function()
-					lspconfig.zls.setup({
-						settings = {
-							zls = {
-								-- disable noise
-								enable_argument_placeholders = false,
-								-- enable good stuff
-								enable_build_on_save = true,
-							},
-						},
-					})
-				end,
 			},
 		})
 	end,
