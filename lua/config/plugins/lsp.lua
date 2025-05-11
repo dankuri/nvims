@@ -1,13 +1,5 @@
 return {
 	"neovim/nvim-lspconfig",
-	dependencies = {
-		-- Useful status updates for LSP
-		{ "j-hui/fidget.nvim", tag = "v1.4.5", opts = {} },
-		{ "mason-org/mason.nvim" },
-		{ "mason-org/mason-lspconfig.nvim" },
-		{ "WhoIsSethDaniel/mason-tool-installer.nvim" },
-		{ "saghen/blink.cmp" },
-	},
 	config = function()
 		local lspconfig = require("lspconfig")
 
@@ -229,90 +221,100 @@ return {
 				},
 			},
 		})
+	end,
+	dependencies = {
+		-- Useful status updates for LSP
+		{ "j-hui/fidget.nvim", tag = "v1.4.5", opts = {} },
+		{ "saghen/blink.cmp" },
+		{ "mason-org/mason.nvim", opts = {} },
+		{
+			"mason-org/mason-lspconfig.nvim",
+			opts = {
+				automatic_enable = true,
+				automatic_installation = false,
+				ensure_installed = {},
+			},
+		},
+		{
+			"WhoIsSethDaniel/mason-tool-installer.nvim",
+			opts = {
+				ensure_installed = {
+					{
+						"gopls",
+						condition = function()
+							return vim.fn.executable("go") == 1
+						end,
+					},
+					{
+						"golangci-lint",
+						condition = function()
+							return vim.fn.executable("go") == 1
+						end,
+					},
+					{
+						"buf_ls",
+						condition = function()
+							return vim.fn.executable("buf") == 1
+						end,
+					},
+					"sqruff",
 
-		require("mason").setup()
-		require("mason-lspconfig").setup({
-			automatic_enable = true,
-			automatic_installation = false,
-			ensure_installed = {},
-		})
-		require("mason-tool-installer").setup({
-			ensure_installed = {
-				{
-					"gopls",
-					condition = function()
-						return vim.fn.executable("go") == 1
-					end,
-				},
-				{
-					"golangci-lint",
-					condition = function()
-						return vim.fn.executable("go") == 1
-					end,
-				},
-				{
-					"buf_ls",
-					condition = function()
-						return vim.fn.executable("buf") == 1
-					end,
-				},
-				"sqruff",
+					"lua_ls",
+					"stylua",
 
-				"lua_ls",
-				"stylua",
+					{
+						"elixirls",
+						condition = function()
+							return vim.fn.executable("elixir") == 1
+						end,
+					},
 
-				{
-					"elixirls",
-					condition = function()
-						return vim.fn.executable("elixir") == 1
-					end,
-				},
+					"html",
+					"cssls",
+					"tailwindcss",
+					"ts_ls",
+					"emmet_language_server",
+					"volar",
 
-				"html",
-				"cssls",
-				"tailwindcss",
-				"ts_ls",
-				"emmet_language_server",
-				"volar",
+					"bashls",
+					"jsonls",
+					"yamlls",
+					"dockerls",
 
-				"bashls",
-				"jsonls",
-				"yamlls",
-				"dockerls",
+					{
+						"zls",
+						condition = function()
+							return vim.fn.executable("zig") == 1
+						end,
+					},
+					{
+						"codelldb",
+						condition = function()
+							return vim.fn.executable("zig") == 1
+						end,
+					},
 
-				{
-					"zls",
-					condition = function()
-						return vim.fn.executable("zig") == 1
-					end,
-				},
-				{
-					"codelldb",
-					condition = function()
-						return vim.fn.executable("zig") == 1
-					end,
-				},
+					{
+						"pylsp",
+						condition = function()
+							return vim.fn.executable("python") == 1
+						end,
+					},
+					{
+						"black",
+						condition = function()
+							return vim.fn.executable("python") == 1
+						end,
+					},
 
-				{
-					"pylsp",
-					condition = function()
-						return vim.fn.executable("python") == 1
-					end,
-				},
-				{
-					"black",
-					condition = function()
-						return vim.fn.executable("python") == 1
-					end,
-				},
-
-				{
-					"gdtoolkit",
-					condition = function()
-						return vim.fn.filereadable(vim.fn.getcwd() .. "/project.godot") == 1
-					end,
+					{
+						"gdtoolkit",
+						condition = function()
+							return vim.fn.filereadable(vim.fn.getcwd() .. "/project.godot") == 1
+						end,
+					},
 				},
 			},
-		})
-	end,
+		},
+	},
 }
