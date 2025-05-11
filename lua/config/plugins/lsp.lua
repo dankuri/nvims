@@ -166,11 +166,12 @@ return {
 		})
 
 		-- vue setup
-		local ok, volar = pcall(require("mason-registry").get_package, "vue-language-server")
+		local volar_installed = require("mason-registry").get_package("vue-language-server"):is_installed()
 
-		if ok then
-			local vue_ts_plugin_path = volar:get_install_path()
-				.. "/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin"
+		if volar_installed then
+			local vue_ts_plugin_path = vim.fn.expand(
+				"$MASON/packages/vue-language-server/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin"
+			)
 
 			vim.lsp.config("ts_ls", {
 				filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
