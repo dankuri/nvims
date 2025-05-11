@@ -3,8 +3,8 @@ return {
 	dependencies = {
 		-- Useful status updates for LSP
 		{ "j-hui/fidget.nvim", tag = "v1.4.5", opts = {} },
-		{ "williamboman/mason.nvim" },
-		{ "williamboman/mason-lspconfig.nvim" },
+		{ "mason-org/mason.nvim" },
+		{ "mason-org/mason-lspconfig.nvim" },
 		{ "WhoIsSethDaniel/mason-tool-installer.nvim" },
 		{ "saghen/blink.cmp" },
 	},

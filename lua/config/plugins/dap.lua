@@ -8,7 +8,7 @@ return {
 				"nvim-neotest/nvim-nio",
 			},
 		},
-		"williamboman/mason.nvim",
+		"mason-org/mason.nvim",
 	},
 	config = function()
 		require("dapui").setup()

@@ -54,10 +54,3 @@ end, { desc = "cursor move down" })
 vim.keymap.set({ "n", "t" }, "<M-\\>", function()
 	require("smart-splits").move_cursor_previous()
 end, { desc = "cursor move previous" })
-vim.keymap.set({ "n", "t" }, "<M-r>", function()
-	if vim.g.smart_resize_mode then
-		require("smart-splits.resize-mode").end_resize_mode()
-	else
-		require("smart-splits.resize-mode").start_resize_mode()
-	end
-end, { desc = "toggle resize mode" })

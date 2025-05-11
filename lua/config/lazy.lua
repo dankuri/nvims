@@ -162,17 +162,7 @@ require("lazy").setup({
 	{
 		"mrjones2014/smart-splits.nvim",
 		dependencies = { "kwkarlwang/bufresize.nvim", opts = {} },
-		opts = {
-			at_edge = "stop",
-			resize_mode = {
-				silent = true,
-				hooks = {
-					on_leave = function()
-						require("bufresize").register()
-					end,
-				},
-			},
-		},
+		opts = { at_edge = "stop" },
 	},
 	{
 		"folke/todo-comments.nvim",
