@@ -8,7 +8,7 @@ return {
 			formatters_by_ft = {
 				elixir = { "mix" },
 				lua = { "stylua" },
-				go = { "goimports", "gofmt", "injected" },
+				go = { "goimports", "gofmt" },
 				python = { "black" },
 				sql = { "sqruff" },
 				html = { "prettier" },
