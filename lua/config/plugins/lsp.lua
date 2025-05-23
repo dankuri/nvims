@@ -158,9 +158,9 @@ return {
 		})
 
 		-- vue setup
-		local volar_installed = require("mason-registry").get_package("vue-language-server"):is_installed()
+		local vue_ls_installed = require("mason-registry").get_package("vue-language-server"):is_installed()
 
-		if volar_installed then
+		if vue_ls_installed then
 			local vue_ts_plugin_path = vim.fn.expand(
 				"$MASON/packages/vue-language-server/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin"
 			)
@@ -274,7 +274,7 @@ return {
 					"tailwindcss",
 					"ts_ls",
 					"emmet_language_server",
-					"volar",
+					"vue_ls",
 
 					"bashls",
 					"jsonls",
