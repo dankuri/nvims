@@ -15,6 +15,8 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "halfpage up (centered)" })
 vim.keymap.set("n", "n", "nzzzv", { desc = "goto next search item (centered)" })
 vim.keymap.set("n", "N", "Nzzzv", { desc = "goto prev search item (centered)" })
 
+vim.keymap.set("n", "M", ":Man<CR>", { desc = "open man page" })
+
 -- greatest remap ever
 vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "paste without copying" })
 
