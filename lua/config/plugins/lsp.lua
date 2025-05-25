@@ -50,7 +50,8 @@ return {
 				map("n", "<leader>ca", vim.lsp.buf.code_action, "code actions")
 				map("n", "<leader>cl", vim.lsp.codelens.run, "code lens")
 
-				if client.name ~= "zls" then
+				local no_inlay_hints = { "zls", "clangd" }
+				if not vim.tbl_contains(no_inlay_hints, client.name) then
 					vim.lsp.inlay_hint.enable(true)
 				end
 				map("n", "<leader>th", function()
