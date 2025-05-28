@@ -61,6 +61,5 @@ return {
 		vim.keymap.set("n", "<leader>tt", builtin.resume, { desc = "telescope resume" })
 		vim.keymap.set("n", "<leader>tp", builtin.pickers, { desc = "telescope pickers" })
 		vim.keymap.set("n", "<leader>ts", builtin.lsp_document_symbols, { desc = "telescope document symbols" })
-		vim.keymap.set("n", "<leader>ty", ":Telescope yaml_schema<CR>", { desc = "yaml schema selector" })
 	end,
 }

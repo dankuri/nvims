@@ -148,16 +148,6 @@ return {
 			},
 		})
 
-		vim.lsp.config("helm_ls", {
-			settings = {
-				["helm-ls"] = {
-					yamlls = {
-						path = "yaml-language-server",
-					},
-				},
-			},
-		})
-
 		-- vue setup
 		local vue_ls_installed = require("mason-registry").get_package("vue-language-server"):is_installed()
 
