@@ -20,7 +20,7 @@ return {
 					)
 					vim.keymap.set(
 						"n",
-						"<leader>gr",
+						"<leader>gR",
 						require("gitsigns").reset_hunk,
 						{ buffer = bufnr, desc = "reset hunk" }
 					)
@@ -29,6 +29,12 @@ return {
 						"<leader>gb",
 						require("gitsigns").blame_line,
 						{ buffer = bufnr, desc = "blame line" }
+					)
+					vim.keymap.set(
+						"n",
+						"<leader>gB",
+						require("gitsigns").blame,
+						{ buffer = bufnr, desc = "blame side" }
 					)
 				end,
 			})
