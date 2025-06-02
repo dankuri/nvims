@@ -51,9 +51,7 @@ return {
 				map("n", "<leader>cl", vim.lsp.codelens.run, "code lens")
 
 				local no_inlay_hints = { "zls", "clangd" }
-				if not vim.tbl_contains(no_inlay_hints, client.name) then
-					vim.lsp.inlay_hint.enable(true)
-				end
+				vim.lsp.inlay_hint.enable(not vim.tbl_contains(no_inlay_hints, client.name))
 				map("n", "<leader>th", function()
 					vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 				end, "toggle inlay hints")
