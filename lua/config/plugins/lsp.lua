@@ -205,6 +205,13 @@ return {
 				zls = {
 					-- disable noise
 					enable_argument_placeholders = false,
+					inlay_hints_show_variable_type_hints = false,
+					inlay_hints_show_struct_literal_field_type = false,
+					inlay_hints_show_parameter_name = false,
+					inlay_hints_show_builtin = false,
+					inlay_hints_exclude_single_argument = false,
+					inlay_hints_hide_redundant_param_names = false,
+					inlay_hints_hide_redundant_param_names_last_token = false,
 					-- enable good stuff
 					enable_build_on_save = true,
 				},
