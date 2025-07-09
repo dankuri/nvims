@@ -167,8 +167,11 @@ require("lazy").setup({
 	},
 	{
 		"mrjones2014/smart-splits.nvim",
-		dependencies = { "kwkarlwang/bufresize.nvim", opts = {} },
 		opts = { at_edge = "stop" },
+	},
+	{
+		"kwkarlwang/bufresize.nvim",
+		opts = {},
 	},
 	{
 		"folke/todo-comments.nvim",
