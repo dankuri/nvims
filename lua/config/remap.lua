@@ -1,8 +1,6 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-vim.keymap.set("n", "<leader>e", vim.cmd.Oil, { desc = "file explorer" })
-
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true, desc = "move highlighted block down" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true, desc = "move highlighted block up" })
 

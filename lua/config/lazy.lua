@@ -1,5 +1,5 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
 	vim.fn.system({
 		"git",
 		"clone",
@@ -95,6 +95,35 @@ require("lazy").setup({
 		},
 	},
 	{
+		"nvim-tree/nvim-web-devicons",
+		opts = {
+			override_by_filename = {
+				["go.mod"] = {
+					icon = "󰟓",
+					color = "#00ADD8",
+					name = "GoModule",
+				},
+				["go.sum"] = {
+					icon = "󰟓",
+					color = "#00ADD8",
+					name = "GoModuleChecksum",
+				},
+				["go.work"] = {
+					icon = "󰟓",
+					color = "#00ADD8",
+					name = "GoWorkspace",
+				},
+			},
+			override_by_extension = {
+				["go"] = {
+					icon = "󰟓",
+					color = "#00ADD8",
+					name = "Go",
+				},
+			},
+		},
+	},
+	{
 		-- Set lualine as statusline
 		"nvim-lualine/lualine.nvim",
 		-- See `:help lualine.txt`
@@ -107,32 +136,14 @@ require("lazy").setup({
 			},
 		},
 	},
-	{
-		-- Add indentation guides even on blank lines
-		"lukas-reineke/indent-blankline.nvim",
-		main = "ibl",
-		event = { "BufReadPost", "BufNewFile" },
-		opts = {
-			indent = { char = "│" },
-			scope = { enabled = false },
-			exclude = {
-				filetypes = {
-					"help",
-					"Trouble",
-					"lazy",
-					"mason",
-				},
-			},
-		},
-	},
 	-- "gc" to comment visual regions/lines
 	{ "numToStr/Comment.nvim", opts = {} },
 	{
 		"MagicDuck/grug-far.nvim",
 		opts = {},
-		init = function()
-			vim.keymap.set("n", "<leader>fr", ":GrugFar<CR>", { silent = true, desc = "find & replace" })
-		end,
+		keys = {
+			{ "<leader>gf", ":GrugFar<CR>", desc = "GrugFar" },
+		},
 	},
 	{
 		"svban/YankAssassin.nvim",
@@ -151,19 +162,6 @@ require("lazy").setup({
 		config = function()
 			vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Undotree" })
 		end,
-	},
-	{
-		"OXY2DEV/markview.nvim",
-		lazy = false,
-		init = function()
-			-- Load the checkboxes module.
-			require("markview.extras.checkboxes").setup()
-			vim.keymap.set("n", "<leader>tc", ":Checkbox toggle<CR>", { silent = true, desc = "toggle checkbox" })
-		end,
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-			"nvim-tree/nvim-web-devicons",
-		},
 	},
 	{
 		"mrjones2014/smart-splits.nvim",
@@ -189,45 +187,6 @@ require("lazy").setup({
 			require("nvim-surround").setup({
 				-- Configuration here, or leave empty to use defaults
 			})
-		end,
-	},
-	{
-		"goolord/alpha-nvim",
-		event = "VimEnter",
-		config = function()
-			local alpha = require("alpha")
-			local dashboard = require("alpha.themes.dashboard")
-
-			dashboard.section.header.val = {
-				"⠀⣞⢽⢪⢣⢣⢣⢫NO BUFFERS?⡽⣜⣜⢮⢺⣜⢷⢽⢝⡽⣝",
-				"⠸⡸⠜⠕⠕⠁⢁⢇⢏⢽⢺⣪⡳⡝⣎⣏⢯⢞⡿⣟⣷⣳⢯⡷⣽⢽⢯⣳⣫⠇",
-				"⠀⠀⢀⢀⢄⢬⢪⡪⡎⣆⡈⠚⠜⠕⠇⠗⠝⢕⢯⢫⣞⣯⣿⣻⡽⣏⢗⣗⠏⠀",
-				"⠀⠪⡪⡪⣪⢪⢺⢸⢢⢓⢆⢤⢀⠀⠀⠀⠀⠈⢊⢞⡾⣿⡯⣏⢮⠷⠁⠀⠀ ",
-				"⠀⠀⠀⠈⠊⠆⡃⠕⢕⢇⢇⢇⢇⢇⢏⢎⢎⢆⢄⠀⢑⣽⣿⢝⠲⠉⠀⠀⠀⠀",
-				"⠀⠀⠀⠀⠀⡿⠂⠠⠀⡇⢇⠕⢈⣀⠀⠁⠡⠣⡣⡫⣂⣿⠯⢪⠰⠂⠀⠀⠀⠀",
-				"⠀⠀⠀⠀⡦⡙⡂⢀⢤⢣⠣⡈⣾⡃⠠⠄⠀⡄⢱⣌⣶⢏⢊⠂⠀⠀⠀⠀⠀⠀",
-				"⠀⠀⠀⠀⢝⡲⣜⡮⡏⢎⢌⢂⠙⠢⠐⢀⢘⢵⣽⣿⡿⠁⠁⠀⠀⠀⠀⠀⠀⠀",
-				"⠀⠀⠀⠀⠨⣺⡺⡕⡕⡱⡑⡆⡕⡅⡕⡜⡼⢽⡻⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
-				"⠀⠀⠀⠀⣼⣳⣫⣾⣵⣗⡵⡱⡡⢣⢑⢕⢜⢕⡝⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
-				"⠀⠀⠀⣴⣿⣾⣿⣿⣿⡿⡽⡑⢌⠪⡢⡣⣣⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
-				"⠀⠀⠀⡟⡾⣿⢿⢿⢵⣽⣾⣼⣘⢸⢸⣞⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
-				"⠀⠀⠀⠀⠁⠇⠡⠩⡫⢿⣝⡻⡮⣒⢽⠋⠀⠀⠀⠀⠀         ",
-			}
-
-			dashboard.section.buttons.val = {
-				dashboard.button("n", "  New file", ":ene<CR>"),
-				dashboard.button("e", "  Explore files", ":e .<CR>"),
-				dashboard.button("f", "  Find file", ":Telescope find_files<CR>"),
-				dashboard.button("o", "  Old files", ":Telescope oldfiles<CR>"),
-				dashboard.button("w", "  Grep word", ":Telescope live_grep<CR>"),
-				dashboard.button("u", "  Update plugins", ":Lazy sync<CR>"),
-				dashboard.button("h", "󱡀  Harpoon", ":HarpoonMenu<CR>"),
-				dashboard.button("d", "  Database", ":ene<CR>:DBUI<CR>"),
-				dashboard.button("m", "  Mason", ":Mason<CR>"),
-				dashboard.button("q", "󰩈  Quit", ":qa<CR>"),
-			}
-
-			alpha.setup(dashboard.config)
 		end,
 	},
 	{

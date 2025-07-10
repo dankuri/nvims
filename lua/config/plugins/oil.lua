@@ -5,6 +5,7 @@ return {
 			require("oil").setup({
 				delete_to_trash = true,
 				skip_confirm_for_simple_edits = true,
+				watch_for_changes = true,
 				win_options = {
 					signcolumn = "yes:2",
 				},
@@ -16,39 +17,21 @@ return {
 					end,
 				},
 			})
+
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = "oil",
+				callback = function()
+					vim.opt_local.statuscolumn = ""
+				end,
+				desc = "Disable statuscolumn in Oil",
+			})
 			-- use trash-cli instead of macos builtin trash
-			if vim.loop.os_uname().sysname == "Darwin" and vim.fn.exepath("trash") ~= "" then
+			if vim.uv.os_uname().sysname == "Darwin" and vim.fn.exepath("trash") ~= "" then
 				package.loaded["oil.adapters.trash"] = require("oil.adapters.trash.freedesktop")
 			end
 		end,
-		dependencies = {
-			"nvim-tree/nvim-web-devicons",
-			opts = {
-				override_by_filename = {
-					["go.mod"] = {
-						icon = "󰟓",
-						color = "#00ADD8",
-						name = "GoModule",
-					},
-					["go.sum"] = {
-						icon = "󰟓",
-						color = "#00ADD8",
-						name = "GoModuleChecksum",
-					},
-					["go.work"] = {
-						icon = "󰟓",
-						color = "#00ADD8",
-						name = "GoWorkspace",
-					},
-				},
-				override_by_extension = {
-					["go"] = {
-						icon = "󰟓",
-						color = "#00ADD8",
-						name = "Go",
-					},
-				},
-			},
+		keys = {
+			{ "<leader>e", ":Oil<CR>", desc = "file explorer" },
 		},
 	},
 	{
