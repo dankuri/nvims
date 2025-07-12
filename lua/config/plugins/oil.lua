@@ -31,7 +31,7 @@ return {
 			end
 		end,
 		keys = {
-			{ "<leader>e", ":Oil<CR>", desc = "file explorer" },
+			{ "<leader>e", ":Oil<CR>", desc = "file explorer", silent = true },
 		},
 	},
 	{

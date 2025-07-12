@@ -43,12 +43,12 @@ require("lazy").setup({
 			"nvim-treesitter/nvim-treesitter",
 		},
 		opts = {},
-		init = function()
-			vim.keymap.set("n", "<leader>ie", ":GoIfErr<CR>", { desc = "Go If Error" })
-		end,
 		event = { "CmdlineEnter" },
 		ft = { "go", "gomod" },
 		build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
+		keys = {
+			{ "<leader>ie", ":GoIfErr<CR>", desc = "Go If Error", silent = true },
+		},
 	},
 	{ "b0o/schemastore.nvim" },
 	{
@@ -168,9 +168,9 @@ require("lazy").setup({
 	{
 		"mbbill/undotree",
 		event = "BufRead",
-		config = function()
-			vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Undotree" })
-		end,
+		keys = {
+			{ "<leader>u", vim.cmd.UndotreeToggle, desc = "Undotree" },
+		},
 	},
 	{
 		"mrjones2014/smart-splits.nvim",
@@ -184,9 +184,6 @@ require("lazy").setup({
 		"folke/todo-comments.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = {},
-		init = function()
-			vim.keymap.set("n", "<leader>ft", ":TodoTelescope<CR>", { silent = true, desc = "find todos" })
-		end,
 	},
 	{
 		"kylechui/nvim-surround",
@@ -216,9 +213,9 @@ require("lazy").setup({
 	"kristijanhusak/vim-dadbod-completion",
 	{
 		"kristijanhusak/vim-dadbod-ui",
-		init = function()
-			vim.keymap.set("n", "<leader>db", ":DBUIToggle<CR>", { desc = "DBUI", silent = true })
-		end,
+		keys = {
+			{ "<leader>db", ":DBUIToggle<CR>", desc = "DBUI", silent = true },
+		},
 	},
 	{
 		"norcalli/nvim-colorizer.lua",
