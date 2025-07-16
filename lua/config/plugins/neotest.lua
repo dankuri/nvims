@@ -9,6 +9,7 @@ return {
 			"nvim-treesitter/nvim-treesitter",
 			{ "fredrikaverpil/neotest-golang", version = "*", dependencies = { "leoluz/nvim-dap-go" } },
 			{ "jfpedroza/neotest-elixir" },
+			{ "lawrence-laz/neotest-zig" },
 		},
 		config = function()
 			require("neotest").setup({
@@ -19,6 +20,11 @@ return {
 							"-v",
 							"-race",
 							"-coverprofile=" .. vim.fn.getcwd() .. "/coverage.out",
+						},
+					}),
+					require("neotest-zig")({
+						dap = {
+							adapter = "lldb",
 						},
 					}),
 					require("neotest-elixir"),
