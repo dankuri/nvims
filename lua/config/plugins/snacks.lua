@@ -61,7 +61,7 @@ return {
 						icon = " ",
 						key = "m",
 						desc = "Mason",
-						action = ":HarpoonMenu",
+						action = ":Mason",
 					},
 					{
 						icon = " ",

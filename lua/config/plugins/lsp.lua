@@ -271,6 +271,7 @@ return {
 					"ts_ls",
 					"emmet_language_server",
 					"vue_ls",
+					"prettier",
 
 					"bashls",
 					"jsonls",
@@ -287,6 +288,12 @@ return {
 						"codelldb",
 						condition = function()
 							return vim.fn.executable("zig") == 1
+						end,
+					},
+					{
+						"clangd",
+						condition = function()
+							return vim.fn.executable("clang") == 1
 						end,
 					},
 
