@@ -50,6 +50,11 @@ require("lazy").setup({
 			{ "<leader>ie", ":GoIfErr<CR>", desc = "Go If Error", silent = true },
 		},
 	},
+	{
+		"mrcjkb/rustaceanvim",
+		version = "^6", -- Recommended
+		lazy = false, -- This plugin is already lazy
+	},
 	{ "b0o/schemastore.nvim" },
 	{
 		"hat0uma/csvview.nvim",
