@@ -55,6 +55,20 @@ require("lazy").setup({
 		version = "^6", -- Recommended
 		lazy = false, -- This plugin is already lazy
 	},
+	{
+		"mistweaverco/kulala.nvim",
+		keys = {
+			{ "<leader>Rs", desc = "Send request" },
+			{ "<leader>Ra", desc = "Send all requests" },
+			{ "<leader>Rb", desc = "Open scratchpad" },
+		},
+		ft = { "http", "rest" },
+		opts = {
+			global_keymaps = true,
+			global_keymaps_prefix = "<leader>R",
+			kulala_keymaps_prefix = "",
+		},
+	},
 	{ "b0o/schemastore.nvim" },
 	{
 		"hat0uma/csvview.nvim",
