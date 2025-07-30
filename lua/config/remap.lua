@@ -25,6 +25,7 @@ vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "copy in sys clipboard" })
 vim.keymap.set({ "n", "v" }, "<leader>D", [["_d]], { desc = "delete without copying" })
 
 vim.keymap.set("n", "Q", "<nop>")
+vim.keymap.set("n", "<leader>q", ":quit<CR>", { silent = true })
 
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "substitute word" })
 vim.keymap.set("n", "<leader>x", ":!chmod +x %<CR>", { desc = "make file executable" })
