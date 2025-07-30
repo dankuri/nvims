@@ -6,7 +6,9 @@ return {
 				lsp_format = "fallback",
 			},
 			formatters_by_ft = {
-				elixir = { "mix" },
+				elixir = { "mix", "rustywind" },
+				eelixir = { "mix", "rustywind" },
+				heex = { "mix", "rustywind" },
 				lua = { "stylua" },
 				go = { "goimports", "gofmt" },
 				python = { "black" },

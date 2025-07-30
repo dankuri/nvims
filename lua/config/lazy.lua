@@ -25,17 +25,6 @@ require("lazy").setup({
 		},
 	},
 	{
-		"dankuri/tailwind-sorter.nvim",
-		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-lua/plenary.nvim" },
-		build = "cd formatter && npm ci && npm run build",
-		branch = "fix-default-queries",
-		opts = {
-			on_save_enabled = true,
-			trim_spaces = true,
-			on_save_pattern = { "*.html", "*.jsx", "*.tsx", "*.heex", "*.ex", "*.exs" },
-		},
-	},
-	{
 		"ray-x/go.nvim",
 		dependencies = { -- optional packages
 			"ray-x/guihua.lua",

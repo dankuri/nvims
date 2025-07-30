@@ -111,32 +111,6 @@ return {
 			},
 		})
 
-		-- for elixir heex templates
-		vim.lsp.config("tailwindcss", {
-			root_dir = lspconfig.util.root_pattern(
-				"tailwind.config.js",
-				"tailwind.config.ts",
-				"postcss.config.js",
-				"postcss.config.ts",
-				"package.json",
-				"node_modules",
-				".git",
-				"mix.exs"
-			),
-			settings = {
-				tailwindCSS = {
-					includeLanguages = {
-						elixir = "html-eex",
-						eelixir = "html-eex",
-						heex = "html-eex",
-					},
-					experimental = {
-						classRegex = { 'class[:]\\s*"([^"]*)"' },
-					},
-				},
-			},
-		})
-
 		vim.lsp.config("jsonls", {
 			settings = {
 				json = {
@@ -272,6 +246,7 @@ return {
 					"emmet_language_server",
 					"vue_ls",
 					"prettier",
+					"rustywind",
 
 					"bashls",
 					"jsonls",
