@@ -155,10 +155,6 @@ return {
 			},
 		})
 
-		vim.lsp.config("clangd", {
-			filetypes = { "c", "cpp" },
-		})
-
 		vim.lsp.config("emmet_language_server", {
 			filetypes = {
 				"htlm",

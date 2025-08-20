@@ -22,6 +22,7 @@ return {
 					"gosum",
 					"gowork",
 					"elixir",
+					"heex",
 					"rust",
 					"html",
 					"css",
