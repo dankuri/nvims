@@ -26,7 +26,7 @@ return {
 				gdscript = { "gdformat" },
 			},
 			format_after_save = function(bufnr)
-				if vim.b[bufnr].disable_autoformat then
+				if vim.b[bufnr].disable_autoformat or vim.g.disable_autoformat then
 					return
 				end
 
@@ -44,5 +44,16 @@ return {
 				}
 			end,
 		})
+
+		vim.api.nvim_create_user_command("ToggleFormat", function()
+			vim.b.disable_autoformat = not vim.b.disable_autoformat
+			print("Setting autoformatting to: " .. tostring(not vim.b.disable_autoformat))
+		end, {})
+		vim.api.nvim_create_user_command("ToggleFormatGlobal", function()
+			vim.g.disable_autoformat = not vim.g.disable_autoformat
+			print("Setting global autoformatting to: " .. tostring(not vim.g.disable_autoformat))
+		end, {})
+
+		vim.keymap.set("n", "<leader>tf", ":ToggleFormat<CR>", { desc = "toggle format", silent = true })
 	end,
 }

@@ -55,13 +55,6 @@ return {
 				map("n", "<leader>th", function()
 					vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 				end, "toggle inlay hints")
-
-				vim.b.disable_autoformat = false
-				vim.api.nvim_create_user_command("ToggleFormat", function()
-					vim.b.disable_autoformat = not vim.b.disable_autoformat
-					print("Setting autoformatting to: " .. tostring(not vim.b.disable_autoformat))
-				end, {})
-				map("n", "<leader>tf", ":ToggleFormat<CR>", "toggle format")
 			end,
 		})
 
