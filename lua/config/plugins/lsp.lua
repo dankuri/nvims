@@ -183,7 +183,7 @@ return {
 	end,
 	dependencies = {
 		-- Useful status updates for LSP
-		{ "j-hui/fidget.nvim", tag = "v1.4.5", opts = {} },
+		{ "j-hui/fidget.nvim", tag = "v1.6.1", opts = {} },
 		{ "saghen/blink.cmp" },
 		{ "mason-org/mason.nvim", opts = {} },
 		{
