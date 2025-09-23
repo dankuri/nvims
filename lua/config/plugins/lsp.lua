@@ -1,8 +1,6 @@
 return {
 	"neovim/nvim-lspconfig",
 	config = function()
-		local lspconfig = require("lspconfig")
-
 		vim.diagnostic.config({
 			float = {
 				border = "rounded",
@@ -58,20 +56,7 @@ return {
 			end,
 		})
 
-		local capabilities = require("blink-cmp").get_lsp_capabilities()
-
-		lspconfig.util.default_config.capabilities =
-			vim.tbl_deep_extend("force", lspconfig.util.default_config.capabilities, capabilities)
-
-		local gdscript_opts = {
-			capabilities = capabilities,
-		}
-		if vim.fn.has("win32") == 1 then
-			-- Windows specific. Requires nmap installed (`winget install nmap`)
-			gdscript_opts["cmd"] = { "ncat", "localhost", os.getenv("GDScript_Port") or "6005" }
-		end
-
-		vim.lsp.config("gdscript", gdscript_opts)
+		vim.lsp.enable("gdscript")
 
 		vim.lsp.config("gopls", {
 			settings = {
