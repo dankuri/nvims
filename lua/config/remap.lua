@@ -1,5 +1,6 @@
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.maplocalleader = ","
+vim.keymap.set("", "<localleader>,", ",", { desc = "prev search" })
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true, desc = "move highlighted block down" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true, desc = "move highlighted block up" })
@@ -27,8 +28,13 @@ vim.keymap.set({ "n", "v" }, "<leader>D", [["_d]], { desc = "delete without copy
 vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<leader>q", ":quit<CR>", { silent = true })
 
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "substitute word" })
-vim.keymap.set("n", "<leader>x", ":!chmod +x %<CR>", { desc = "make file executable" })
+vim.keymap.set(
+	"n",
+	"<localleader>s",
+	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+	{ desc = "substitute word" }
+)
+vim.keymap.set("n", "<localleader>x", ":!chmod +x %<CR>", { desc = "make file executable" })
 
 vim.keymap.set("n", "<leader>tw", ":set wrap!<CR>", { desc = "toggle wrap" })
 vim.keymap.set("n", "<leader>tS", ":set spell!<CR>", { desc = "toggle spell" })
