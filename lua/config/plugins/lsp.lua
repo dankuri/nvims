@@ -229,7 +229,7 @@ return {
 					{
 						"zls",
 						condition = function()
-							return vim.fn.executable("zig") == 1
+							return vim.fn.executable("zig") == 1 and vim.fn.executable("zls") == 0
 						end,
 					},
 					{
