@@ -9,42 +9,26 @@ return {
 	{
 		"lewis6991/gitsigns.nvim",
 		event = "BufRead",
-		config = function()
-			require("gitsigns").setup({
-				numhl = true,
-				on_attach = function(bufnr)
-					vim.keymap.set("n", "[g", function()
-						require("gitsigns").nav_hunk("prev")
-					end, { buffer = bufnr, desc = "prev git hunk" })
-					vim.keymap.set("n", "]g", function()
-						require("gitsigns").nav_hunk("next")
-					end, { buffer = bufnr, desc = "next git hunk" })
-					vim.keymap.set(
-						"n",
-						"<leader>gp",
-						require("gitsigns").preview_hunk_inline,
-						{ buffer = bufnr, desc = "preview hunk" }
-					)
-					vim.keymap.set(
-						"n",
-						"<leader>gR",
-						require("gitsigns").reset_hunk,
-						{ buffer = bufnr, desc = "reset hunk" }
-					)
-					vim.keymap.set(
-						"n",
-						"<leader>gb",
-						require("gitsigns").blame_line,
-						{ buffer = bufnr, desc = "blame line" }
-					)
-					vim.keymap.set(
-						"n",
-						"<leader>gB",
-						require("gitsigns").blame,
-						{ buffer = bufnr, desc = "blame side" }
-					)
-				end,
-			})
-		end,
+		opts = {
+			numhl = true,
+			on_attach = function(bufnr)
+				local gitsigns = require("gitsigns")
+
+				local map = function(mode, lhs, rhs, desc)
+					vim.keymap.set(mode, lhs, rhs, { desc = "GIT: " .. desc, buffer = bufnr })
+				end
+
+				map("n", "[g", function()
+					gitsigns.nav_hunk("prev")
+				end, "prev hunk")
+				map("n", "]g", function()
+					gitsigns.nav_hunk("next")
+				end, "next hunk")
+				map("n", "<leader>gp", gitsigns.preview_hunk_inline, "preview hunk")
+				map("n", "<leader>gR", gitsigns.reset_hunk, "reset hunk")
+				map("n", "<leader>gb", gitsigns.blame_line, "blame line")
+				map("n", "<leader>gB", gitsigns.blame, "blame side")
+			end,
+		},
 	},
 }

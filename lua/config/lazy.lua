@@ -77,9 +77,6 @@ require("lazy").setup({
 			},
 		},
 		cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle" },
-		keys = {
-			{ "<leader>cv", ":CsvViewToggle header_lnum=1<CR>", desc = "csv view" },
-		},
 	},
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
@@ -138,13 +135,13 @@ require("lazy").setup({
 		},
 	},
 	{
-		-- Set lualine as statusline
 		"nvim-lualine/lualine.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 		-- See `:help lualine.txt`
 		opts = {
 			options = {
 				icons_enabled = false,
-				theme = "catppuccin",
+				theme = "auto",
 				component_separators = "|",
 				section_separators = "",
 			},
@@ -165,7 +162,6 @@ require("lazy").setup({
 				auto_visual = true, -- if true, autocmds are used. Whenever y is used in visual mode, the cursor doesn't move to start
 			})
 			vim.keymap.set({ "x", "n" }, "gy", "<Plug>(YADefault)", { silent = true })
-			-- vim.keymap.set({ "x", "n" }, "<leader>y", "<Plug>(YANoMove)", { silent = true })
 		end,
 	},
 	{
@@ -190,13 +186,9 @@ require("lazy").setup({
 	},
 	{
 		"kylechui/nvim-surround",
-		version = "*", -- Use for stability; omit to use `main` branch for the latest features
+		version = "*",
 		event = "VeryLazy",
-		config = function()
-			require("nvim-surround").setup({
-				-- Configuration here, or leave empty to use defaults
-			})
-		end,
+		opts = {},
 	},
 	{
 		"folke/lazydev.nvim",
