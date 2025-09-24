@@ -39,6 +39,12 @@ return {
 						action = ":lua Snacks.dashboard.pick('live_grep')",
 					},
 					{
+						icon = "󰊢 ",
+						key = "g",
+						desc = "Git",
+						action = ":0G",
+					},
+					{
 						icon = "󱡀 ",
 						key = "h",
 						desc = "Harpoon",

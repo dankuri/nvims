@@ -35,6 +35,7 @@ vim.keymap.set(
 	{ desc = "substitute word" }
 )
 vim.keymap.set("n", "<localleader>x", ":!chmod +x %<CR>", { desc = "make file executable" })
+vim.keymap.set("n", "<leader>x", ":bdel<CR>", { desc = "close buffer", silent = true })
 
 vim.keymap.set("n", "<leader>tw", ":set wrap!<CR>", { desc = "toggle wrap" })
 vim.keymap.set("n", "<leader>tS", ":set spell!<CR>", { desc = "toggle spell" })
