@@ -101,18 +101,10 @@ return {
 			},
 		}
 
-		dap.listeners.before.attach.dapui_config = function()
-			dapui.open()
-		end
-		dap.listeners.before.launch.dapui_config = function()
-			dapui.open()
-		end
-		dap.listeners.before.event_terminated.dapui_config = function()
-			dapui.close()
-		end
-		dap.listeners.before.event_exited.dapui_config = function()
-			dapui.close()
-		end
+		dap.listeners.before.attach.dapui_config = function() dapui.open() end
+		dap.listeners.before.launch.dapui_config = function() dapui.open() end
+		dap.listeners.before.event_terminated.dapui_config = function() dapui.close() end
+		dap.listeners.before.event_exited.dapui_config = function() dapui.close() end
 
 		vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint, { desc = "DAP: toggle breakpoing", silent = true })
 		vim.keymap.set("n", "<leader>dc", dap.continue, { desc = "DAP: start or continue", silent = true })
@@ -124,9 +116,6 @@ return {
 		vim.keymap.set("n", "<leader>dx", dap.terminate, { desc = "DAP: terminate", silent = true })
 		vim.keymap.set("n", "<leader>dp", dapui.toggle, { desc = "DAP: toggle UI", silent = true })
 
-		vim.fn.sign_define(
-			"DapBreakpoint",
-			{ text = "B", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
-		)
+		vim.fn.sign_define("DapBreakpoint", { text = "B", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" })
 	end,
 }

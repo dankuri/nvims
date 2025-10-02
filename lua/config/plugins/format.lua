@@ -38,9 +38,7 @@ return {
 				return {
 					async = true, -- let's try this
 					lsp_format = "fallback",
-					filter = function(client)
-						return not vim.tbl_contains(disabled_formatting_lsp_names, client.name)
-					end,
+					filter = function(client) return not vim.tbl_contains(disabled_formatting_lsp_names, client.name) end,
 				}
 			end,
 		})

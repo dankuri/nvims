@@ -26,18 +26,10 @@ return {
 					vim.keymap.set(m, lhs, rhs, key_opts)
 				end
 
-				map("n", "K", function()
-					vim.lsp.buf.hover({ border = "rounded" })
-				end, "hover documentation")
-				map({ "i", "n" }, "<C-k>", function()
-					vim.lsp.buf.signature_help({ border = "rounded" })
-				end, "signature help")
-				map("n", "[d", function()
-					vim.diagnostic.jump({ count = -1, float = true })
-				end, "goto previous diagnostic message")
-				map("n", "]d", function()
-					vim.diagnostic.jump({ count = 1, float = true })
-				end, "goto next diagnostic message")
+				map({ "i", "n" }, "<C-k>", function() vim.lsp.buf.signature_help({ border = "rounded" }) end, "signature help")
+				map("n", "K", function() vim.lsp.buf.hover({ border = "rounded" }) end, "hover documentation")
+				map("n", "[d", function() vim.diagnostic.jump({ count = -1, float = true }) end, "goto previous diagnostic message")
+				map("n", "]d", function() vim.diagnostic.jump({ count = 1, float = true }) end, "goto next diagnostic message")
 				map("n", "gr", Snacks.picker.lsp_references, "goto references")
 				map("n", "gi", Snacks.picker.lsp_implementations, "goto implementation")
 				map("n", "go", Snacks.picker.lsp_type_definitions, "goto type definition")
@@ -48,10 +40,7 @@ return {
 				map("x", "<leader>fm", vim.lsp.buf.format, "format selection")
 				map("n", "<leader>ca", vim.lsp.buf.code_action, "code actions")
 				map("n", "<leader>cl", vim.lsp.codelens.run, "code lens")
-
-				map("n", "<leader>th", function()
-					vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-				end, "toggle inlay hints")
+				map("n", "<leader>th", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, "toggle inlay hints")
 			end,
 		})
 
@@ -101,9 +90,7 @@ return {
 		local vue_ls_installed = require("mason-registry").get_package("vue-language-server"):is_installed()
 
 		if vue_ls_installed then
-			local vue_ts_plugin_path = vim.fn.expand(
-				"$MASON/packages/vue-language-server/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin"
-			)
+			local vue_ts_plugin_path = vim.fn.expand("$MASON/packages/vue-language-server/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin")
 
 			vim.lsp.config("ts_ls", {
 				filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
@@ -182,35 +169,15 @@ return {
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 			opts = {
 				ensure_installed = {
-					{
-						"gopls",
-						condition = function()
-							return vim.fn.executable("go") == 1
-						end,
-					},
-					{
-						"golangci-lint",
-						condition = function()
-							return vim.fn.executable("go") == 1
-						end,
-					},
-					{
-						"buf_ls",
-						condition = function()
-							return vim.fn.executable("buf") == 1
-						end,
-					},
+					{ "gopls", condition = function() return vim.fn.executable("go") == 1 end },
+					{ "golangci-lint", condition = function() return vim.fn.executable("go") == 1 end },
+					{ "buf_ls", condition = function() return vim.fn.executable("buf") == 1 end },
 					"sqruff",
 
 					"lua_ls",
 					"stylua",
 
-					{
-						"elixirls",
-						condition = function()
-							return vim.fn.executable("elixir") == 1
-						end,
-					},
+					{ "elixirls", condition = function() return vim.fn.executable("elixir") == 1 end },
 
 					"html",
 					"cssls",
@@ -226,44 +193,12 @@ return {
 					"yamlls",
 					"dockerls",
 
-					{
-						"zls",
-						condition = function()
-							return vim.fn.executable("zig") == 1 and vim.fn.executable("zls") == 0
-						end,
-					},
-					{
-						"codelldb",
-						condition = function()
-							return vim.fn.executable("zig") == 1
-						end,
-					},
-					{
-						"clangd",
-						condition = function()
-							return vim.fn.executable("clang") == 1
-						end,
-					},
-
-					{
-						"pylsp",
-						condition = function()
-							return vim.fn.executable("python") == 1
-						end,
-					},
-					{
-						"black",
-						condition = function()
-							return vim.fn.executable("python") == 1
-						end,
-					},
-
-					{
-						"gdtoolkit",
-						condition = function()
-							return vim.fn.filereadable(vim.fn.getcwd() .. "/project.godot") == 1
-						end,
-					},
+					{ "zls", condition = function() return vim.fn.executable("zig") == 1 and vim.fn.executable("zls") == 0 end },
+					{ "codelldb", condition = function() return vim.fn.executable("zig") == 1 end },
+					{ "clangd", condition = function() return vim.fn.executable("clang") == 1 end },
+					{ "pylsp", condition = function() return vim.fn.executable("python") == 1 end },
+					{ "black", condition = function() return vim.fn.executable("python") == 1 end },
+					{ "gdtoolkit", condition = function() return vim.fn.filereadable(vim.fn.getcwd() .. "/project.godot") == 1 end },
 				},
 			},
 		},

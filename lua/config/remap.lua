@@ -28,12 +28,7 @@ vim.keymap.set({ "n", "v" }, "<leader>D", [["_d]], { desc = "delete without copy
 vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<leader>q", ":quit<CR>", { silent = true })
 
-vim.keymap.set(
-	"n",
-	"<localleader>s",
-	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-	{ desc = "substitute word" }
-)
+vim.keymap.set("n", "<localleader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "substitute word" })
 vim.keymap.set("n", "<localleader>x", ":!chmod +x %<CR>", { desc = "make file executable" })
 vim.keymap.set("n", "<leader>x", ":bdel<CR>", { desc = "close buffer", silent = true })
 
@@ -47,18 +42,8 @@ vim.keymap.set("n", "<leader>tn", ":tabnew<CR>", { desc = "new tab", silent = tr
 vim.keymap.set("n", "<leader>tx", ":tabclose<CR>", { desc = "close tab", silent = true })
 
 -- move between panes & tmux splits with Alt + direction
-vim.keymap.set({ "n", "t" }, "<M-h>", function()
-	require("smart-splits").move_cursor_left()
-end, { desc = "cursor move left" })
-vim.keymap.set({ "n", "t" }, "<M-l>", function()
-	require("smart-splits").move_cursor_right()
-end, { desc = "cursor move right" })
-vim.keymap.set({ "n", "t" }, "<M-k>", function()
-	require("smart-splits").move_cursor_up()
-end, { desc = "cursor move up" })
-vim.keymap.set({ "n", "t" }, "<M-j>", function()
-	require("smart-splits").move_cursor_down()
-end, { desc = "cursor move down" })
-vim.keymap.set({ "n", "t" }, "<M-\\>", function()
-	require("smart-splits").move_cursor_previous()
-end, { desc = "cursor move previous" })
+vim.keymap.set({ "n", "t" }, "<M-h>", function() require("smart-splits").move_cursor_left() end, { desc = "focus left" })
+vim.keymap.set({ "n", "t" }, "<M-l>", function() require("smart-splits").move_cursor_right() end, { desc = "focus right" })
+vim.keymap.set({ "n", "t" }, "<M-k>", function() require("smart-splits").move_cursor_up() end, { desc = "focus up" })
+vim.keymap.set({ "n", "t" }, "<M-j>", function() require("smart-splits").move_cursor_down() end, { desc = "focus down" })
+vim.keymap.set({ "n", "t" }, "<M-\\>", function() require("smart-splits").move_cursor_previous() end, { desc = "focus previous" })

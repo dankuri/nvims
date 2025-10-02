@@ -12,17 +12,13 @@ return {
 				view_options = {
 					show_hidden = true,
 					natural_order = true,
-					is_always_hidden = function(name, _)
-						return name == ".."
-					end,
+					is_always_hidden = function(name, _) return name == ".." end,
 				},
 			})
 
 			vim.api.nvim_create_autocmd("FileType", {
 				pattern = "oil",
-				callback = function()
-					vim.opt_local.statuscolumn = ""
-				end,
+				callback = function() vim.opt_local.statuscolumn = "" end,
 				desc = "Disable statuscolumn in Oil",
 			})
 			-- use trash-cli instead of macos builtin trash
