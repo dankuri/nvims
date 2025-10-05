@@ -13,17 +13,8 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	{ import = "config/plugins" },
-	{
-		"windwp/nvim-ts-autotag",
-		opts = {},
-	},
-	{
-		"windwp/nvim-autopairs",
-		opts = {
-			fast_wrap = {},
-			disable_filetype = { "TelescopePrompt", "vim" },
-		},
-	},
+	{ "windwp/nvim-ts-autotag", opts = {} },
+	{ "windwp/nvim-autopairs", opts = {} },
 	{
 		"ray-x/go.nvim",
 		dependencies = { -- optional packages
@@ -85,6 +76,11 @@ require("lazy").setup({
 		---@type render.md.UserConfig
 		opts = {
 			completions = { lsp = { enabled = true } },
+			checkbox = {
+				custom = {
+					todo = { raw = "[-]", rendered = "󰥔 ", highlight = "RenderMarkdownTodo", scope_highlight = nil },
+				},
+			},
 		},
 	},
 	{
@@ -146,23 +142,6 @@ require("lazy").setup({
 		},
 	},
 	{
-		"MagicDuck/grug-far.nvim",
-		opts = {},
-		keys = {
-			{ "<leader>gf", ":GrugFar<CR>", desc = "GrugFar" },
-		},
-	},
-	{
-		"svban/YankAssassin.nvim",
-		config = function()
-			require("YankAssassin").setup({
-				auto_normal = true, -- if true, autocmds are used. Whenever y is used in normal mode, the cursor doesn't move to start
-				auto_visual = true, -- if true, autocmds are used. Whenever y is used in visual mode, the cursor doesn't move to start
-			})
-			vim.keymap.set({ "x", "n" }, "gy", "<Plug>(YADefault)", { silent = true })
-		end,
-	},
-	{
 		"mbbill/undotree",
 		event = "BufRead",
 		keys = {
@@ -197,17 +176,17 @@ require("lazy").setup({
 			},
 		},
 	},
+	"ThePrimeagen/vim-be-good",
 	-- ability to open file:row:column from cmdline
 	"wsdjeg/vim-fetch",
 	-- Detect tabstop and shiftwidth automatically
 	"tpope/vim-sleuth",
-	"ThePrimeagen/vim-be-good",
 	"tpope/vim-dadbod",
 	"kristijanhusak/vim-dadbod-completion",
 	{
 		"kristijanhusak/vim-dadbod-ui",
 		keys = {
-			{ "<leader>db", ":DBUIToggle<CR>", desc = "DBUI", silent = true },
+			{ "<leader>db", vim.cmd.DBUIToggle, desc = "DBUI", silent = true },
 		},
 	},
 	{

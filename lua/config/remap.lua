@@ -1,5 +1,6 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
+
 vim.keymap.set("", "<localleader>,", ",", { desc = "prev search" })
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true, desc = "move highlighted block down" })
@@ -42,8 +43,7 @@ vim.keymap.set("n", "<leader>tn", ":tabnew<CR>", { desc = "new tab", silent = tr
 vim.keymap.set("n", "<leader>tx", ":tabclose<CR>", { desc = "close tab", silent = true })
 
 -- move between panes & tmux splits with Alt + direction
-vim.keymap.set({ "n", "t" }, "<M-h>", function() require("smart-splits").move_cursor_left() end, { desc = "focus left" })
-vim.keymap.set({ "n", "t" }, "<M-l>", function() require("smart-splits").move_cursor_right() end, { desc = "focus right" })
-vim.keymap.set({ "n", "t" }, "<M-k>", function() require("smart-splits").move_cursor_up() end, { desc = "focus up" })
-vim.keymap.set({ "n", "t" }, "<M-j>", function() require("smart-splits").move_cursor_down() end, { desc = "focus down" })
-vim.keymap.set({ "n", "t" }, "<M-\\>", function() require("smart-splits").move_cursor_previous() end, { desc = "focus previous" })
+vim.keymap.set({ "n", "t" }, "<M-h>", vim.cmd.SmartCursorMoveLeft, { desc = "cursor move left" })
+vim.keymap.set({ "n", "t" }, "<M-l>", vim.cmd.SmartCursorMoveRight, { desc = "cursor move right" })
+vim.keymap.set({ "n", "t" }, "<M-k>", vim.cmd.SmartCursorMoveUp, { desc = "cursor move up" })
+vim.keymap.set({ "n", "t" }, "<M-j>", vim.cmd.SmartCursorMoveDown, { desc = "cursor move down" })
