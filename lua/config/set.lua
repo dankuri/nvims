@@ -22,6 +22,9 @@ vim.opt.signcolumn = "yes"
 vim.opt.swapfile = false
 vim.opt.backup = false
 
+vim.o.secure = true
+vim.o.exrc = true
+
 if vim.uv.os_uname().sysname == "Windows_NT" then
 	vim.opt.undodir = os.getenv("USERPROFILE") .. "\\.vim\\undodir"
 else
