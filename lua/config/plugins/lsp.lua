@@ -6,7 +6,6 @@ return {
 				border = "rounded",
 			},
 		})
-		vim.lsp.inlay_hint.enable()
 
 		vim.api.nvim_create_autocmd("LspAttach", {
 			desc = "LSP actions",
@@ -16,6 +15,11 @@ return {
 				local client = id and vim.lsp.get_client_by_id(id)
 				if client == nil then
 					return
+				end
+
+				local no_inlay_hints = { "clangd" }
+				if not vim.tbl_contains(no_inlay_hints, client.name) then
+					vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 				end
 
 				local map = function(m, lhs, rhs, desc, silent)
@@ -40,7 +44,8 @@ return {
 				map("x", "<leader>fm", vim.lsp.buf.format, "format selection")
 				map("n", "<leader>ca", vim.lsp.buf.code_action, "code actions")
 				map("n", "<leader>cl", vim.lsp.codelens.run, "code lens")
-				map("n", "<leader>th", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, "toggle inlay hints")
+				map("n", "<leader>th", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(), { bufnr = bufnr }) end, "toggle inlay hints")
+				map("n", "<leader>tH", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, "toggle inlay hints globally")
 			end,
 		})
 
@@ -204,3 +209,4 @@ return {
 		},
 	},
 }
+
