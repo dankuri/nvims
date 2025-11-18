@@ -34,17 +34,8 @@ require("lazy").setup({
 	},
 	{
 		"mistweaverco/kulala.nvim",
-		keys = {
-			{ "<leader>Rs", desc = "Send request" },
-			{ "<leader>Ra", desc = "Send all requests" },
-			{ "<leader>Rb", desc = "Open scratchpad" },
-		},
 		ft = { "http", "rest" },
-		opts = {
-			global_keymaps = true,
-			global_keymaps_prefix = "<leader>R",
-			kulala_keymaps_prefix = "",
-		},
+		opts = {},
 	},
 	{ "b0o/schemastore.nvim" },
 	{
@@ -174,6 +165,32 @@ require("lazy").setup({
 			library = {
 				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
 			},
+		},
+	},
+	{
+		"stevearc/quicker.nvim",
+		ft = "qf",
+		---@module "quicker"
+		---@type quicker.SetupOptions
+		opts = {
+			highlight = {
+				load_buffers = true,
+			},
+			keys = {
+				{
+					">",
+					function() require("quicker").expand({ before = 2, after = 2, add_to_existing = true }) end,
+					desc = "expand quickfix context",
+				},
+				{
+					"<",
+					function() require("quicker").collapse() end,
+					desc = "collapse quickfix context",
+				},
+			},
+		},
+		keys = {
+			{ "<leader>q", function() require("quicker").toggle() end, desc = "toggle quickfix" },
 		},
 	},
 	"ThePrimeagen/vim-be-good",
