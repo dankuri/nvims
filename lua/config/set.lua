@@ -6,10 +6,10 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
-vim.opt.cmdheight = 0
-if vim.fn.has("nvim-0.12") == 1 then
-	require("vim._extui").enable({})
-end
+-- vim.opt.cmdheight = 0
+-- if vim.fn.has("nvim-0.12") == 1 then
+-- 	require("vim._extui").enable({})
+-- end
 
 vim.opt.autoindent = true
 vim.opt.smartindent = true
