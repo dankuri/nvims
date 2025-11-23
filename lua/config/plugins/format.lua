@@ -12,7 +12,6 @@ return {
 				lua = { "stylua" },
 				go = { "goimports", "gofmt" },
 				python = { "black" },
-				sql = { "sqruff" },
 				html = { "prettier" },
 				css = { "prettier" },
 				json = { "prettier" },

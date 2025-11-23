@@ -51,6 +51,16 @@ return {
 
 		vim.lsp.enable("gdscript")
 
+		vim.lsp.config("lua_ls", {
+			settings = {
+				Lua = {
+					hint = {
+						paramName = "Disable",
+					},
+				},
+			},
+		})
+
 		vim.lsp.config("gopls", {
 			settings = {
 				gopls = {
@@ -177,7 +187,6 @@ return {
 					{ "gopls", condition = function() return vim.fn.executable("go") == 1 end },
 					{ "golangci-lint", condition = function() return vim.fn.executable("go") == 1 end },
 					{ "buf_ls", condition = function() return vim.fn.executable("buf") == 1 end },
-					"sqruff",
 
 					"lua_ls",
 					"stylua",
@@ -209,4 +218,3 @@ return {
 		},
 	},
 }
-
