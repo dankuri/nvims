@@ -21,6 +21,7 @@ return {
 							"-race",
 							"-coverprofile=" .. vim.fn.getcwd() .. "/coverage.out",
 						},
+						warn_test_name_dupes = false,
 					}),
 					require("neotest-zig")({
 						dap = {
