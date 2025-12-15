@@ -33,6 +33,7 @@ return {
 					"ts_ls",
 					"volar",
 					"lua_ls",
+					"buf_ls",
 				}
 				return {
 					async = true, -- let's try this
