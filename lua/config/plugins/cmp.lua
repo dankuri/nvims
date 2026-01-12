@@ -12,6 +12,8 @@ return {
 			preset = "default",
 			["<C-u>"] = { "scroll_documentation_up", "fallback" },
 			["<C-d>"] = { "scroll_documentation_down", "fallback" },
+			["<C-k>"] = { "select_prev", "fallback_to_mappings" },
+			["<C-j>"] = { "select_next", "fallback_to_mappings" },
 		},
 		appearance = {
 			use_nvim_cmp_as_default = true,
@@ -19,6 +21,8 @@ return {
 		cmdline = {
 			keymap = {
 				["<Tab>"] = { "show", "accept" },
+				["<C-k>"] = { "select_prev", "fallback_to_mappings" },
+				["<C-j>"] = { "select_next", "fallback_to_mappings" },
 			},
 			completion = {
 				menu = {
