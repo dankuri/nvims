@@ -7,7 +7,7 @@ return {
 			"nvim-lua/plenary.nvim",
 			"antoinemadec/FixCursorHold.nvim",
 			"nvim-treesitter/nvim-treesitter",
-			{ "fredrikaverpil/neotest-golang", version = "1.*", dependencies = { "leoluz/nvim-dap-go" } }, -- until nvim-treesitter/main branch becomes stable
+			{ "fredrikaverpil/neotest-golang", dependencies = { "leoluz/nvim-dap-go" } },
 			{ "jfpedroza/neotest-elixir" },
 			{ "lawrence-laz/neotest-zig" },
 		},
