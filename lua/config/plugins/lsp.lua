@@ -50,6 +50,7 @@ return {
 		})
 
 		vim.lsp.enable("gdscript")
+		vim.lsp.enable("c3_lsp")
 
 		vim.lsp.config("lua_ls", {
 			settings = {
