@@ -23,6 +23,7 @@ return {
 				vue = { "prettier" },
 				yaml = { "prettier" },
 				gdscript = { "gdformat" },
+				ocaml = { "ocamlformat" },
 			},
 			format_after_save = function(bufnr)
 				if vim.b[bufnr].disable_autoformat or vim.g.disable_autoformat then
