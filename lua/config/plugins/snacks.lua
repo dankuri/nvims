@@ -119,9 +119,8 @@ return {
 		},
 		quickfile = { enabled = true },
 		scratch = { enabled = true },
-		statuscolumn = {
-			enabled = true,
-		},
+		statuscolumn = { enabled = true },
+		words = { enabled = true },
 	},
 	keys = {
 		{ "<leader><leader>", function() Snacks.picker.smart() end, desc = "smart find" },
@@ -140,5 +139,7 @@ return {
 		{ "<leader>ft", function() Snacks.picker.todo_comments() end, desc = "find todos" },
 		{ "<leader>gl", function() Snacks.lazygit() end, desc = "LazyGit" },
 		{ "<leader>.", function() Snacks.scratch() end, desc = "toggle scratch" },
+		{ "]r", function() Snacks.words.jump(1, true) end, desc = "next word reference" },
+		{ "[r", function() Snacks.words.jump(-1, true) end, desc = "prev word reference" },
 	},
 }
