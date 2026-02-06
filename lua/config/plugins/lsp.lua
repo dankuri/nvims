@@ -17,9 +17,10 @@ return {
 					return
 				end
 
+				local inlay_hint = vim.lsp.inlay_hint
 				local no_inlay_hints = { "clangd" }
 				if not vim.tbl_contains(no_inlay_hints, client.name) then
-					vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+					inlay_hint.enable(true, { bufnr = bufnr })
 				end
 
 				local map = function(m, lhs, rhs, desc, silent)
@@ -44,8 +45,8 @@ return {
 				map("x", "<leader>fm", vim.lsp.buf.format, "format selection")
 				map("n", "<leader>ca", vim.lsp.buf.code_action, "code actions")
 				map("n", "<leader>cl", vim.lsp.codelens.run, "code lens")
-				map("n", "<leader>th", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(), { bufnr = bufnr }) end, "toggle inlay hints")
-				map("n", "<leader>tH", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, "toggle inlay hints globally")
+				map("n", "<leader>th", function() inlay_hint.enable(not inlay_hint.is_enabled({ bufnr = bufnr }), { bufnr = bufnr }) end, "toggle inlay hints")
+				map("n", "<leader>tH", function() inlay_hint.enable(not inlay_hint.is_enabled()) end, "toggle inlay hints globally")
 			end,
 		})
 
@@ -172,7 +173,6 @@ return {
 	dependencies = {
 		-- Useful status updates for LSP
 		{ "j-hui/fidget.nvim", tag = "v1.6.1", opts = {} },
-		{ "saghen/blink.cmp" },
 		{ "mason-org/mason.nvim", opts = {} },
 		{
 			"mason-org/mason-lspconfig.nvim",

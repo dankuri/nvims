@@ -29,6 +29,7 @@ return {
 						},
 					}),
 					require("neotest-elixir"),
+					require("rustaceanvim.neotest"),
 				},
 			})
 		end,

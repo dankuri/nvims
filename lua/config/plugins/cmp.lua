@@ -1,9 +1,6 @@
 return {
 	"saghen/blink.cmp",
-	lazy = false, -- lazy loading handled internally
-	dependencies = {
-		{ "rafamadriz/friendly-snippets" },
-	},
+	dependencies = { { "rafamadriz/friendly-snippets" } },
 	version = "*",
 	---@module 'blink.cmp'
 	---@type blink.cmp.Config
@@ -65,6 +62,7 @@ return {
 					auto_insert = function(ctx) return ctx.mode == "cmdline" end,
 				},
 			},
+			ghost_text = { enabled = true },
 		},
 		signature = {
 			enabled = true,
