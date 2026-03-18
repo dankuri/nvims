@@ -144,6 +144,8 @@ require("lazy").setup({
 	{
 		"mrjones2014/smart-splits.nvim",
 		opts = { at_edge = "stop" },
+		lazy = false,
+		build = "./kitty/install-kittens.bash",
 	},
 	{
 		"kwkarlwang/bufresize.nvim",
