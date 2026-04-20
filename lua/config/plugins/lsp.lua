@@ -68,6 +68,8 @@ return {
 					analyses = {
 						unusedparams = true,
 						unusedwrite = true,
+						ST1000 = false,
+						ST1003 = false,
 					},
 					staticcheck = true,
 					hints = {
