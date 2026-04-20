@@ -50,10 +50,6 @@ return {
 			end,
 		})
 
-		vim.lsp.enable("gdscript")
-		vim.lsp.enable("c3_lsp")
-		vim.lsp.enable("ocamllsp")
-
 		vim.lsp.config("lua_ls", {
 			settings = {
 				Lua = {
@@ -63,6 +59,7 @@ return {
 				},
 			},
 		})
+		vim.lsp.enable("lua_ls")
 
 		vim.lsp.config("gopls", {
 			settings = {
@@ -85,6 +82,7 @@ return {
 				},
 			},
 		})
+		vim.lsp.enable("gopls")
 
 		vim.lsp.config("elixirls", {
 			settings = {
@@ -103,6 +101,7 @@ return {
 				},
 			},
 		})
+		vim.lsp.enable("jsonls")
 
 		-- vue setup
 		local vue_ls_installed = require("mason-registry").get_package("vue-language-server"):is_installed()
@@ -136,6 +135,7 @@ return {
 				provideFormatter = false,
 			},
 		})
+		vim.lsp.enable("html")
 
 		vim.lsp.config("emmet_language_server", {
 			filetypes = {
@@ -151,6 +151,7 @@ return {
 				showSuggestionsAsSnippets = true,
 			},
 		})
+		vim.lsp.enable("emmet_language_server")
 
 		vim.lsp.config("zls", {
 			settings = {
@@ -169,6 +170,12 @@ return {
 				},
 			},
 		})
+		vim.lsp.enable("zls")
+
+		vim.lsp.enable("gdscript")
+		vim.lsp.enable("c3_lsp")
+		vim.lsp.enable("ocamllsp")
+		vim.lsp.enable("ols")
 	end,
 	dependencies = {
 		-- Useful status updates for LSP
@@ -186,8 +193,8 @@ return {
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 			opts = {
 				ensure_installed = {
-					{ "gopls", condition = function() return vim.fn.executable("go") == 1 end },
-					{ "golangci-lint", condition = function() return vim.fn.executable("go") == 1 end },
+					{ "gopls", condition = function() return vim.fn.executable("go") == 1 and vim.fn.executable("gopls") == 0 end },
+					{ "golangci-lint", condition = function() return vim.fn.executable("go") == 1 and vim.fn.executable("golangci-lint") == 0 end },
 					{ "buf_ls", condition = function() return vim.fn.executable("buf") == 1 end },
 
 					"lua_ls",
