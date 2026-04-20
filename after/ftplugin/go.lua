@@ -1,3 +1,5 @@
 vim.keymap.set("n", "<localleader>e", ":GoIfErr<CR>", { silent = true, desc = "GO: if err" })
 vim.keymap.set("n", "<localleader>g", ":GoGenerate<CR>", { silent = true, desc = "GO: generate" })
 vim.keymap.set("n", "<localleader>at", ":GoAddTag ", { desc = "GO: add tag" })
+vim.keymap.set("n", "<localleader>fs", ":GoFillStruct<CR>", { silent = true, desc = "GO: fill struct" })
+vim.api.nvim_create_user_command("GoAddTestP", function() require("go.gotests").fun_test(true) end, {})
