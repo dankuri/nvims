@@ -98,7 +98,7 @@ return {
 				{ section = "startup" },
 			},
 		},
-		image = { enabled = true },
+		image = { enabled = true, doc = { inline = false } },
 		indent = {
 			enabled = true,
 			animate = { enabled = false },
