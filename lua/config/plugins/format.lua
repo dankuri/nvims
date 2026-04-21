@@ -35,6 +35,7 @@ return {
 					"volar",
 					"lua_ls",
 					"buf_ls",
+					"clangd",
 				}
 				return {
 					async = true, -- let's try this
