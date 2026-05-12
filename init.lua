@@ -151,6 +151,7 @@ vim.pack.add({
 	"https://github.com/tpope/vim-sleuth", -- detect tabstop and shiftwidth automatically
 	{ src = "https://github.com/mrcjkb/rustaceanvim", version = vim.version.range("^9") },
 	"https://github.com/kylechui/nvim-surround",
+	"https://github.com/b0o/schemastore.nvim",
 })
 
 require("catppuccin").setup({

@@ -137,6 +137,10 @@
       "src": "https://github.com/mrcjkb/rustaceanvim",
       "version": "9.0.0 - 10.0.0"
     },
+    "schemastore.nvim": {
+      "rev": "950e45a2e49ab9355f7ed87e426ae2b9047eca53",
+      "src": "https://github.com/b0o/schemastore.nvim"
+    },
     "smart-splits.nvim": {
       "rev": "80be31a3d2e37d32bd37794da72a4f69fce7a85f",
       "src": "https://github.com/mrjones2014/smart-splits.nvim"

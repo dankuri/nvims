@@ -88,3 +88,66 @@ vim.lsp.config("gopls", {
 	},
 })
 vim.lsp.enable("gopls")
+
+vim.lsp.config("elixirls", {
+	settings = {
+		elixirLS = {
+			dialyzerEnabled = false,
+			fetchDeps = false,
+		},
+	},
+})
+vim.lsp.enable("elixirls")
+
+vim.lsp.config("html", {
+	filetypes = { "html", "templ", "elixir", "eelixir", "heex" },
+	init_options = {
+		provideFormatter = false,
+	},
+})
+vim.lsp.enable("html")
+
+vim.lsp.config("emmet_language_server", {
+	filetypes = {
+		"htlm",
+		"css",
+		"javascriptreact",
+		"typescriptreact",
+		"vue",
+		"eelixir",
+		"heex",
+	},
+	init_options = {
+		showSuggestionsAsSnippets = true,
+	},
+})
+vim.lsp.enable("emmet_language_server")
+
+vim.lsp.config("jsonls", {
+	settings = {
+		json = {
+			schemas = require("schemastore").json.schemas(),
+			validate = { enable = true },
+		},
+	},
+})
+vim.lsp.enable("jsonls")
+
+vim.lsp.config("zls", {
+	settings = {
+		zls = {
+			-- disable noise
+			enable_argument_placeholders = false,
+			inlay_hints_show_variable_type_hints = false,
+			inlay_hints_show_struct_literal_field_type = false,
+			inlay_hints_show_parameter_name = false,
+			inlay_hints_show_builtin = false,
+			inlay_hints_exclude_single_argument = false,
+			inlay_hints_hide_redundant_param_names = false,
+			inlay_hints_hide_redundant_param_names_last_token = false,
+			-- enable good stuff
+			enable_build_on_save = true,
+		},
+	},
+})
+vim.lsp.enable("zls")
