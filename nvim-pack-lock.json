@@ -29,7 +29,7 @@
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "go.nvim": {
-      "rev": "b44b75e1f26e69a299b64306c354bc53580016aa",
+      "rev": "5c741a26f5df77c95d42d8f48e7008aea10e5f4f",
       "src": "https://github.com/ray-x/go.nvim"
     },
     "guihua.lua": {
@@ -89,7 +89,7 @@
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "31026a13eefb20681124706a79fc1df6bf11ab27",
+      "rev": "cd576dd72d31ddffcbfa6d064c0dd697ca218758",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-nio": {
@@ -105,7 +105,7 @@
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-context": {
-      "rev": "b0c45cefe2c8f7b55fc46f34e563bc428ef99636",
+      "rev": "b311b30818951d01f7b4bf650521b868b3fece16",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-context"
     },
     "nvim-treesitter-textobjects": {
@@ -129,7 +129,7 @@
       "src": "https://github.com/nvim-lua/plenary.nvim"
     },
     "render-markdown.nvim": {
-      "rev": "3f3eea97b80839f629c951ca660ffd125bfa5b34",
+      "rev": "629eb9533ec989d9d5c6cab8f3ad5372422c24e0",
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
     "rustaceanvim": {
