@@ -1,51 +1,14 @@
-vim.api.nvim_create_autocmd("PackChanged", {
-	callback = function(ev)
-		local name, kind = ev.data.spec.name, ev.data.kind
-		if name == "nvim-treesitter" and kind == "update" then
-			if not ev.data.active then
-				vim.cmd.packadd("nvim-treesitter")
-			end
-			vim.cmd("TSUpdate")
-		end
-	end,
-})
+vim.g.no_plugin_maps = true
 vim.pack.add({
-	"https://github.com/nvim-treesitter/nvim-treesitter",
+	"https://github.com/romus204/tree-sitter-manager.nvim",
 	"https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
 	"https://github.com/nvim-treesitter/nvim-treesitter-context",
 })
-vim.api.nvim_create_autocmd({ "BufRead" }, {
-	callback = function(event)
-		local bufnr = event.buf
-		local filetype = vim.api.nvim_get_option_value("filetype", { buf = bufnr })
 
-		-- Skip if no filetype
-		if filetype == "" then
-			return
-		end
-
-		-- Get parser name based on filetype
-		local parser_name = vim.treesitter.language.get_lang(filetype) -- might return filetype (not helpful)
-		if not parser_name then
-			return
-		end
-		-- Try to get existing parser (helpful check if filetype was returned above)
-		local parser_configs = require("nvim-treesitter.parsers")
-		if not parser_configs[parser_name] then
-			return -- Parser not available, skip silently
-		end
-
-		local parser = vim.treesitter.get_parser(bufnr, parser_name)
-
-		if not parser then
-			-- If not installed, install parser synchronously
-			require("nvim-treesitter").install({ parser_name }):wait(30000)
-		end
-		vim.treesitter.start(bufnr, parser_name)
-		vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-	end,
+require("tree-sitter-manager").setup({
+	auto_install = true,
 })
-vim.g.no_plugin_maps = true
+
 require("nvim-treesitter-textobjects").setup({
 	select = {
 		lookahead = true,
