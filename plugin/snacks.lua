@@ -25,7 +25,7 @@ require("snacks").setup({
 	},
 	quickfile = { enabled = true },
 	scratch = { enabled = true },
-	statuscolumn = { enabled = true },
+	-- statuscolumn = { enabled = true },
 	words = { enabled = true },
 })
 require("todo-comments").setup({})
