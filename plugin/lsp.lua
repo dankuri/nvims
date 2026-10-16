@@ -151,3 +151,12 @@ vim.lsp.config("zls", {
 	},
 })
 vim.lsp.enable("zls")
+
+vim.lsp.config("clangd", {
+	settings = {
+		CompileFlags = {
+			Add = { "-Wall", "-std=c++23" },
+		},
+	},
+})
+vim.lsp.enable("clangd")
