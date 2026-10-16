@@ -4,6 +4,14 @@
       "rev": "1900f89dc17c603eec29960f57c00bd9ae696495",
       "src": "https://github.com/antoinemadec/FixCursorHold.nvim"
     },
+    "backend-ghostty": {
+      "rev": "f45d7ca1b12378818d5164d550ca4b908b0323da",
+      "src": "https://github.com/smart-splits-nvim/backend-ghostty"
+    },
+    "backend-tmux": {
+      "rev": "9e9e6aa9b3eb7a8d3896a993611622ac97abff52",
+      "src": "https://github.com/smart-splits-nvim/backend-tmux"
+    },
     "blink.cmp": {
       "rev": "10198f904da1e7f77aeb0368414f871568c0d898",
       "src": "https://github.com/saghen/blink.cmp"
@@ -142,8 +150,8 @@
       "src": "https://github.com/b0o/schemastore.nvim"
     },
     "smart-splits.nvim": {
-      "rev": "5e92431aa7f5e618c2f6825f682df6d94f6e0a02",
-      "src": "https://github.com/mrjones2014/smart-splits.nvim"
+      "rev": "ea553356370ea76dce189fb36947a424f124c04b",
+      "src": "https://github.com/smart-splits-nvim/smart-splits.nvim"
     },
     "snacks.nvim": {
       "rev": "882c996cf28183f4d63640de0b4c02ec886d01f2",

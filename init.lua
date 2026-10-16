@@ -146,7 +146,9 @@ vim.pack.add({
 	"https://github.com/MeanderingProgrammer/render-markdown.nvim",
 	"https://github.com/folke/which-key.nvim",
 	"https://github.com/windwp/nvim-autopairs",
-	"https://github.com/mrjones2014/smart-splits.nvim",
+	"https://github.com/smart-splits-nvim/smart-splits.nvim",
+	"https://github.com/smart-splits-nvim/backend-tmux",
+	"https://github.com/smart-splits-nvim/backend-ghostty",
 	"https://github.com/wsdjeg/vim-fetch", -- ability to open file:row:column from cmdline
 	"https://github.com/tpope/vim-sleuth", -- detect tabstop and shiftwidth automatically
 	{ src = "https://github.com/mrcjkb/rustaceanvim", version = vim.version.range("^9") },
@@ -205,5 +207,8 @@ require("lualine").setup({
 require("render-markdown").setup({})
 require("which-key").setup({ icons = { rules = false } })
 require("nvim-autopairs").setup({})
-require("smart-splits").setup({ at_edge = "stop" })
+require("smart-splits").setup({
+	move = { at_edge = "stop" },
+	mux = { backend = { "smart-splits-backend-tmux", "smart-splits-backend-ghostty" }, warn_if_unusable = false },
+})
 require("nvim-surround").setup({})
